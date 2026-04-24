@@ -249,7 +249,7 @@ const onOverlayLeave = (element: Element, done: () => void) => {
 </script>
 
 <template>
-  <div class="hero-scene-install">
+  <div class="hero-scene-install ui-size-full">
     <HeroSceneShellBase
       :brand-name="brandName"
       :search-aria-label="searchAriaLabel"
@@ -270,9 +270,9 @@ const onOverlayLeave = (element: Element, done: () => void) => {
       @before-leave="onOverlayBeforeLeave"
       @leave="onOverlayLeave"
     >
-      <div v-if="installMode" class="hero-scene-install__overlay">
-        <span class="hero-scene-install__exit-flash" aria-hidden="true"></span>
-        <span class="hero-scene-install__exit-wave" aria-hidden="true"></span>
+      <div v-if="installMode" class="hero-scene-install__overlay ui-abs-fill">
+        <span class="hero-scene-install__exit-flash ui-abs-fill" aria-hidden="true"></span>
+        <span class="hero-scene-install__exit-wave ui-abs-fill" aria-hidden="true"></span>
         <div class="hero-scene-install__topbar" aria-hidden="true">
           <span class="hero-scene-install__topbar-label">{{ topbarLabel }}</span>
           <span class="hero-scene-install__topbar-dots">

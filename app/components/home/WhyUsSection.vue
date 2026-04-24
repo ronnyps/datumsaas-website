@@ -21,7 +21,7 @@ defineProps<{
         <h2 class="section__title section__title--light">{{ title }}</h2>
         <p class="why-us__summary typo-p-panel-muted">{{ description }}</p>
       </div>
-      <ul class="why-us__list">
+      <ul class="why-us__list ui-list-reset">
         <li
           v-for="point in points"
           :key="point"

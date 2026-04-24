@@ -49,7 +49,7 @@ const productValue = computed(() => asTypedText(props.record?.productService ?? 
 </script>
 
 <template>
-  <article class="flow-node-shell flow-trigger-shell" :class="{ 'is-active': active }">
+  <article class="flow-node-shell flow-trigger-shell surface-pastel" :class="{ 'is-active': active }">
     <div class="flow-workflow-node flow-workflow-node--trigger" :class="{ 'is-active': active }">
       <p class="flow-trigger-form__title">{{ form.title }}</p>
       <div class="flow-trigger-form__grid">

@@ -17,6 +17,10 @@ logs
 .DS_Store
 .fleet
 .idea
+.claude/
+.cortex/
+.codex/
+.tmp_*
 
 # Local env files
 .env

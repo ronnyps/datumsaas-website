@@ -14,7 +14,7 @@ defineProps<{
         <h2 class="section__title">{{ title }}</h2>
         <a class="btn btn--primary" :href="ctaHref">{{ ctaLabel }}</a>
       </div>
-      <ol class="demo-process__list">
+      <ol class="demo-process__list ui-list-reset">
         <li v-for="(step, index) in steps" :key="step" class="demo-process__item">
           <span class="demo-process__index">{{ index + 1 }}</span>
           <p class="demo-process__text typo-p-body-strong">{{ step }}</p>

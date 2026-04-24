@@ -167,13 +167,13 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div class="flow-node-shell" :class="{ 'is-active': active }">
+  <div class="flow-node-shell surface-pastel" :class="{ 'is-active': active }">
     <article
       class="flow-workflow-node flow-workflow-node--action"
       :class="[{ 'is-active': active }, variant ? `flow-workflow-node--${variant}` : '']"
     >
       <p class="flow-workflow-node__title">{{ label }}</p>
-      <ul v-if="variant === 'quote'" class="flow-action-node__quote-list">
+      <ul v-if="variant === 'quote'" class="flow-action-node__quote-list ui-list-reset">
         <li
           v-for="(orderNumber, index) in (quoteHistory?.length ? quoteHistory : [quoteNumber ?? 101])"
           :key="index === 0 ? `quote-${orderNumber}-${quoteAnimateToken ?? 0}` : `quote-${orderNumber}-${index}`"

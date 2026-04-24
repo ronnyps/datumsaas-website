@@ -377,7 +377,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <article class="problem-visual problem-visual--visibility" :class="{ 'is-active': active }">
+  <article class="problem-visual problem-visual--visibility surface-pastel" :class="{ 'is-active': active }">
     <div ref="explorerRootEl" class="problem-visibility-explorer" :class="{ 'problem-visibility-explorer--entered': introEntered }">
       <header class="problem-visibility-explorer__topbar">
         <div class="problem-visibility-explorer__app-meta">

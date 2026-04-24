@@ -55,7 +55,7 @@ const onSelectStep = (index: number) => {
             :value="getItemProgress(index)"
           ></progress>
         </span>
-        <h3 class="bridge__item-title typo-h3-xl">{{ item.title }}</h3>
+        <h3 class="bridge__item-title typo-h3-md">{{ item.title }}</h3>
         <p class="bridge__item-description typo-p-lead-muted">
           {{ item.description }}
         </p>

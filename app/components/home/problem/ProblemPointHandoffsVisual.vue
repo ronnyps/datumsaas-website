@@ -584,7 +584,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <article class="problem-visual problem-visual--handoffs">
+  <article class="problem-visual problem-visual--handoffs surface-pastel">
     <div ref="handoffsRootEl" class="problem-handoffs" :class="{ 'problem-handoffs--entered': introEntered }" aria-hidden="true">
       <svg
         class="problem-handoffs__links"

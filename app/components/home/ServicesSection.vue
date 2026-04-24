@@ -2,7 +2,12 @@
 import InventoryHolderVisual from "./services/InventoryHolderVisual.vue";
 
 type CoreItem = { label: string; title: string; description: string };
-type ModuleItem = { label: string; title: string; description: string; chip: string };
+type ModuleItem = {
+  label: string;
+  title: string;
+  description: string;
+  chip: string;
+};
 type InventoryVariant = {
   id: string;
   label: string;
@@ -30,17 +35,14 @@ const props = defineProps<{
   modules: ModuleItem[];
 }>();
 
-const coreCardClassByIndex = [
-  "services__card--a",
-  "services__card--b"
-];
+const coreCardClassByIndex = ["services__card--a", "services__card--b"];
 
 const moduleCardClassByIndex = [
   "services__card--c",
   "services__card--d",
   "services__card--e",
   "services__card--f",
-  "services__card--g"
+  "services__card--g",
 ];
 
 const unifiedCards = computed(() => {
@@ -52,7 +54,7 @@ const unifiedCards = computed(() => {
     description: item.description,
     chip: "",
     hasInventoryVisual: index === 0,
-    cardClass: coreCardClassByIndex[index] ?? "services__card--a"
+    cardClass: coreCardClassByIndex[index] ?? "services__card--a",
   }));
 
   const moduleCards = props.modules.slice(0, 5).map((module, index) => ({
@@ -63,7 +65,7 @@ const unifiedCards = computed(() => {
     description: module.description,
     chip: module.chip,
     hasInventoryVisual: false,
-    cardClass: moduleCardClassByIndex[index] ?? "services__card--c"
+    cardClass: moduleCardClassByIndex[index] ?? "services__card--c",
   }));
 
   return [...coreCards, ...moduleCards];
@@ -77,7 +79,11 @@ const unifiedCards = computed(() => {
         <h2 class="section__title">{{ title }}</h2>
       </div>
 
-      <div class="services__bento grid-flow-dense" data-layout="12-col" data-tier="unified">
+      <div
+        class="services__bento grid-flow-dense"
+        data-layout="12-col"
+        data-tier="unified"
+      >
         <article
           v-for="card in unifiedCards"
           :key="card.id"
@@ -85,7 +91,7 @@ const unifiedCards = computed(() => {
           :class="[
             card.cardClass,
             { 'services__card--module': card.kind === 'module' },
-            { 'services__card--with-holder': card.hasInventoryVisual }
+            { 'services__card--with-holder': card.hasInventoryVisual },
           ]"
         >
           <svg
@@ -97,21 +103,73 @@ const unifiedCards = computed(() => {
             focusable="false"
           >
             <defs>
-              <linearGradient id="services-wave-gradient-primary" x1="0%" y1="100%" x2="100%" y2="0%">
-                <stop offset="0%" stop-color="rgb(var(--color-accent-indigo-ch))" stop-opacity="0.32" />
-                <stop offset="40%" stop-color="rgb(var(--color-accent-violet-ch))" stop-opacity="0.26" />
-                <stop offset="72%" stop-color="rgb(var(--color-accent-pink-ch))" stop-opacity="0.24" />
-                <stop offset="100%" stop-color="rgb(var(--color-blue-400-ch))" stop-opacity="0.28" />
+              <linearGradient
+                id="services-wave-gradient-primary"
+                x1="0%"
+                y1="100%"
+                x2="100%"
+                y2="0%"
+              >
+                <stop
+                  offset="0%"
+                  stop-color="rgb(var(--color-accent-indigo-ch))"
+                  stop-opacity="0.32"
+                />
+                <stop
+                  offset="40%"
+                  stop-color="rgb(var(--color-accent-violet-ch))"
+                  stop-opacity="0.26"
+                />
+                <stop
+                  offset="72%"
+                  stop-color="rgb(var(--color-accent-pink-ch))"
+                  stop-opacity="0.24"
+                />
+                <stop
+                  offset="100%"
+                  stop-color="rgb(var(--color-blue-400-ch))"
+                  stop-opacity="0.28"
+                />
               </linearGradient>
-              <linearGradient id="services-wave-gradient-secondary" x1="8%" y1="100%" x2="92%" y2="8%">
-                <stop offset="0%" stop-color="rgb(var(--color-accent-indigo-ch))" stop-opacity="0.22" />
-                <stop offset="55%" stop-color="rgb(var(--color-accent-violet-ch))" stop-opacity="0.18" />
-                <stop offset="100%" stop-color="rgb(var(--color-blue-400-ch))" stop-opacity="0.24" />
+              <linearGradient
+                id="services-wave-gradient-secondary"
+                x1="8%"
+                y1="100%"
+                x2="92%"
+                y2="8%"
+              >
+                <stop
+                  offset="0%"
+                  stop-color="rgb(var(--color-accent-indigo-ch))"
+                  stop-opacity="0.22"
+                />
+                <stop
+                  offset="55%"
+                  stop-color="rgb(var(--color-accent-violet-ch))"
+                  stop-opacity="0.18"
+                />
+                <stop
+                  offset="100%"
+                  stop-color="rgb(var(--color-blue-400-ch))"
+                  stop-opacity="0.24"
+                />
               </linearGradient>
-              <filter id="services-wave-blur-soft" x="-20%" y="-30%" width="140%" height="190%">
+              <filter
+                id="services-wave-blur-soft"
+                x="-20%"
+                y="-30%"
+                width="140%"
+                height="190%"
+              >
                 <feGaussianBlur stdDeviation="16" />
               </filter>
-              <filter id="services-wave-blur-wide" x="-24%" y="-36%" width="148%" height="196%">
+              <filter
+                id="services-wave-blur-wide"
+                x="-24%"
+                y="-36%"
+                width="148%"
+                height="196%"
+              >
                 <feGaussianBlur stdDeviation="22" />
               </filter>
             </defs>
@@ -128,16 +186,22 @@ const unifiedCards = computed(() => {
               fill="url(#services-wave-gradient-secondary)"
             />
           </svg>
-          <p class="services__card-kicker">{{ card.label }}</p>
-          <h3 class="services__card-title typo-h3-xl">{{ card.title }}</h3>
-          <p class="services__card-text typo-p-body-md-muted">{{ card.description }}</p>
+          <div class="services__card-copy content-stack content-stack--2">
+            <p class="services__card-kicker">{{ card.label }}</p>
+            <h3 class="services__card-title typo-h3-xl">{{ card.title }}</h3>
+            <p class="services__card-text typo-p-body-md-muted">
+              {{ card.description }}
+            </p>
+          </div>
           <InventoryHolderVisual
             v-if="card.hasInventoryVisual"
             class="services__inventory-holder-mount"
             :locale="props.locale ?? 'en'"
             :products="props.inventoryProducts"
           />
-          <p v-if="card.kind === 'module'" class="services__module-chip">{{ card.chip }}</p>
+          <p v-if="card.kind === 'module'" class="services__module-chip">
+            {{ card.chip }}
+          </p>
         </article>
       </div>
     </div>

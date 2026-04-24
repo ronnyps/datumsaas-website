@@ -1,0 +1,45 @@
+.doc-file-glyph {
+  --file-accent: var(--color-blue-500-ch);
+  --file-accent-soft: var(--color-blue-300-ch);
+  --file-paper: var(--color-neutral-0-ch);
+  --file-stroke: var(--color-midnight-500-ch);
+  display: inline-grid;
+  width: 4.15rem;
+  height: 3.04rem;
+  transform: translateY(0.05rem);
+}
+
+.doc-file-glyph__svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.doc-file-glyph__back {
+  fill: rgb(var(--file-accent-soft) / 0.24);
+}
+
+.doc-file-glyph__inner-cover {
+  fill: rgb(var(--file-accent-soft) / 0.74);
+  stroke: rgb(var(--file-accent) / 0.22);
+  stroke-width: 1;
+}
+
+.doc-file-glyph__sheet {
+  fill: rgb(var(--file-paper) / 0.95);
+  stroke: rgb(var(--file-stroke) / 0.1);
+  stroke-width: 1;
+}
+
+.doc-file-glyph__sheet--b {
+  fill: rgb(var(--file-paper) / 0.88);
+}
+
+.doc-file-glyph__line {
+  fill: rgb(var(--color-midnight-500-ch) / 0.2);
+}
+
+.doc-file-glyph__front {
+  fill: rgb(var(--file-accent) / 0.92);
+  transform: translateY(8px);
+}

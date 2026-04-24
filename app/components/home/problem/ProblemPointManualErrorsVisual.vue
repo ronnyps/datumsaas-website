@@ -8,7 +8,7 @@ defineProps<{
 </script>
 
 <template>
-  <article class="problem-visual problem-visual--manual" :class="{ 'is-active': active }">
+  <article class="problem-visual problem-visual--manual surface-pastel" :class="{ 'is-active': active }">
     <ProblemMobileFilesPhone :locale="locale" />
   </article>
 </template>

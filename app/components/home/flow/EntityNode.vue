@@ -99,10 +99,10 @@ watch(
 </script>
 
 <template>
-  <div class="flow-node-shell" :class="{ 'is-active': active }">
+  <div class="flow-node-shell surface-pastel" :class="{ 'is-active': active }">
     <article class="flow-workflow-node flow-workflow-node--entity" :class="[{ 'is-active': active }, variant ? `flow-workflow-node--entity-${variant}` : '']">
       <p class="flow-workflow-node__title">{{ label }}</p>
-      <ul class="flow-entity-node__rows" :class="{ 'flow-entity-node__rows--contact': (props.variant ?? 'customer') === 'contact' }">
+      <ul class="flow-entity-node__rows ui-list-reset" :class="{ 'flow-entity-node__rows--contact': (props.variant ?? 'customer') === 'contact' }">
         <li
           v-for="(row, index) in resolveRows()"
           :key="row"

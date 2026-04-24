@@ -692,6 +692,8 @@ onBeforeUnmount(() => {
   }
 });
 
+useDotsHover(rootEl);
+
 const { isInViewport, prefersReducedMotion: isReducedMotion } =
   useViewportAnimationGate({
     target: rootEl,
@@ -733,6 +735,8 @@ watch(stage, async () => {
     data-aida="flow"
     data-flow="workflow-canvas"
   >
+    <span class="dots-layer" aria-hidden="true" />
+    <span class="dots-layer dots-layer--interactive" aria-hidden="true" />
     <div class="container">
       <div class="flow__heading content-stack content-stack--6">
         <h2 class="section__title">{{ props.title }}</h2>
@@ -741,7 +745,7 @@ watch(stage, async () => {
 
       <div ref="canvasEl" class="flow-workflow" aria-hidden="true">
         <svg
-          class="flow-workflow__lines"
+          class="flow-workflow__lines ui-abs-fill ui-size-full"
           :viewBox="`0 0 ${canvasSize.width} ${canvasSize.height}`"
           preserveAspectRatio="none"
         >
@@ -761,7 +765,7 @@ watch(stage, async () => {
           />
         </svg>
 
-        <div class="flow-workflow__packets">
+        <div class="flow-workflow__packets ui-abs-fill">
           <span
             v-for="edge in props.workflow.edges.filter((item) => item.animated)"
             :key="`packet-${edge.from}-${edge.to}`"
@@ -770,7 +774,7 @@ watch(stage, async () => {
           />
         </div>
 
-        <ul class="flow-workflow__nodes" role="presentation">
+        <ul class="flow-workflow__nodes ui-list-reset ui-abs-fill" role="presentation">
           <li
             v-for="node in visibleNodes"
             :key="node.id"

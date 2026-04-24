@@ -3,7 +3,7 @@
 ## Priority and scope
 
 - User instructions and this `AGENT.md` take precedence over any individual skill guidance.
-- Use skills intentionally: apply the minimum set that improves quality without adding unnecessary process.
+- Skills are opt-in only: do not read or apply any skill unless the user explicitly asks for that specific skill in the current conversation.
 
 ## Skill locations
 
@@ -29,17 +29,12 @@
   - `designs/*` -> `.agents/skills/designs/*/SKILL.md`
   - `emil-design-eng` -> `.agents/skills/emil-design-eng/SKILL.md`
 
-## Always-on
+## Skills default behavior (strict)
 
-- Treat `context-optimization` as always on.
-
-## Superpowers: core workflow
-
-- For new work, use `brainstorming` before implementation.
-- Use `writing-plans` when a task has multiple steps or non-trivial risk.
-- For bugs, use `systematic-debugging` before proposing fixes.
-- Before claiming completion, review project best practices in `docs/superpowers/specs/2026-04-20-datumsaas-best-practices-system.md`.
-- Before claiming completion, use `verification-before-completion`.
+- Do not load any skill by default.
+- Do not open `SKILL.md` files unless the user explicitly requests it.
+- Do not apply “always-on” skill behavior unless the user explicitly asks for it.
+- If the user does not mention a skill, proceed with standard coding workflow directly.
 
 ## Superpowers: situational only
 

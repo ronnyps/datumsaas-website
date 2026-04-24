@@ -17,9 +17,6 @@
 }
 
 .problem__list {
-  margin: 0;
-  padding: 0;
-  list-style: none;
   display: grid;
   gap: 0;
 }
@@ -124,10 +121,6 @@
   inset: 0;
   pointer-events: none;
   background: linear-gradient(180deg, transparent, rgb(var(--color-blue-500-ch) / 0.03));
-}
-
-.problem-visual--handoffs {
-  background: rgb(var(--color-neutral-0-ch));
 }
 
 .problem-visual--handoffs::after {

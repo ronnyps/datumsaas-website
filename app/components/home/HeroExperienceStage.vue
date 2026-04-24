@@ -95,6 +95,7 @@ onBeforeUnmount(() => {
       <HeroSceneInstall
         v-if="activeIndex === 0"
         :key="sceneKey"
+        class="ui-size-full"
         :progress="progress"
         :brand-name="dashboardMock.brandName"
         :search-aria-label="dashboardMock.labels.searchAriaLabel"
@@ -110,6 +111,7 @@ onBeforeUnmount(() => {
       <HeroSceneUserImport
         v-else-if="activeIndex === 1"
         :key="sceneKey"
+        class="ui-size-full"
         :progress="progress"
         :brand-name="dashboardMock.brandName"
         :search-aria-label="dashboardMock.labels.searchAriaLabel"
@@ -129,7 +131,7 @@ onBeforeUnmount(() => {
         :rows="userImport.rows"
       />
 
-      <div v-else :key="sceneKey" class="hero-experience-stage__control">
+      <div v-else :key="sceneKey" class="hero-experience-stage__control ui-size-full">
         <HeroDashboardMock :locale="locale" />
       </div>
     </Transition>

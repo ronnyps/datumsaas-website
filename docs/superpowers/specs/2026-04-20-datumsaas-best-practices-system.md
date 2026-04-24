@@ -37,6 +37,9 @@ Si hay conflicto, se documenta la decision tomada en el PR/nota de cambio.
 - Todo CSS debe declararse en archivos `.css` identificables y versionables.
 - Se utilizaran exclusivamente tokens definidos en `assets/design-tokens.css`.
 - Si se requiere crear o modificar tokens, se debe consultar y aprobar primero antes de implementarlo.
+- A partir de ahora, no crear nuevas clases ni nuevos estilos si ya existe una clase/utilidad que resuelva el caso.
+- Priorizar siempre reutilizacion de clases existentes en `main.css` y estilos ya definidos por seccion.
+- Solo se permite crear clases/estilos nuevos cuando el usuario lo solicite de forma explicita.
 
 ### Prohibiciones explicitas
 
@@ -114,6 +117,8 @@ Checklist minimo:
 - [ ] Estilos en archivos `.css` reconocibles.
 - [ ] Solo se usan tokens existentes de `assets/design-tokens.css`.
 - [ ] Cualquier token nuevo fue consultado y aprobado previamente.
+- [ ] No se crearon clases/estilos nuevos si existia una clase reutilizable equivalente.
+- [ ] Cualquier clase/estilo nuevo fue solicitado explicitamente por el usuario.
 - [ ] Build local correcta.
 - [ ] Revisado en desktop y mobile.
 - [ ] Copy final sin mezcla accidental de idioma.

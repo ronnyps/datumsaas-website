@@ -47,7 +47,7 @@ function handleYouCursorActiveChange(isActive: boolean) {
       <div class="problem__copy content-stack content-stack--4">
         <h2 class="section__title">{{ title }}</h2>
         <p class="problem__text typo-p-body-muted">{{ description }}</p>
-        <ul class="problem__list">
+        <ul class="problem__list ui-list-reset">
           <li
             v-for="(bullet, index) in bullets"
             :key="bullet"

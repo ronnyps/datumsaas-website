@@ -1,39 +1,5 @@
-.problem-visual--visibility {
-  isolation: isolate;
-  border-color: rgb(var(--color-blue-300-ch) / 0.75);
-  background:
-    linear-gradient(160deg, rgba(255, 255, 255, 0.95), rgb(var(--color-neutral-50-ch) / 0.92)),
-    radial-gradient(380px 220px at 12% 18%, rgb(var(--color-accent-pink-ch) / 0.16), transparent 72%),
-    radial-gradient(360px 220px at 88% 82%, rgb(var(--color-accent-violet-ch) / 0.15), transparent 72%),
-    radial-gradient(320px 200px at 82% 16%, rgb(var(--color-blue-400-ch) / 0.18), transparent 70%);
-  background-size: 100% 100%, 125% 125%, 120% 120%, 118% 118%;
-  background-position: center, 0% 0%, 100% 100%, 100% 0%;
-  animation: problem-manual-bg-shift 14s ease-in-out infinite alternate;
-}
-
 .problem-visual--visibility::after {
   display: none;
-}
-
-.problem-visual--visibility::before {
-  content: "";
-  position: absolute;
-  inset: -22% -14%;
-  z-index: -1;
-  pointer-events: none;
-  background:
-    conic-gradient(
-      from 210deg at 50% 50%,
-      rgb(var(--color-accent-indigo-ch) / 0.16),
-      rgb(var(--color-accent-pink-ch) / 0.12),
-      rgb(var(--color-blue-400-ch) / 0.14),
-      rgb(var(--color-accent-violet-ch) / 0.12),
-      rgb(var(--color-accent-indigo-ch) / 0.16)
-    );
-  filter: blur(44px);
-  opacity: 0.82;
-  transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
-  animation: problem-manual-aura-sweep 18s cubic-bezier(0.37, 0, 0.2, 1) infinite;
 }
 
 .problem-visibility-explorer {
@@ -542,30 +508,6 @@
   }
 }
 
-@keyframes problem-manual-bg-shift {
-  0% {
-    background-position: center, 0% 0%, 100% 100%, 100% 0%;
-  }
-
-  100% {
-    background-position: center, 38% 24%, 62% 76%, 76% 34%;
-  }
-}
-
-@keyframes problem-manual-aura-sweep {
-  0% {
-    transform: translate3d(-2%, -1%, 0) rotate(0deg) scale(1);
-  }
-
-  50% {
-    transform: translate3d(2%, 1%, 0) rotate(7deg) scale(1.04);
-  }
-
-  100% {
-    transform: translate3d(-1%, 2%, 0) rotate(12deg) scale(1.02);
-  }
-}
-
 @media (max-width: 1100px) {
   .problem-visibility-explorer__body {
     grid-template-columns: 8.3rem 1fr;
@@ -587,8 +529,6 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .problem-visual--visibility,
-  .problem-visual--visibility::before,
   .problem-visibility-explorer,
   .problem-visibility-explorer__topbar,
   .problem-visibility-explorer__body,

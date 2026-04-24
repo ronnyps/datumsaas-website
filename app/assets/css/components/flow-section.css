@@ -3,20 +3,6 @@
   isolation: isolate;
 }
 
-.flow::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  background: radial-gradient(
-    circle,
-    rgb(var(--color-blue-300-ch) / 0.24) 1px,
-    transparent 1.3px
-  );
-  background-size: 14px 14px;
-}
-
 .flow > .container {
   position: relative;
   z-index: 1;
@@ -44,30 +30,8 @@
   user-select: none;
 }
 
-.flow-workflow::before {
-  content: none;
-  position: absolute;
-  inset: -22%;
-  z-index: -1;
-  pointer-events: none;
-  background:
-    conic-gradient(
-      from 180deg at 50% 50%,
-      rgb(var(--color-blue-300-ch) / 0.16),
-      rgb(var(--color-accent-violet-ch) / 0.1),
-      rgb(var(--color-accent-indigo-ch) / 0.15),
-      rgb(var(--color-blue-300-ch) / 0.16)
-    );
-  filter: blur(46px);
-  opacity: 0.76;
-  animation: flowWorkflowAuraSweep 18s cubic-bezier(0.37, 0, 0.2, 1) infinite;
-}
 
 .flow-workflow__lines {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
   z-index: 1;
 }
 
@@ -98,8 +62,6 @@
 }
 
 .flow-workflow__packets {
-  position: absolute;
-  inset: 0;
   z-index: 2;
   pointer-events: none;
 }
@@ -116,11 +78,6 @@
 }
 
 .flow-workflow__nodes {
-  position: absolute;
-  inset: 0;
-  margin: 0;
-  padding: 0;
-  list-style: none;
   z-index: 3;
 }
 
@@ -131,13 +88,13 @@
 
 .flow-workflow-node {
   border: 0;
-  border-radius: 0.82rem;
+  border-radius: var(--surface-radius-card);
   background: rgb(var(--color-neutral-0-ch) / 1);
   transition: transform 220ms var(--motion-ease-standard);
 }
 
 .flow-workflow-node.is-active {
-  transform: translateY(-0.02rem);
+  transform: translateY(-0.08rem);
 }
 
 .flow-workflow-node__title {
@@ -152,51 +109,18 @@
   position: relative;
   isolation: isolate;
   overflow: hidden;
-  padding: 0.26rem;
-  border-radius: 1rem;
-  border: 1px solid transparent;
-  background:
-    linear-gradient(165deg, rgba(255, 255, 255, 0.96), rgb(var(--color-blue-200-ch) / 0.36)),
-    radial-gradient(260px 180px at 90% 14%, rgb(var(--color-blue-500-ch) / 0.06), transparent 74%);
-  transition: border-color 220ms var(--motion-ease-standard);
+  padding: 0.35rem;
+  border-radius: var(--surface-radius-panel);
 }
 
 .flow-trigger-shell {
   width: min(14.4rem, 26vw);
-  padding: 0.46rem;
 }
 
-.flow-node-shell::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  border-radius: inherit;
-  background:
-    conic-gradient(
-      from 210deg at 50% 50%,
-      rgb(var(--color-accent-indigo-ch) / 0.16),
-      rgb(var(--color-accent-pink-ch) / 0.12),
-      rgb(var(--color-blue-400-ch) / 0.14),
-      rgb(var(--color-accent-violet-ch) / 0.12),
-      rgb(var(--color-accent-indigo-ch) / 0.16)
-    );
-  filter: blur(24px);
-  opacity: 0.58;
-  transform: translate3d(0, 0, 0) rotate(0deg) scale(1.06);
-  animation: problem-manual-aura-sweep 18s cubic-bezier(0.37, 0, 0.2, 1) infinite;
-}
-
-.flow-node-shell.is-active {
-  border-color: rgb(var(--color-blue-500-ch) / 0.62);
-}
 
 .flow-workflow-node--trigger {
   width: 100%;
   padding: 0.9rem 0.88rem;
-  background: rgb(var(--color-neutral-0-ch) / 1);
-  border: 0;
 }
 
 .flow-trigger-form__title {
@@ -260,7 +184,7 @@
 }
 
 .flow-trigger-form__submit.is-pressing {
-  animation: flowSubmitPress 340ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  animation: flowSubmitPress 200ms cubic-bezier(0.23, 1, 0.32, 1) both;
 }
 
 .flow-workflow-node--entity {
@@ -269,9 +193,6 @@
 }
 
 .flow-entity-node__rows {
-  margin: 0;
-  padding: 0;
-  list-style: none;
   position: relative;
   min-height: 5.16rem;
 }
@@ -368,7 +289,6 @@
   min-width: 0.9rem;
   min-height: 0.9rem;
   flex: 0 0 auto;
-  aspect-ratio: 1 / 1;
   border-radius: 999px;
   display: inline-flex;
   align-items: center;
@@ -448,17 +368,17 @@
 }
 
 .flow-entity-node__rows li.flow-entity-node__stack-item--entering {
-  animation: flowStackEntry 860ms cubic-bezier(0.22, 1, 0.36, 1);
+  animation: flowStackEntry 540ms cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 @keyframes flowStackEntry {
   0% {
     opacity: 0;
-    transform: translate3d(0, -0.65rem, 0) scale(0.97);
+    transform: translate3d(0, -0.5rem, 0) scale(0.96);
   }
-  55% {
+  60% {
     opacity: 1;
-    transform: translate3d(0, 0.08rem, 0) scale(1.01);
+    transform: translate3d(0, 0.06rem, 0) scale(1.012);
   }
   100% {
     opacity: 1;
@@ -490,7 +410,7 @@
 .flow-workflow-node--quote {
   min-width: 5rem;
   padding: 0.5rem 0.66rem;
-  border-radius: 0.7rem;
+  border-radius: var(--radius-inner-panel);
 }
 
 .flow-action-node__quote-id {
@@ -503,8 +423,6 @@
 
 .flow-action-node__quote-list {
   margin: 0.16rem 0 0;
-  padding: 0;
-  list-style: none;
   display: grid;
   gap: 0.24rem;
 }
@@ -526,17 +444,17 @@
 }
 
 .flow-action-node__quote-id--entering {
-  animation: flowQuoteEntry 620ms cubic-bezier(0.22, 1, 0.36, 1);
+  animation: flowQuoteEntry 380ms cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 @keyframes flowQuoteEntry {
   0% {
     opacity: 0;
-    transform: translate3d(0, -0.2rem, 0) scale(0.98);
+    transform: translate3d(0, -0.28rem, 0) scale(0.97);
   }
-  58% {
+  62% {
     opacity: 1;
-    transform: translate3d(0, 0.03rem, 0) scale(1.01);
+    transform: translate3d(0, 0.04rem, 0) scale(1.014);
   }
   100% {
     opacity: 1;
@@ -599,13 +517,13 @@
 }
 
 .flow-action-node__proposal--entering {
-  animation: flowProposalSheetRise 920ms cubic-bezier(0.2, 0.88, 0.24, 1);
+  animation: flowProposalSheetRise 600ms cubic-bezier(0.2, 0.88, 0.24, 1);
 }
 
 .flow-action-node__proposal--entering .flow-action-node__proposal-meta,
 .flow-action-node__proposal--entering .flow-action-node__proposal-lines,
 .flow-action-node__proposal--entering .flow-action-node__proposal-actions {
-  animation: flowProposalRevealIn 620ms cubic-bezier(0.2, 0.88, 0.24, 1) both;
+  animation: flowProposalRevealIn 380ms cubic-bezier(0.2, 0.88, 0.24, 1) both;
 }
 
 .flow-action-node__proposal--entering .flow-action-node__proposal-meta {
@@ -622,7 +540,7 @@
 
 .flow-action-node__proposal--entering .flow-action-node__proposal-lines span {
   transform-origin: left center;
-  animation: flowProposalLineFill 520ms cubic-bezier(0.2, 0.88, 0.24, 1) both;
+  animation: flowProposalLineFill 320ms cubic-bezier(0.2, 0.88, 0.24, 1) both;
 }
 
 .flow-action-node__proposal--entering .flow-action-node__proposal-lines span:nth-child(1) {
@@ -704,8 +622,19 @@
   color: rgb(var(--color-neutral-0-ch) / 1);
 }
 
+@media (hover: hover) and (pointer: fine) {
+  .flow-action-node__proposal-button:hover {
+    border-color: rgb(var(--color-midnight-500-ch) / 0.22);
+    background: rgb(var(--color-neutral-0-ch) / 1);
+  }
+}
+
+.flow-action-node__proposal-button:active {
+  transform: scale(0.97);
+}
+
 .flow-action-node__proposal-button.is-auto-pressing {
-  animation: flowProposalButtonPress 620ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  animation: flowProposalButtonPress 340ms cubic-bezier(0.23, 1, 0.32, 1) both;
 }
 
 .flow-action-node__proposal-decision-tag {
@@ -719,7 +648,7 @@
   font-weight: 700;
   letter-spacing: 0.01em;
   border: 1px solid transparent;
-  animation: flowProposalDecisionTagIn 360ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: flowProposalDecisionTagIn 260ms cubic-bezier(0.23, 1, 0.32, 1) both;
 }
 
 .flow-proposal-decision-enter-active {
@@ -812,7 +741,7 @@
 }
 
 .flow-output-node__row--entering {
-  animation: flowReportRowEnter 700ms cubic-bezier(0.22, 1, 0.36, 1);
+  animation: flowReportRowEnter 460ms cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 .flow-output-node__row-order {
@@ -835,7 +764,6 @@
   font-size: 0.5rem;
   font-weight: 600;
   letter-spacing: 0.01em;
-  text-transform: none;
 }
 
 .flow-output-node__row-tag.is-payment {
@@ -955,14 +883,6 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .flow-workflow::before {
-    animation: none;
-  }
-
-  .flow-node-shell::before {
-    animation: none;
-  }
-
   .flow-workflow-node,
   .flow-workflow__line {
     transition: none;
@@ -993,33 +913,22 @@
   }
 }
 
-@keyframes flowWorkflowAuraSweep {
-  0% {
-    transform: translate3d(-2%, -1%, 0) rotate(0deg) scale(1);
-  }
-  50% {
-    transform: translate3d(2%, 1%, 0) rotate(14deg) scale(1.05);
-  }
-  100% {
-    transform: translate3d(-1.8%, 0.8%, 0) rotate(0deg) scale(1);
-  }
-}
 
 @keyframes flowProposalSheetRise {
   0% {
     opacity: 0;
-    transform: translate3d(0, 1rem, 0) scale(0.97);
-    filter: saturate(0.9) blur(0.5px);
+    transform: translate3d(0, 0.6rem, 0) scale(0.96);
+    filter: blur(2px);
   }
-  62% {
+  65% {
     opacity: 1;
-    transform: translate3d(0, -0.08rem, 0) scale(1.006);
-    filter: saturate(1) blur(0);
+    transform: translate3d(0, -0.05rem, 0) scale(1.008);
+    filter: blur(0);
   }
   100% {
     opacity: 1;
     transform: translate3d(0, 0, 0) scale(1);
-    filter: saturate(1) blur(0);
+    filter: blur(0);
   }
 }
 
@@ -1104,11 +1013,11 @@
 @keyframes flowProposalDecisionTagIn {
   0% {
     opacity: 0;
-    transform: translate3d(0, 0.26rem, 0) scale(0.96);
+    transform: translate3d(0, 0.18rem, 0) scale(0.94);
   }
   65% {
     opacity: 1;
-    transform: translate3d(0, -0.03rem, 0) scale(1.01);
+    transform: translate3d(0, -0.02rem, 0) scale(1.016);
   }
   100% {
     opacity: 1;
@@ -1119,11 +1028,11 @@
 @keyframes flowReportRowEnter {
   0% {
     opacity: 0;
-    transform: translate3d(0.42rem, 0, 0) scale(0.98);
+    transform: translate3d(0.24rem, 0, 0) scale(0.97);
   }
-  55% {
+  60% {
     opacity: 1;
-    transform: translate3d(-0.06rem, 0, 0) scale(1.01);
+    transform: translate3d(-0.04rem, 0, 0) scale(1.01);
   }
   100% {
     opacity: 1;

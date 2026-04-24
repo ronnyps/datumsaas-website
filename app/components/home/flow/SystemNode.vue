@@ -12,7 +12,7 @@ const chips = props.locale === "es"
 </script>
 
 <template>
-  <div class="flow-node-shell" :class="{ 'is-active': active }">
+  <div class="flow-node-shell surface-pastel" :class="{ 'is-active': active }">
     <article class="flow-workflow-node flow-workflow-node--system" :class="{ 'is-active': active }">
       <p class="flow-workflow-node__title">{{ label }}</p>
       <div class="flow-system-node__chips" :class="{ 'is-split-active': splitActive }">

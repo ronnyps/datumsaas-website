@@ -94,7 +94,7 @@ const onSelectRange = (rangeKey: string) => {
           </span>
           <small>{{ props.activeRangeData.periodLabel }}</small>
         </p>
-        <TransitionGroup tag="ul" name="customer-fade" class="top-customers-list">
+        <TransitionGroup tag="ul" name="customer-fade" class="top-customers-list ui-list-reset">
           <li
             v-for="customer in props.activeRangeData.topCustomers"
             :key="`${props.selectedRange}-${customer.name}`"

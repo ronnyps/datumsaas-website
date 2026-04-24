@@ -99,7 +99,7 @@ const orderPrefix = computed(() => (props.locale === "es" ? "Orden" : "Order"));
 </script>
 
 <template>
-  <div class="flow-node-shell" :class="{ 'is-active': active }">
+  <div class="flow-node-shell surface-pastel" :class="{ 'is-active': active }">
     <article class="flow-workflow-node flow-workflow-node--output" :class="{ 'is-active': active }">
       <p class="flow-workflow-node__title">{{ label }}</p>
       <div class="flow-output-node__stats" aria-hidden="true">

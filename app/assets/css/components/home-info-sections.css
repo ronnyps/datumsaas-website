@@ -18,7 +18,8 @@
   gap: var(--space-4);
 }
 
-.info-card {
+.info-card,
+.faq-card {
   border: 0.0625rem solid var(--ink-a10);
   border-radius: var(--radius-md);
   padding: var(--space-6);
@@ -43,13 +44,6 @@
   margin-top: var(--space-6);
   display: grid;
   gap: var(--space-4);
-}
-
-.faq-card {
-  border: 0.0625rem solid var(--ink-a10);
-  border-radius: var(--radius-md);
-  padding: var(--space-6);
-  background: rgba(255, 255, 255, 0.9);
 }
 
 .faq-card__question {
