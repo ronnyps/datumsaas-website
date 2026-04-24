@@ -1,0 +1,764 @@
+.problem-handoffs {
+  position: relative;
+  height: 100%;
+  min-height: inherit;
+  isolation: isolate;
+  overflow: hidden;
+  border-radius: var(--radius-card);
+  background: rgb(var(--color-neutral-0-ch));
+  opacity: 0;
+  transform: translateY(0.9rem) scale(1.015);
+  transition:
+    opacity 460ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 740ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.problem-visual--handoffs {
+  isolation: isolate;
+  border-color: rgb(var(--color-blue-300-ch) / 0.75);
+  background:
+    linear-gradient(160deg, rgba(255, 255, 255, 0.95), rgb(var(--color-neutral-50-ch) / 0.92)),
+    radial-gradient(380px 220px at 12% 18%, rgb(var(--color-accent-pink-ch) / 0.16), transparent 72%),
+    radial-gradient(360px 220px at 88% 82%, rgb(var(--color-accent-violet-ch) / 0.15), transparent 72%),
+    radial-gradient(320px 200px at 82% 16%, rgb(var(--color-blue-400-ch) / 0.18), transparent 70%);
+  background-size: 100% 100%, 125% 125%, 120% 120%, 118% 118%;
+  background-position: center, 0% 0%, 100% 100%, 100% 0%;
+  animation: handoff-bg-shift 14s ease-in-out infinite alternate;
+}
+
+.problem-visual--handoffs::after {
+  display: none;
+}
+
+.problem-visual--handoffs::before {
+  content: "";
+  position: absolute;
+  inset: -22% -14%;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    conic-gradient(
+      from 210deg at 50% 50%,
+      rgb(var(--color-accent-indigo-ch) / 0.16),
+      rgb(var(--color-accent-pink-ch) / 0.12),
+      rgb(var(--color-blue-400-ch) / 0.14),
+      rgb(var(--color-accent-violet-ch) / 0.12),
+      rgb(var(--color-accent-indigo-ch) / 0.16)
+    );
+  filter: blur(44px);
+  opacity: 0.82;
+  transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
+  animation: handoff-aura-sweep 18s cubic-bezier(0.37, 0, 0.2, 1) infinite;
+}
+
+.problem-handoffs--entered {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.problem-handoffs__grid {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-rows: repeat(3, minmax(0, 1fr));
+  gap: 0.52rem;
+  height: 100%;
+  border-radius: var(--radius-inner-panel);
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(0.6rem);
+  transition:
+    opacity 400ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 560ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.problem-handoffs__pointers {
+  position: absolute;
+  inset: 0.45rem;
+  z-index: 3;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 320ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.problem-handoffs__links {
+  position: absolute;
+  inset: 0.45rem;
+  z-index: 3;
+  width: calc(100% - 0.9rem);
+  height: calc(100% - 0.9rem);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 320ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.problem-handoffs__link {
+  fill: none;
+  stroke-width: 1.35;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+  stroke-dasharray: 2 0.9;
+  stroke-dashoffset: 0;
+  transition: stroke 220ms var(--motion-ease-standard);
+  opacity: 0;
+}
+
+.problem-handoffs__link--a {
+  stroke: rgb(var(--color-midnight-500-ch) / 0.28);
+}
+
+.problem-handoffs__link--b {
+  stroke: rgb(var(--color-midnight-500-ch) / 0.28);
+}
+
+.problem-handoffs__links--wire .problem-handoffs__link {
+  opacity: 1;
+  stroke-dasharray: 2 0.9;
+  stroke-dashoffset: 0;
+  animation: none;
+}
+
+.problem-handoffs__links--error .problem-handoffs__link {
+  opacity: 1;
+  stroke-dasharray: 2 0.9;
+  stroke-dashoffset: 0;
+  stroke: rgb(var(--color-red-500-ch) / 0.82);
+}
+
+.problem-handoffs__conflict-badge {
+  --conflict-x: 0.5;
+  --conflict-y: 0.5;
+  position: absolute;
+  z-index: 4;
+  left: calc(0.45rem + ((100% - 0.9rem) * var(--conflict-x)));
+  top: calc(0.45rem + ((100% - 0.9rem) * var(--conflict-y)));
+  width: 2.1rem;
+  height: 2.1rem;
+  border-radius: 0.46rem;
+  background: rgb(var(--handoff-conflict-bg-ch));
+  border: 1px solid rgb(var(--color-red-500-ch) / 0.55);
+  display: grid;
+  place-items: center;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  opacity: 0;
+}
+
+.problem-handoffs__conflict-badge--visible {
+  opacity: 1;
+}
+
+.problem-handoffs__conflict-badge--x-0 { --conflict-x: 0.165; }
+.problem-handoffs__conflict-badge--x-1 { --conflict-x: 0.3325; }
+.problem-handoffs__conflict-badge--x-2 { --conflict-x: 0.5; }
+.problem-handoffs__conflict-badge--x-3 { --conflict-x: 0.6675; }
+.problem-handoffs__conflict-badge--x-4 { --conflict-x: 0.835; }
+.problem-handoffs__conflict-badge--y-0 { --conflict-y: 0.165; }
+.problem-handoffs__conflict-badge--y-1 { --conflict-y: 0.3325; }
+.problem-handoffs__conflict-badge--y-2 { --conflict-y: 0.5; }
+.problem-handoffs__conflict-badge--y-3 { --conflict-y: 0.6675; }
+.problem-handoffs__conflict-badge--y-4 { --conflict-y: 0.835; }
+
+.problem-handoffs__conflict-icon {
+  width: 1.46rem;
+  height: 1.46rem;
+  color: rgb(var(--color-red-500-ch));
+  position: relative;
+  z-index: 1;
+}
+
+.problem-handoffs__pointer {
+  position: absolute;
+  top: var(--target-y);
+  left: var(--target-x);
+  will-change: left, top, transform;
+  opacity: 1;
+  --offscreen-pad-x: 20rem;
+  --offscreen-pad-y: 12rem;
+  --entry-dx: calc((-1 * var(--target-x)) - var(--offscreen-pad-x));
+  --entry-dy: 0rem;
+  --exit-dx: calc((100% - var(--target-x)) + var(--offscreen-pad-x));
+  --exit-dy: 0rem;
+  --entry-lane-dx: 0rem;
+  --entry-lane-dy: 0rem;
+  --exit-lane-dx: 0rem;
+  --exit-lane-dy: 0rem;
+  --curve-mid-dx: 0.72rem;
+  --curve-mid-dy: -0.42rem;
+  --click-dx: 0.18rem;
+  --click-dy: -0.16rem;
+  --click-tilt: -1.8deg;
+  --exit-curve-dx: 1.1rem;
+  --exit-curve-dy: -0.88rem;
+}
+
+.problem-handoffs__pointer--a {
+  z-index: 4;
+  --pointer-anchor-x: -1.05rem;
+  --pointer-anchor-y: -2.48rem;
+}
+
+.problem-handoffs__pointer--b {
+  z-index: 4;
+  --pointer-anchor-x: calc(-100% + 1.35rem);
+  --pointer-anchor-y: -2.42rem;
+}
+
+.problem-handoffs__pointer--target-0 { --target-x: 16.5%; --target-y: 16.5%; }
+.problem-handoffs__pointer--target-1 { --target-x: 50%; --target-y: 16.5%; }
+.problem-handoffs__pointer--target-2 { --target-x: 83.5%; --target-y: 16.5%; }
+.problem-handoffs__pointer--target-3 { --target-x: 16.5%; --target-y: 50%; }
+.problem-handoffs__pointer--target-4 { --target-x: 50%; --target-y: 50%; }
+.problem-handoffs__pointer--target-5 { --target-x: 83.5%; --target-y: 50%; }
+.problem-handoffs__pointer--target-6 { --target-x: 16.5%; --target-y: 83.5%; }
+.problem-handoffs__pointer--target-7 { --target-x: 50%; --target-y: 83.5%; }
+.problem-handoffs__pointer--target-8 { --target-x: 83.5%; --target-y: 83.5%; }
+
+.problem-handoffs__pointer--phase-idle {
+  left: calc(var(--target-x) + var(--entry-dx) + var(--entry-lane-dx));
+  top: calc(var(--target-y) + var(--entry-dy) + var(--entry-lane-dy));
+  transform: translate(var(--pointer-anchor-x), var(--pointer-anchor-y));
+}
+
+.problem-handoffs__pointer--phase-enter {
+  animation: handoff-pointer-enter 980ms cubic-bezier(0.22, 0.68, 0.18, 1) forwards;
+}
+
+.problem-handoffs__pointer--phase-click {
+  animation: handoff-pointer-click 340ms var(--motion-ease-standard) forwards;
+}
+
+.problem-handoffs__pointer--phase-exit {
+  animation: handoff-pointer-exit 1480ms cubic-bezier(0.2, 0.58, 0.3, 1) forwards;
+}
+
+.problem-handoffs__pointer--entry-left-high {
+  --entry-dx: calc((-1 * var(--target-x)) - var(--offscreen-pad-x));
+  --entry-dy: 0rem;
+  --entry-lane-dy: -5.1rem;
+}
+
+.problem-handoffs__pointer--entry-left-mid {
+  --entry-dx: calc((-1 * var(--target-x)) - var(--offscreen-pad-x));
+  --entry-dy: 0rem;
+}
+
+.problem-handoffs__pointer--entry-left-low {
+  --entry-dx: calc((-1 * var(--target-x)) - var(--offscreen-pad-x));
+  --entry-dy: 0rem;
+  --entry-lane-dy: 5.1rem;
+}
+
+.problem-handoffs__pointer--entry-right-high {
+  --entry-dx: calc((100% - var(--target-x)) + var(--offscreen-pad-x));
+  --entry-dy: 0rem;
+  --entry-lane-dy: -5.1rem;
+}
+
+.problem-handoffs__pointer--entry-right-mid {
+  --entry-dx: calc((100% - var(--target-x)) + var(--offscreen-pad-x));
+  --entry-dy: 0rem;
+}
+
+.problem-handoffs__pointer--entry-right-low {
+  --entry-dx: calc((100% - var(--target-x)) + var(--offscreen-pad-x));
+  --entry-dy: 0rem;
+  --entry-lane-dy: 5.1rem;
+}
+
+.problem-handoffs__pointer--entry-top-left {
+  --entry-dx: 0rem;
+  --entry-dy: calc((-1 * var(--target-y)) - var(--offscreen-pad-y));
+  --entry-lane-dx: -7rem;
+}
+
+.problem-handoffs__pointer--entry-top-right {
+  --entry-dx: 0rem;
+  --entry-dy: calc((-1 * var(--target-y)) - var(--offscreen-pad-y));
+  --entry-lane-dx: 7rem;
+}
+
+.problem-handoffs__pointer--entry-bottom-left {
+  --entry-dx: 0rem;
+  --entry-dy: calc((100% - var(--target-y)) + var(--offscreen-pad-y));
+  --entry-lane-dx: -7rem;
+}
+
+.problem-handoffs__pointer--entry-bottom-right {
+  --entry-dx: 0rem;
+  --entry-dy: calc((100% - var(--target-y)) + var(--offscreen-pad-y));
+  --entry-lane-dx: 7rem;
+}
+
+.problem-handoffs__pointer--exit-left-high {
+  --exit-dx: calc((-1 * var(--target-x)) - var(--offscreen-pad-x));
+  --exit-dy: 0rem;
+  --exit-lane-dy: -5.1rem;
+}
+
+.problem-handoffs__pointer--exit-left-mid {
+  --exit-dx: calc((-1 * var(--target-x)) - var(--offscreen-pad-x));
+  --exit-dy: 0rem;
+}
+
+.problem-handoffs__pointer--exit-left-low {
+  --exit-dx: calc((-1 * var(--target-x)) - var(--offscreen-pad-x));
+  --exit-dy: 0rem;
+  --exit-lane-dy: 5.1rem;
+}
+
+.problem-handoffs__pointer--exit-right-high {
+  --exit-dx: calc((100% - var(--target-x)) + var(--offscreen-pad-x));
+  --exit-dy: 0rem;
+  --exit-lane-dy: -5.1rem;
+}
+
+.problem-handoffs__pointer--exit-right-mid {
+  --exit-dx: calc((100% - var(--target-x)) + var(--offscreen-pad-x));
+  --exit-dy: 0rem;
+}
+
+.problem-handoffs__pointer--exit-right-low {
+  --exit-dx: calc((100% - var(--target-x)) + var(--offscreen-pad-x));
+  --exit-dy: 0rem;
+  --exit-lane-dy: 5.1rem;
+}
+
+.problem-handoffs__pointer--exit-top-left {
+  --exit-dx: 0rem;
+  --exit-dy: calc((-1 * var(--target-y)) - var(--offscreen-pad-y));
+  --exit-lane-dx: -7rem;
+}
+
+.problem-handoffs__pointer--exit-top-right {
+  --exit-dx: 0rem;
+  --exit-dy: calc((-1 * var(--target-y)) - var(--offscreen-pad-y));
+  --exit-lane-dx: 7rem;
+}
+
+.problem-handoffs__pointer--exit-bottom-left {
+  --exit-dx: 0rem;
+  --exit-dy: calc((100% - var(--target-y)) + var(--offscreen-pad-y));
+  --exit-lane-dx: -7rem;
+}
+
+.problem-handoffs__pointer--exit-bottom-right {
+  --exit-dx: 0rem;
+  --exit-dy: calc((100% - var(--target-y)) + var(--offscreen-pad-y));
+  --exit-lane-dx: 7rem;
+}
+
+.problem-handoffs__pointer--curve-a {
+  --curve-mid-dx: 0.82rem;
+  --curve-mid-dy: -0.46rem;
+  --click-dx: 0.2rem;
+  --click-dy: -0.16rem;
+  --click-tilt: -1.2deg;
+  --exit-curve-dx: 1.02rem;
+  --exit-curve-dy: -0.72rem;
+}
+
+.problem-handoffs__pointer--curve-b {
+  --curve-mid-dx: -0.74rem;
+  --curve-mid-dy: 0.44rem;
+  --click-dx: -0.18rem;
+  --click-dy: 0.15rem;
+  --click-tilt: 1.1deg;
+  --exit-curve-dx: -0.98rem;
+  --exit-curve-dy: 0.68rem;
+}
+
+.problem-handoffs__pointer--curve-c {
+  --curve-mid-dx: 0.58rem;
+  --curve-mid-dy: 0.72rem;
+  --click-dx: 0.16rem;
+  --click-dy: 0.18rem;
+  --click-tilt: -0.9deg;
+  --exit-curve-dx: 0.76rem;
+  --exit-curve-dy: 0.76rem;
+}
+
+.problem-handoffs__pointer--curve-d {
+  --curve-mid-dx: -0.62rem;
+  --curve-mid-dy: -0.72rem;
+  --click-dx: -0.16rem;
+  --click-dy: -0.18rem;
+  --click-tilt: 0.9deg;
+  --exit-curve-dx: -0.72rem;
+  --exit-curve-dy: -0.68rem;
+}
+
+.problem-handoffs__tile {
+  position: relative;
+  min-height: 3.65rem;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  padding: 0.4rem;
+  display: grid;
+  place-items: center;
+  opacity: 0;
+  transform: translateY(0.5rem) scale(0.985);
+  transition:
+    opacity 300ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 420ms cubic-bezier(0.16, 1, 0.3, 1),
+    filter 220ms var(--motion-ease-standard);
+}
+
+.problem-handoffs--entered .problem-handoffs__grid,
+.problem-handoffs--entered .problem-handoffs__pointers,
+.problem-handoffs--entered .problem-handoffs__links,
+.problem-handoffs--entered .problem-handoffs__tile {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.problem-handoffs--entered .problem-handoffs__grid {
+  transition-delay: 130ms;
+}
+
+.problem-handoffs--entered .problem-handoffs__tile:nth-child(1) { transition-delay: 170ms; }
+.problem-handoffs--entered .problem-handoffs__tile:nth-child(2) { transition-delay: 210ms; }
+.problem-handoffs--entered .problem-handoffs__tile:nth-child(3) { transition-delay: 250ms; }
+.problem-handoffs--entered .problem-handoffs__tile:nth-child(4) { transition-delay: 290ms; }
+.problem-handoffs--entered .problem-handoffs__tile:nth-child(5) { transition-delay: 330ms; }
+.problem-handoffs--entered .problem-handoffs__tile:nth-child(6) { transition-delay: 370ms; }
+.problem-handoffs--entered .problem-handoffs__tile:nth-child(7) { transition-delay: 410ms; }
+.problem-handoffs--entered .problem-handoffs__tile:nth-child(8) { transition-delay: 450ms; }
+.problem-handoffs--entered .problem-handoffs__tile:nth-child(9) { transition-delay: 490ms; }
+
+.problem-handoffs--entered .problem-handoffs__pointers,
+.problem-handoffs--entered .problem-handoffs__links {
+  transition-delay: 520ms;
+}
+
+.problem-handoffs__grid--focus .problem-handoffs__tile {
+  opacity: 0.4;
+  filter: saturate(0.76);
+}
+
+.problem-handoffs__grid--focus .problem-handoffs__tile--target-a,
+.problem-handoffs__grid--focus .problem-handoffs__tile--target-b {
+  opacity: 1;
+  filter: saturate(1.08) brightness(1.02);
+}
+
+.problem-handoffs__tile--target-a,
+.problem-handoffs__tile--target-b {
+  animation: handoff-folder-click 420ms var(--motion-ease-standard) 1;
+}
+
+.problem-handoffs__tile .doc-file-glyph__sheet,
+.problem-handoffs__tile .doc-file-glyph__sheet--b,
+.problem-handoffs__tile .doc-file-glyph__line {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  transform: translateY(0);
+  transition: transform 280ms cubic-bezier(0.22, 0.68, 0.2, 1);
+}
+
+.problem-handoffs__grid--focus .problem-handoffs__tile--target-a .doc-file-glyph__sheet,
+.problem-handoffs__grid--focus .problem-handoffs__tile--target-a .doc-file-glyph__sheet--b,
+.problem-handoffs__grid--focus .problem-handoffs__tile--target-b .doc-file-glyph__sheet,
+.problem-handoffs__grid--focus .problem-handoffs__tile--target-b .doc-file-glyph__sheet--b {
+  transform: translateY(-11px);
+}
+
+.problem-handoffs__grid--focus .problem-handoffs__tile--target-a .doc-file-glyph__line,
+.problem-handoffs__grid--focus .problem-handoffs__tile--target-b .doc-file-glyph__line {
+  transform: translateY(-9px);
+  transition-delay: 24ms;
+}
+
+.doc-file-glyph {
+  --file-accent: var(--color-blue-500-ch);
+  --file-accent-soft: var(--color-blue-300-ch);
+  --file-paper: var(--color-neutral-0-ch);
+  --file-stroke: var(--color-midnight-500-ch);
+  display: inline-grid;
+  width: 4.15rem;
+  height: 3.04rem;
+  transform: translateY(0.05rem);
+}
+
+.doc-file-glyph__svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.doc-file-glyph__back {
+  fill: rgb(var(--file-accent-soft) / 0.24);
+}
+
+.doc-file-glyph__inner-cover {
+  fill: rgb(var(--file-accent-soft) / 0.74);
+  stroke: rgb(var(--file-accent) / 0.22);
+  stroke-width: 1;
+}
+
+.doc-file-glyph__sheet {
+  fill: rgb(var(--file-paper) / 0.95);
+  stroke: rgb(var(--file-stroke) / 0.1);
+  stroke-width: 1;
+}
+
+.doc-file-glyph__sheet--b {
+  fill: rgb(var(--file-paper) / 0.88);
+}
+
+.doc-file-glyph__line {
+  fill: rgb(var(--color-midnight-500-ch) / 0.2);
+}
+
+.doc-file-glyph__front {
+  fill: rgb(var(--file-accent) / 0.92);
+  transform: translateY(8px);
+}
+
+.problem-handoffs__tile--pdf {
+  border-color: transparent;
+}
+
+.problem-handoffs__tile--doc {
+  border-color: transparent;
+}
+
+.problem-handoffs__tile--xls {
+  border-color: transparent;
+}
+
+.problem-handoffs__tile--ppt {
+  border-color: transparent;
+}
+
+.problem-handoffs__tile--txt {
+  border-color: transparent;
+}
+
+.problem-handoffs__tile--csv {
+  border-color: transparent;
+}
+
+.problem-handoffs__tile--zip {
+  border-color: transparent;
+}
+
+.problem-handoffs__tile--json {
+  border-color: transparent;
+}
+
+.problem-handoffs__tile--pdf .doc-file-glyph {
+  --file-accent: var(--file-pdf-accent-ch);
+  --file-accent-soft: var(--file-pdf-soft-ch);
+  --file-paper: var(--file-pdf-paper-ch);
+}
+
+.problem-handoffs__tile--doc .doc-file-glyph {
+  --file-accent: var(--file-doc-accent-ch);
+  --file-accent-soft: var(--file-doc-soft-ch);
+  --file-paper: var(--file-doc-paper-ch);
+}
+
+.problem-handoffs__tile--xls .doc-file-glyph {
+  --file-accent: var(--file-xls-accent-ch);
+  --file-accent-soft: var(--file-xls-soft-ch);
+  --file-paper: var(--file-xls-paper-ch);
+}
+
+.problem-handoffs__tile--ppt .doc-file-glyph {
+  --file-accent: var(--file-ppt-accent-ch);
+  --file-accent-soft: var(--file-ppt-soft-ch);
+  --file-paper: var(--file-ppt-paper-ch);
+}
+
+.problem-handoffs__tile--txt .doc-file-glyph {
+  --file-accent: var(--file-txt-accent-ch);
+  --file-accent-soft: var(--file-txt-soft-ch);
+  --file-paper: var(--file-txt-paper-ch);
+}
+
+.problem-handoffs__tile--csv .doc-file-glyph {
+  --file-accent: var(--file-csv-accent-ch);
+  --file-accent-soft: var(--file-csv-soft-ch);
+  --file-paper: var(--file-csv-paper-ch);
+}
+
+.problem-handoffs__tile--zip .doc-file-glyph {
+  --file-accent: var(--file-zip-accent-ch);
+  --file-accent-soft: var(--file-zip-soft-ch);
+  --file-paper: var(--file-zip-paper-ch);
+}
+
+.problem-handoffs__tile--json .doc-file-glyph {
+  --file-accent: var(--file-json-accent-ch);
+  --file-accent-soft: var(--file-json-soft-ch);
+  --file-paper: var(--file-json-paper-ch);
+}
+
+@keyframes handoff-folder-click {
+  0% {
+    transform: scale(1);
+    filter: brightness(1);
+  }
+
+  35% {
+    transform: scale(1.085);
+    filter: brightness(1.08);
+  }
+
+  100% {
+    transform: scale(1);
+    filter: brightness(1);
+  }
+}
+
+@keyframes handoff-pointer-enter {
+  0% {
+    left: calc(var(--target-x) + var(--entry-dx) + var(--entry-lane-dx));
+    top: calc(var(--target-y) + var(--entry-dy) + var(--entry-lane-dy));
+    transform: translate(var(--pointer-anchor-x), var(--pointer-anchor-y)) scale(0.985) rotate(-1.4deg);
+  }
+
+  68% {
+    left: calc(var(--target-x) + var(--curve-mid-dx));
+    top: calc(var(--target-y) + var(--curve-mid-dy));
+    transform: translate(var(--pointer-anchor-x), var(--pointer-anchor-y)) scale(1.004) rotate(0deg);
+  }
+
+  100% {
+    left: var(--target-x);
+    top: var(--target-y);
+    transform: translate(var(--pointer-anchor-x), var(--pointer-anchor-y)) scale(1);
+  }
+}
+
+@keyframes handoff-pointer-click {
+  0% {
+    left: var(--target-x);
+    top: var(--target-y);
+    transform: translate(var(--pointer-anchor-x), var(--pointer-anchor-y)) scale(1);
+  }
+
+  45% {
+    left: var(--target-x);
+    top: var(--target-y);
+    transform: translate(
+      calc(var(--pointer-anchor-x) + var(--click-dx)),
+      calc(var(--pointer-anchor-y) + var(--click-dy))
+    ) scale(1.045) rotate(var(--click-tilt));
+  }
+
+  100% {
+    left: var(--target-x);
+    top: var(--target-y);
+    transform: translate(var(--pointer-anchor-x), var(--pointer-anchor-y)) scale(1);
+  }
+}
+
+@keyframes handoff-pointer-exit {
+  0% {
+    left: var(--target-x);
+    top: var(--target-y);
+    transform: translate(var(--pointer-anchor-x), var(--pointer-anchor-y)) scale(1);
+  }
+
+  36% {
+    left: calc(var(--target-x) + var(--exit-curve-dx));
+    top: calc(var(--target-y) + var(--exit-curve-dy));
+    transform: translate(
+      var(--pointer-anchor-x),
+      var(--pointer-anchor-y)
+    ) scale(0.992);
+  }
+
+  100% {
+    left: calc(var(--target-x) + var(--exit-dx) + var(--exit-lane-dx));
+    top: calc(var(--target-y) + var(--exit-dy) + var(--exit-lane-dy));
+    transform: translate(var(--pointer-anchor-x), var(--pointer-anchor-y)) scale(0.984);
+  }
+}
+
+@keyframes handoff-bg-shift {
+  0% {
+    background-position: center, 0% 0%, 100% 100%, 100% 0%;
+  }
+
+  100% {
+    background-position: center, 38% 24%, 62% 76%, 76% 34%;
+  }
+}
+
+@keyframes handoff-aura-sweep {
+  0% {
+    transform: translate3d(-2%, -1%, 0) rotate(0deg) scale(1);
+  }
+
+  50% {
+    transform: translate3d(2%, 1%, 0) rotate(7deg) scale(1.04);
+  }
+
+  100% {
+    transform: translate3d(-1%, 2%, 0) rotate(12deg) scale(1.02);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .problem-visual--handoffs,
+  .problem-visual--handoffs::before,
+  .problem-handoffs,
+  .problem-handoffs__grid,
+  .problem-handoffs__pointers,
+  .problem-handoffs__links,
+  .problem-handoffs__tile,
+  .problem-handoffs__pointer {
+    transition: none;
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .problem-handoffs__pointer {
+    opacity: 1;
+    transform: translate(var(--pointer-anchor-x), var(--pointer-anchor-y));
+  }
+
+  .problem-handoffs__tile--target-a,
+  .problem-handoffs__tile--target-b {
+    animation: none;
+  }
+
+  .problem-handoffs__tile--target-a .doc-file-glyph__sheet,
+  .problem-handoffs__tile--target-a .doc-file-glyph__sheet--b,
+  .problem-handoffs__tile--target-a .doc-file-glyph__line,
+  .problem-handoffs__tile--target-b .doc-file-glyph__sheet,
+  .problem-handoffs__tile--target-b .doc-file-glyph__sheet--b,
+  .problem-handoffs__tile--target-b .doc-file-glyph__line {
+    transition: none;
+    transform: none;
+  }
+
+  .problem-handoffs__link {
+    opacity: 0;
+    animation: none;
+  }
+
+  .problem-handoffs__links--wire .problem-handoffs__link,
+  .problem-handoffs__links--error .problem-handoffs__link {
+    opacity: 1;
+    stroke-dashoffset: 0;
+  }
+}
+
+@media (max-width: 980px) {
+  .problem-handoffs {
+    min-height: 20rem;
+  }
+
+  .problem-handoffs__grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-rows: repeat(3, minmax(0, 1fr));
+  }
+}

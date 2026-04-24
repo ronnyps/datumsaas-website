@@ -1,0 +1,177 @@
+.role-pointer-tag {
+  --pointer-fill: var(--color-blue-500);
+  --pointer-stroke: var(--color-midnight-500);
+  --tag-bg: rgb(var(--color-blue-200-ch) / 0.35);
+  --tag-text: var(--color-midnight-500);
+  --tag-border: var(--color-midnight-500);
+  --tag-radius: 999px;
+  --pointer-size: 5.1rem;
+  --label-height: 2.45rem;
+  --label-padding-inline: 1.15rem;
+  --label-font-size: 1rem;
+  --label-font-weight: 700;
+  position: relative;
+  display: inline-block;
+}
+
+.role-pointer-tag__pointer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  width: var(--pointer-size);
+  height: var(--pointer-size);
+}
+
+.role-pointer-tag__pointer-path {
+  fill: var(--pointer-fill);
+  stroke: var(--pointer-stroke);
+  stroke-width: 64;
+  stroke-linejoin: round;
+}
+
+.role-pointer-tag__label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: calc(var(--pointer-size) * 0.58);
+  min-height: var(--label-height);
+  padding: 0 var(--label-padding-inline);
+  border: 0;
+  border-radius: var(--tag-radius);
+  background: var(--tag-bg);
+  color: var(--tag-text);
+  font-family: var(--font-heading);
+  font-size: var(--label-font-size);
+  font-weight: var(--label-font-weight);
+  letter-spacing: -0.01em;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.role-pointer-tag--pointer-left .role-pointer-tag__pointer {
+  left: calc(var(--pointer-size) * -0.34);
+  right: auto;
+}
+
+.role-pointer-tag--pointer-left .role-pointer-tag__label {
+  margin-left: calc(var(--pointer-size) * 0.26);
+  margin-right: 0;
+}
+
+.role-pointer-tag--pointer-right .role-pointer-tag__pointer {
+  left: auto;
+  right: calc(var(--pointer-size) * -0.34);
+}
+
+.role-pointer-tag--pointer-right .role-pointer-tag__label {
+  margin-left: 0;
+  margin-right: calc(var(--pointer-size) * 0.26);
+}
+
+.role-pointer-tag--rotation-0 .role-pointer-tag__pointer {
+  transform: scaleX(-1) rotate(0deg);
+}
+
+.role-pointer-tag--rotation-minus-90 .role-pointer-tag__pointer {
+  transform: scaleX(-1) rotate(-90deg);
+}
+
+.role-pointer-tag--variant-solid {
+  --tag-bg: var(--pointer-fill);
+  --tag-text: var(--color-neutral-0);
+}
+
+.role-pointer-tag--variant-soft {
+  --tag-bg: color-mix(in srgb, var(--pointer-fill) 20%, var(--color-neutral-0));
+  --tag-text: color-mix(in srgb, var(--pointer-fill) 72%, var(--color-midnight-500));
+}
+
+.role-pointer-tag--role-ceo {
+  --pointer-fill: rgb(var(--role-ceo-accent-ch));
+}
+
+.role-pointer-tag--role-you {
+  --pointer-fill: rgb(var(--role-you-accent-ch));
+}
+
+.role-pointer-tag--role-hr {
+  --pointer-fill: rgb(var(--role-hr-accent-ch));
+}
+
+.role-pointer-tag--role-cfo {
+  --pointer-fill: rgb(var(--role-cfo-accent-ch));
+}
+
+.role-pointer-tag--role-coo {
+  --pointer-fill: rgb(var(--role-coo-accent-ch));
+}
+
+.role-pointer-tag--role-cto {
+  --pointer-fill: rgb(var(--role-cto-accent-ch));
+}
+
+.role-pointer-tag--role-sales {
+  --pointer-fill: rgb(var(--role-sales-accent-ch));
+}
+
+.role-pointer-tag--role-legal {
+  --pointer-fill: rgb(var(--role-legal-accent-ch));
+}
+
+.role-pointer-tag--role-ops {
+  --pointer-fill: rgb(var(--role-ops-accent-ch));
+}
+
+.role-pointer-tag--tone-blue {
+  --pointer-fill: var(--color-blue-500);
+}
+
+.role-pointer-tag--tone-green {
+  --pointer-fill: rgb(var(--file-xls-accent-ch));
+}
+
+.role-pointer-tag--tone-orange {
+  --pointer-fill: rgb(var(--file-ppt-accent-ch));
+}
+
+.role-pointer-tag--tone-violet {
+  --pointer-fill: rgb(var(--file-json-accent-ch));
+}
+
+.role-pointer-tag--tone-pink {
+  --pointer-fill: rgb(var(--color-accent-pink-ch));
+}
+
+.role-pointer-tag--tone-teal {
+  --pointer-fill: rgb(var(--file-csv-accent-ch));
+}
+
+.role-pointer-tag--tone-slate {
+  --pointer-fill: rgb(var(--file-zip-accent-ch));
+}
+
+.role-pointer-tag--tone-red {
+  --pointer-fill: rgb(var(--file-pdf-accent-ch));
+}
+
+.role-pointer-tag--size-sm {
+  --pointer-size: 4.6rem;
+  --label-height: 2rem;
+  --label-padding-inline: 0.9rem;
+  --label-font-size: 0.88rem;
+}
+
+.role-pointer-tag--size-md {
+  --pointer-size: 5.1rem;
+  --label-height: 2.45rem;
+  --label-padding-inline: 1.15rem;
+  --label-font-size: 1rem;
+}
+
+.role-pointer-tag--size-lg {
+  --pointer-size: 6.4rem;
+  --label-height: 2.95rem;
+  --label-padding-inline: 1.4rem;
+  --label-font-size: 1.2rem;
+}

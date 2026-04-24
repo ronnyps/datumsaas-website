@@ -1,0 +1,45 @@
+.ds-brand-logo {
+  --brand-logo-height: 2rem;
+
+  display: inline-flex;
+  align-items: center;
+  line-height: 1;
+  min-width: 0;
+}
+
+.ds-brand-logo__asset {
+  display: block;
+  height: var(--brand-logo-height);
+  width: auto;
+  max-width: none;
+}
+
+.ds-brand-logo--sm {
+  --brand-logo-height: 1.6rem;
+}
+
+.ds-brand-logo--lg {
+  --brand-logo-height: 2.3rem;
+}
+
+.ds-brand-logo--animated .ds-brand-logo__asset {
+  animation: brand-mark-breathe 2600ms ease-in-out infinite;
+}
+
+@keyframes brand-mark-breathe {
+  0% {
+    transform: translateY(0) scale(1);
+    filter: saturate(1);
+  }
+
+  50% {
+    transform: translateY(-1px) scale(1.03);
+    filter: saturate(1.08);
+  }
+
+  100% {
+    transform: translateY(0) scale(1);
+    filter: saturate(1);
+  }
+}
+

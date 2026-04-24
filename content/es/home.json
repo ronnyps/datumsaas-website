@@ -1,0 +1,442 @@
+﻿{
+  "hero": {
+    "announce": "Escala de una sola operacion a una empresa compleja.",
+    "title": "Un solo sistema para gestionar toda tu operacion",
+    "subtitle": "Conecta leads, tareas, ventas, pagos y reportes en un mismo flujo. Cierras hoy y puedes estar operando en pocos dias.",
+    "ctaLabel": "Reservar demo en vivo",
+    "ctaHref": "#contact",
+    "secondaryCtaLabel": "Ver flujo en vivo",
+    "secondaryCtaHref": "#flow",
+    "microTrust": "Sin compromiso. Sesion practica de 45 minutos sobre tu operacion real."
+  },
+  "bridge": {
+    "introTitle": "Mira como tu operacion se pone en marcha, paso a paso",
+    "introDescription": "Este bloque esta conectado con la demo de arriba. Cada paso muestra como DatumSaaS acelera el arranque, ordena procesos y te da control real del negocio desde el dia uno.",
+    "items": [
+      {
+        "title": "Arranque rapido, sin frenar la operacion",
+        "description": "Activa tu flujo base en dias: leads, tareas, ventas y pagos corriendo en un mismo sistema."
+      },
+      {
+        "title": "Procesos conectados de punta a punta",
+        "description": "Cada area trabaja sobre el mismo contexto, evitando traspasos rotos y retrabajo manual."
+      },
+      {
+        "title": "Control operativo para decidir y escalar",
+        "description": "Visualiza prioridades, bloqueos y resultados en vivo para ejecutar mejor y crecer con orden."
+      }
+    ]
+  },
+  "problem": {
+    "title": "Cuando las herramientas no estan conectadas, crecer se frena",
+    "description": "Se pierde tiempo en traspasos manuales, los datos no cuadran y las decisiones llegan tarde. Cuanto mas crece la empresa, mas cuesta mantener el control.",
+    "bullets": [
+      "Traspasos rotos entre equipos",
+      "Trabajo manual repetido y errores evitables",
+      "Poca visibilidad entre operacion, ventas y finanzas"
+    ]
+  },
+  "flow": {
+    "title": "Del primer lead al reporte final, en un solo flujo",
+    "description": "DatumSaaS conecta cada etapa para ejecutar con orden y decidir con datos confiables.",
+    "steps": [
+      "Captura y califica oportunidades",
+      "Asigna y da seguimiento a tareas operativas",
+      "Genera ordenes y propuestas",
+      "Monitorea pagos y estado comercial",
+      "Revisa rendimiento integral en una sola vista"
+    ],
+    "workflow": {
+      "triggerForm": {
+        "title": "Trigger de formulario",
+        "fields": {
+          "companyName": "Nombre de la empresa",
+          "fullName": "Nombre completo",
+          "email": "Correo",
+          "phoneNumber": "Numero de telefono"
+        },
+        "productOptions": [
+          "ERP Core",
+          "Comercial + CRM",
+          "Operaciones + Finanzas"
+        ],
+        "submitLabel": "Enviar"
+      },
+      "contactsTable": [
+        {
+          "companyName": "Northstar Logistics",
+          "fullName": "Emma Rodriguez",
+          "email": "emma@northstarlogistics.com",
+          "phoneNumber": "+1 786 555 0112",
+          "productService": "ERP Core"
+        },
+        {
+          "companyName": "Blue Harbor Medical",
+          "fullName": "Jason Clark",
+          "email": "jason@blueharbormedical.com",
+          "phoneNumber": "+1 305 555 0184",
+          "productService": "Comercial + CRM"
+        },
+        {
+          "companyName": "Vertex Home Services",
+          "fullName": "Sofia Martinez",
+          "email": "sofia@vertexhomeservices.com",
+          "phoneNumber": "+1 954 555 0127",
+          "productService": "Operaciones + Finanzas"
+        },
+        {
+          "companyName": "Atlas Security Group",
+          "fullName": "Daniel Kim",
+          "email": "daniel@atlassecuritygroup.com",
+          "phoneNumber": "+1 646 555 0191",
+          "productService": "ERP Core"
+        },
+        {
+          "companyName": "Summit Property Care",
+          "fullName": "Olivia Bennett",
+          "email": "olivia@summitpropertycare.com",
+          "phoneNumber": "+1 917 555 0149",
+          "productService": "Comercial + CRM"
+        }
+      ],
+      "nodes": [
+        { "id": "form-submit", "type": "trigger", "label": "Submit de formulario", "x": 10, "y": 50, "xMobile": 50, "yMobile": 12 },
+        { "id": "customer-table", "type": "entity", "label": "Tabla de clientes", "x": 36, "y": 33, "xMobile": 50, "yMobile": 35, "variant": "customer" },
+        { "id": "contact-table", "type": "entity", "label": "Tabla de contactos", "x": 36, "y": 67, "xMobile": 50, "yMobile": 53, "variant": "contact" },
+        { "id": "quote", "type": "action", "label": "Cotizaciones", "x": 56, "y": 50, "xMobile": 50, "yMobile": 69, "variant": "quote" },
+        { "id": "proposal", "type": "action", "label": "Propuesta", "x": 70, "y": 50, "xMobile": 50, "yMobile": 84, "variant": "proposal" },
+        { "id": "live-reporting", "type": "output", "label": "Reporte en vivo", "x": 90, "y": 50, "xMobile": 50, "yMobile": 96 }
+      ],
+      "edges": [
+        { "from": "form-submit", "to": "customer-table", "style": "solid", "accent": true, "animated": true },
+        { "from": "form-submit", "to": "contact-table", "style": "solid", "accent": true, "animated": true },
+        { "from": "customer-table", "to": "quote", "style": "solid", "accent": true, "animated": true },
+        { "from": "contact-table", "to": "quote", "style": "dotted", "accent": true, "animated": true },
+        { "from": "quote", "to": "proposal", "style": "solid", "accent": true, "animated": true },
+        { "from": "proposal", "to": "live-reporting", "style": "solid", "accent": true, "animated": true }
+      ],
+      "sequence": [
+        "node:form-submit",
+        "edge:form-submit->customer-table",
+        "edge:form-submit->contact-table",
+        "node:customer-table",
+        "node:contact-table",
+        "node:quote",
+        "node:proposal",
+        "node:live-reporting"
+      ],
+      "mobileVisibleNodeIds": [
+        "form-submit",
+        "customer-table",
+        "contact-table",
+        "quote",
+        "proposal",
+        "live-reporting"
+      ]
+    }
+  },
+  "services": {
+    "title": "Todo lo que necesitas para operar desde un solo lugar",
+    "modulesTitle": "Modulos operativos conectados",
+    "items": [
+      {
+        "label": "Control de inventario y stock",
+        "title": "Controla todo tu inventario y stock desde una sola plataforma",
+        "description": "Centraliza entradas, salidas y niveles por producto para evitar quiebres, sobrestock y decisiones a ciegas."
+      },
+      {
+        "label": "Productos, servicios y variantes",
+        "title": "Crea ofertas flexibles sin perder control",
+        "description": "Combina inventario en un solo item vendible y gestiona precio, fotos y detalles por variante."
+      }
+    ],
+    "inventoryProducts": [
+      {
+        "id": "margherita-pizza",
+        "name": "Pizza Margarita",
+        "category": "Plato fuerte",
+        "baseSku": "FD-PZA-MAR",
+        "warehouse": "Cocina caliente",
+        "reorderPoint": 14,
+        "variants": [
+          { "id": "s", "label": "Personal", "sku": "FD-PZA-MAR-P", "price": 12, "stock": 32, "imageLabel": "Vista superior de margarita" },
+          { "id": "m", "label": "Mediana", "sku": "FD-PZA-MAR-M", "price": 16, "stock": 24, "imageLabel": "Foto en mesa por porciones" },
+          { "id": "l", "label": "Familiar", "sku": "FD-PZA-MAR-F", "price": 21, "stock": 18, "imageLabel": "Tabla para compartir" }
+        ]
+      },
+      {
+        "id": "grilled-salmon-bowl",
+        "name": "Bowl de Salmon a la Parrilla",
+        "category": "Bowl saludable",
+        "baseSku": "FD-BWL-SLM",
+        "warehouse": "Preparacion en frio",
+        "reorderPoint": 10,
+        "variants": [
+          { "id": "s", "label": "Ligero", "sku": "FD-BWL-SLM-L", "price": 14, "stock": 20, "imageLabel": "Bowl con hojas verdes" },
+          { "id": "m", "label": "Regular", "sku": "FD-BWL-SLM-R", "price": 18, "stock": 16, "imageLabel": "Plating con mas proteina" },
+          { "id": "l", "label": "Doble proteina", "sku": "FD-BWL-SLM-D", "price": 23, "stock": 11, "imageLabel": "Porcion grande en primer plano" }
+        ]
+      },
+      {
+        "id": "chicken-caesar-wrap",
+        "name": "Wrap Cesar de Pollo",
+        "category": "Wrap",
+        "baseSku": "FD-WRP-CSR",
+        "warehouse": "Linea A",
+        "reorderPoint": 12,
+        "variants": [
+          { "id": "s", "label": "Mitad", "sku": "FD-WRP-CSR-H", "price": 9, "stock": 26, "imageLabel": "Corte transversal de medio wrap" },
+          { "id": "m", "label": "Regular", "sku": "FD-WRP-CSR-R", "price": 13, "stock": 22, "imageLabel": "Presentacion clasica" },
+          { "id": "l", "label": "Combo", "sku": "FD-WRP-CSR-C", "price": 17, "stock": 15, "imageLabel": "Wrap con side y bebida" }
+        ]
+      },
+      {
+        "id": "truffle-mushroom-risotto",
+        "name": "Risotto de Hongos y Trufa",
+        "category": "Plato fuerte",
+        "baseSku": "FD-RST-TRF",
+        "warehouse": "Cocina caliente",
+        "reorderPoint": 9,
+        "variants": [
+          { "id": "s", "label": "Entrada", "sku": "FD-RST-TRF-S", "price": 13, "stock": 17, "imageLabel": "Cuenco pequeno de ceramica" },
+          { "id": "m", "label": "Regular", "sku": "FD-RST-TRF-R", "price": 19, "stock": 13, "imageLabel": "Plato completo de risotto" },
+          { "id": "l", "label": "Especial del chef", "sku": "FD-RST-TRF-C", "price": 24, "stock": 9, "imageLabel": "Laminas de trufa al servir" }
+        ]
+      },
+      {
+        "id": "avocado-quinoa-salad",
+        "name": "Ensalada de Quinoa y Aguacate",
+        "category": "Ensalada",
+        "baseSku": "FD-SLD-AVQ",
+        "warehouse": "Preparacion en frio",
+        "reorderPoint": 11,
+        "variants": [
+          { "id": "s", "label": "Pequena", "sku": "FD-SLD-AVQ-S", "price": 10, "stock": 24, "imageLabel": "Vista superior fresca" },
+          { "id": "m", "label": "Regular", "sku": "FD-SLD-AVQ-R", "price": 14, "stock": 19, "imageLabel": "Topping de semillas mixtas" },
+          { "id": "l", "label": "Con proteina", "sku": "FD-SLD-AVQ-P", "price": 18, "stock": 12, "imageLabel": "Version con pollo" }
+        ]
+      },
+      {
+        "id": "beef-tacos-plate",
+        "name": "Plato de Tacos de Res",
+        "category": "Plato fuerte",
+        "baseSku": "FD-TCO-BEF",
+        "warehouse": "Linea B",
+        "reorderPoint": 13,
+        "variants": [
+          { "id": "s", "label": "2 tacos", "sku": "FD-TCO-BEF-2", "price": 11, "stock": 29, "imageLabel": "Par sobre tabla de madera" },
+          { "id": "m", "label": "3 tacos", "sku": "FD-TCO-BEF-3", "price": 15, "stock": 23, "imageLabel": "Trio con salsas" },
+          { "id": "l", "label": "5 tacos", "sku": "FD-TCO-BEF-5", "price": 21, "stock": 14, "imageLabel": "Plato grande para compartir" }
+        ]
+      },
+      {
+        "id": "shrimp-pasta-alfredo",
+        "name": "Pasta Alfredo con Camarones",
+        "category": "Pasta",
+        "baseSku": "FD-PST-SHR",
+        "warehouse": "Cocina caliente",
+        "reorderPoint": 8,
+        "variants": [
+          { "id": "s", "label": "Almuerzo", "sku": "FD-PST-SHR-L", "price": 14, "stock": 18, "imageLabel": "Porcion de almuerzo" },
+          { "id": "m", "label": "Cena", "sku": "FD-PST-SHR-D", "price": 20, "stock": 15, "imageLabel": "Detalle de salsa cremosa" },
+          { "id": "l", "label": "Bandeja familiar", "sku": "FD-PST-SHR-F", "price": 28, "stock": 9, "imageLabel": "Vista superior de bandeja" }
+        ]
+      },
+      {
+        "id": "vegan-burger-combo",
+        "name": "Combo Burger Vegana",
+        "category": "Combo",
+        "baseSku": "FD-BRG-VGN",
+        "warehouse": "Linea A",
+        "reorderPoint": 10,
+        "variants": [
+          { "id": "s", "label": "Solo burger", "sku": "FD-BRG-VGN-O", "price": 11, "stock": 21, "imageLabel": "Burger individual" },
+          { "id": "m", "label": "Combo", "sku": "FD-BRG-VGN-C", "price": 15, "stock": 16, "imageLabel": "Burger con papas" },
+          { "id": "l", "label": "Doble medallon", "sku": "FD-BRG-VGN-D", "price": 19, "stock": 11, "imageLabel": "Doble stack con bebida" }
+        ]
+      },
+      {
+        "id": "chicken-ramen-bowl",
+        "name": "Bowl de Ramen de Pollo",
+        "category": "Sopa",
+        "baseSku": "FD-RMN-CHK",
+        "warehouse": "Estacion de sopas",
+        "reorderPoint": 9,
+        "variants": [
+          { "id": "s", "label": "Caldo ligero", "sku": "FD-RMN-CHK-L", "price": 12, "stock": 20, "imageLabel": "Primer plano del caldo" },
+          { "id": "m", "label": "Clasico", "sku": "FD-RMN-CHK-C", "price": 16, "stock": 15, "imageLabel": "Composicion clasica de ramen" },
+          { "id": "l", "label": "Con toppings extra", "sku": "FD-RMN-CHK-X", "price": 20, "stock": 10, "imageLabel": "Bowl cargado de toppings" }
+        ]
+      },
+      {
+        "id": "berry-cheesecake-slice",
+        "name": "Cheesecake de Frutos Rojos",
+        "category": "Postre",
+        "baseSku": "FD-DST-BCH",
+        "warehouse": "Nevera de postres",
+        "reorderPoint": 7,
+        "variants": [
+          { "id": "s", "label": "Porcion", "sku": "FD-DST-BCH-S", "price": 7, "stock": 25, "imageLabel": "Plato con una porcion" },
+          { "id": "m", "label": "Doble porcion", "sku": "FD-DST-BCH-D", "price": 12, "stock": 17, "imageLabel": "Plato para compartir" },
+          { "id": "l", "label": "Tarta completa", "sku": "FD-DST-BCH-W", "price": 36, "stock": 8, "imageLabel": "Vista superior de tarta completa" }
+        ]
+      }
+    ],
+    "modules": [
+      {
+        "label": "CRM y ventas",
+        "title": "Recibe contactos nuevos y conviertelos en ventas",
+        "description": "Gestiona interesados, seguimiento y responsables en un flujo comercial facil de ejecutar.",
+        "chip": "Contactos, seguimiento, ventas"
+      },
+      {
+        "label": "Gobierno de accesos",
+        "title": "Usuarios y permisos por rol en cada organizacion",
+        "description": "Crea usuarios, define roles y limita acceso por organizacion para que cada equipo opere solo en su espacio.",
+        "chip": "Usuarios, roles, permisos"
+      },
+      {
+        "label": "Flujo operativo",
+        "title": "De la planificacion a la entrega en un solo flujo",
+        "description": "Planifica trabajo, asigna responsables y mantiene la ejecucion en marcha desde un espacio unificado.",
+        "chip": "Planificacion, responsables, entrega"
+      },
+      {
+        "label": "Propuestas",
+        "title": "Propuestas estructuradas con aprobacion",
+        "description": "Genera propuestas conectadas a clientes, precios y pasos de validacion antes de ejecutar.",
+        "chip": "Plantillas, aprobaciones, claridad"
+      },
+      {
+        "label": "Reportes y automatizacion",
+        "title": "Dashboards vivos y alertas operativas",
+        "description": "Conecta datos de operacion y ventas para monitorear avance y automatizar tareas repetitivas.",
+        "chip": "Dashboards, alertas, automatizacion"
+      }
+    ]
+  },
+  "whyUs": {
+    "title": "Controla multiples unidades desde una sola estructura",
+    "description": "Gestiona clientes, sucursales y equipos desde una cuenta matriz, mientras cada area mantiene permisos por rol.",
+    "points": [
+      "Supervision central sobre entidades",
+      "Responsabilidad clara por rol",
+      "Mayor control a medida que creces"
+    ],
+    "roles": [
+      {
+        "role": "Operaciones",
+        "value": "Ejecucion diaria con mas claridad y menos cuellos de botella."
+      },
+      {
+        "role": "Finanzas",
+        "value": "Mayor control de pagos y rendimiento del negocio."
+      },
+      {
+        "role": "Direccion",
+        "value": "Una vista confiable para priorizar y decidir mas rapido."
+      }
+    ]
+  },
+  "proof": {
+    "title": "Como demostramos valor antes de contratar",
+    "description": "Cada demo se enfoca en tu operacion real para que evalues encaje con criterio y sin presion.",
+    "items": [
+      {
+        "title": "Tu flujo real en la demo",
+        "description": "Mapeamos tu proceso actual y lo recorremos dentro de DatumSaaS paso a paso."
+      },
+      {
+        "title": "Jerarquia y roles en accion",
+        "description": "Ves como direccion, operaciones y finanzas trabajan en un solo sistema sin perder control por rol."
+      },
+      {
+        "title": "Encaje claro y siguiente paso",
+        "description": "Cada sesion termina con evaluacion practica, plan de implementacion y objetivos claros de mejora a 90 dias."
+      }
+    ]
+  },
+  "support": {
+    "title": "Nuestro compromiso de soporte desde el dia uno",
+    "description": "No te dejamos solo despues del cierre. Trabajamos con tu equipo antes de la puesta en marcha, durante el lanzamiento y en la operacion diaria.",
+    "items": [
+      {
+        "title": "Configuracion guiada y puesta en marcha",
+        "description": "Definimos alcance con tu equipo y ejecutamos una configuracion practica para empezar a operar rapido."
+      },
+      {
+        "title": "Implementacion done-with-you",
+        "description": "Configuramos los flujos clave junto a usuarios reales para que la adopcion se apoye en el trabajo diario."
+      },
+      {
+        "title": "Soporte operativo continuo",
+        "description": "Despues del lanzamiento, seguimos cerca para resolver incidencias, ajustar flujos y mantener estabilidad."
+      }
+    ]
+  },
+  "confidence": {
+    "title": "Senales de confianza que puedes validar",
+    "description": "Actualmente trabajamos con 4 clientes activos. Solo publicamos referencias y resenas con aprobacion explicita de cada cliente.",
+    "items": [
+      {
+        "title": "4 clientes activos operando hoy",
+        "description": "Nuestros clientes actuales ya ejecutan flujos reales sobre DatumSaaS."
+      },
+      {
+        "title": "Referencias en conversaciones comerciales",
+        "description": "Cuando cada cliente lo autoriza, compartimos contexto y feedback operativo directo."
+      },
+      {
+        "title": "Demostracion en vivo de tu flujo",
+        "description": "Puedes evaluar la plataforma sobre tu proceso real, no sobre presentaciones genericas."
+      }
+    ]
+  },
+  "demoProcess": {
+    "title": "Que sucede en una demo comercial",
+    "steps": [
+      "Entendemos tu operacion actual",
+      "Mostramos tu flujo dentro de DatumSaaS",
+      "Definimos encaje, plan de implementacion y objetivos de mejora a 90 dias"
+    ],
+    "ctaLabel": "Recibir plan de go-live",
+    "ctaHref": "#contact"
+  },
+  "faq": {
+    "title": "Preguntas comerciales frecuentes",
+    "description": "Las dudas mas comunes de equipos que evaluan un ERP all-in-one para ordenar y escalar su operacion.",
+    "items": [
+      {
+        "question": "Cuanto tiempo toma la implementacion?",
+        "answer": "La mayoria de equipos puede empezar a operar en alrededor de 5 dias. El tiempo final depende de cuantos datos y clientes haya que mover."
+      },
+      {
+        "question": "Podemos migrar desde nuestras herramientas actuales?",
+        "answer": "Si. Revisamos tu stack y definimos una migracion que no interrumpa la operacion diaria."
+      },
+      {
+        "question": "DatumSaaS sirve para un solo sector?",
+        "answer": "No. Esta pensado para equipos con operacion compleja en distintos sectores, incluyendo servicios, retail y tecnologia."
+      },
+      {
+        "question": "Que acompanamiento recibimos despues de iniciar?",
+        "answer": "Recibes soporte directo durante la puesta en marcha y acompanamiento continuo mientras consolidas mejoras operativas durante los primeros 90 dias."
+      }
+    ]
+  },
+  "cta": {
+    "title": "Mira tu operacion funcionando en un sistema conectado",
+    "description": "Reserva tu demo en vivo y recibe un plan de implementacion para operar en dias, con objetivos claros de mejora a 90 dias.",
+    "buttonLabel": "Reservar demo en vivo",
+    "buttonHref": "#contact",
+    "secondaryButtonLabel": "Hablar con ventas",
+    "microTrust": "La puesta en marcha inicial puede lograrse en alrededor de 5 dias, segun la cantidad de datos y clientes a mover."
+  },
+  "footer": {
+    "copyright": "(c) DatumSaas. Todos los derechos reservados."
+  },
+  "seo": {
+    "title": "DatumSaas | Un solo sistema para gestionar toda tu operacion",
+    "description": "Conecta leads, operaciones, ventas, pagos y reportes en una sola plataforma para empresas en crecimiento."
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "install": {
+    "topbarLabel": "Installing...",
+    "steps": [
+      "Installing core system",
+      "Installing dependencies",
+      "Importing contact records",
+      "Configuring roles and permissions",
+      "Activating operational workflows"
+    ],
+    "readyLabel": "Workspace ready"
+  },
+  "connected": {
+    "headline": "Connected processes end to end",
+    "subline": "Shared context across teams with clean handoffs."
+  },
+  "control": {
+    "headline": "Operational control to decide and scale",
+    "subline": "Live metrics and status signals for faster decisions."
+  }
+}

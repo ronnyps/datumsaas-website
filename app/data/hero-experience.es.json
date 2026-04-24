@@ -1,0 +1,21 @@
+{
+  "install": {
+    "topbarLabel": "Instalando...",
+    "steps": [
+      "Instalando sistema base",
+      "Instalando dependencias",
+      "Importando contactos",
+      "Configurando roles y permisos",
+      "Activando flujos operativos"
+    ],
+    "readyLabel": "Espacio listo"
+  },
+  "connected": {
+    "headline": "Procesos conectados de punta a punta",
+    "subline": "Contexto compartido entre equipos con traspasos limpios."
+  },
+  "control": {
+    "headline": "Control operativo para decidir y escalar",
+    "subline": "Metricas y estado en vivo para decidir con mas velocidad."
+  }
+}

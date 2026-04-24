@@ -1,0 +1,30 @@
+.problem-you-cursor {
+  position: absolute;
+  inset: 0;
+  z-index: 30;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.problem-you-cursor__node {
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
+.problem-you-cursor--visible .problem-you-cursor__node {
+  opacity: 1;
+}
+
+.problem-you-cursor__node .role-pointer-tag {
+  transform: translate(-0.95rem, -2.15rem);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .problem__visual.problem__visual--you-cursor-active,
+  .problem__visual.problem__visual--you-cursor-active * {
+    cursor: none !important;
+  }
+}

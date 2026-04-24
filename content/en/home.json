@@ -1,0 +1,442 @@
+﻿{
+  "hero": {
+    "announce": "Scale from a single operation to a complex business.",
+    "title": "One System to Run Your Entire Operation",
+    "subtitle": "Connect leads, tasks, sales, payments, and reporting in one flow. Close today and be running in days, not months.",
+    "ctaLabel": "Book a Live Demo",
+    "ctaHref": "#contact",
+    "secondaryCtaLabel": "See Your Workflow Live",
+    "secondaryCtaHref": "#flow",
+    "microTrust": "No obligation. Practical 45-minute walkthrough based on your real operation."
+  },
+  "bridge": {
+    "introTitle": "See how your operation goes live, step by step",
+    "introDescription": "This section is synced with the demo above. Each step shows how DatumSaaS speeds up onboarding, connects processes, and gives you real operational control from day one.",
+    "items": [
+      {
+        "title": "Fast start without slowing operations",
+        "description": "Get your core flow live in days: leads, tasks, sales, and payments running in one system."
+      },
+      {
+        "title": "Connected processes end to end",
+        "description": "Every team works on shared context, so handoffs stay clean and manual rework drops."
+      },
+      {
+        "title": "Operational control to decide and scale",
+        "description": "Track priorities, blockers, and results live so your team executes better as you grow."
+      }
+    ]
+  },
+  "problem": {
+    "title": "When Tools Are Not Connected, Growth Slows",
+    "description": "Teams lose time in manual handoffs, data stops matching, and decisions arrive late. As the company grows, control becomes harder.",
+    "bullets": [
+      "Missed handoffs between teams",
+      "Repeated manual work and avoidable errors",
+      "Limited visibility across operations, sales, and finance"
+    ]
+  },
+  "flow": {
+    "title": "From First Lead to Final Report, in One Flow",
+    "description": "DatumSaaS connects every stage so teams execute with structure and leadership decides with reliable data.",
+    "steps": [
+      "Capture and qualify opportunities",
+      "Assign and track operational work",
+      "Generate orders and proposals",
+      "Monitor payments and commercial status",
+      "Review full performance in one view"
+    ],
+    "workflow": {
+      "triggerForm": {
+        "title": "Lead Form Trigger",
+        "fields": {
+          "companyName": "Company Name",
+          "fullName": "Full Name",
+          "email": "Email",
+          "phoneNumber": "Phone Number"
+        },
+        "productOptions": [
+          "ERP Core",
+          "Commercial + CRM",
+          "Operations + Finance"
+        ],
+        "submitLabel": "Submit"
+      },
+      "contactsTable": [
+        {
+          "companyName": "Northstar Logistics",
+          "fullName": "Emma Rodriguez",
+          "email": "emma@northstarlogistics.com",
+          "phoneNumber": "+1 786 555 0112",
+          "productService": "ERP Core"
+        },
+        {
+          "companyName": "Blue Harbor Medical",
+          "fullName": "Jason Clark",
+          "email": "jason@blueharbormedical.com",
+          "phoneNumber": "+1 305 555 0184",
+          "productService": "Commercial + CRM"
+        },
+        {
+          "companyName": "Vertex Home Services",
+          "fullName": "Sofia Martinez",
+          "email": "sofia@vertexhomeservices.com",
+          "phoneNumber": "+1 954 555 0127",
+          "productService": "Operations + Finance"
+        },
+        {
+          "companyName": "Atlas Security Group",
+          "fullName": "Daniel Kim",
+          "email": "daniel@atlassecuritygroup.com",
+          "phoneNumber": "+1 646 555 0191",
+          "productService": "ERP Core"
+        },
+        {
+          "companyName": "Summit Property Care",
+          "fullName": "Olivia Bennett",
+          "email": "olivia@summitpropertycare.com",
+          "phoneNumber": "+1 917 555 0149",
+          "productService": "Commercial + CRM"
+        }
+      ],
+      "nodes": [
+        { "id": "form-submit", "type": "trigger", "label": "Form Submit", "x": 10, "y": 50, "xMobile": 50, "yMobile": 12 },
+        { "id": "customer-table", "type": "entity", "label": "Customer Table", "x": 36, "y": 33, "xMobile": 50, "yMobile": 35, "variant": "customer" },
+        { "id": "contact-table", "type": "entity", "label": "Contact Table", "x": 36, "y": 67, "xMobile": 50, "yMobile": 53, "variant": "contact" },
+        { "id": "quote", "type": "action", "label": "Quotes", "x": 56, "y": 50, "xMobile": 50, "yMobile": 69, "variant": "quote" },
+        { "id": "proposal", "type": "action", "label": "Proposal", "x": 70, "y": 50, "xMobile": 50, "yMobile": 84, "variant": "proposal" },
+        { "id": "live-reporting", "type": "output", "label": "Live Reporting", "x": 90, "y": 50, "xMobile": 50, "yMobile": 96 }
+      ],
+      "edges": [
+        { "from": "form-submit", "to": "customer-table", "style": "solid", "accent": true, "animated": true },
+        { "from": "form-submit", "to": "contact-table", "style": "solid", "accent": true, "animated": true },
+        { "from": "customer-table", "to": "quote", "style": "solid", "accent": true, "animated": true },
+        { "from": "contact-table", "to": "quote", "style": "dotted", "accent": true, "animated": true },
+        { "from": "quote", "to": "proposal", "style": "solid", "accent": true, "animated": true },
+        { "from": "proposal", "to": "live-reporting", "style": "solid", "accent": true, "animated": true }
+      ],
+      "sequence": [
+        "node:form-submit",
+        "edge:form-submit->customer-table",
+        "edge:form-submit->contact-table",
+        "node:customer-table",
+        "node:contact-table",
+        "node:quote",
+        "node:proposal",
+        "node:live-reporting"
+      ],
+      "mobileVisibleNodeIds": [
+        "form-submit",
+        "customer-table",
+        "contact-table",
+        "quote",
+        "proposal",
+        "live-reporting"
+      ]
+    }
+  },
+  "services": {
+    "title": "Everything You Need to Operate from One Place",
+    "modulesTitle": "Connected Operational Modules",
+    "items": [
+      {
+        "label": "Inventory and stock control",
+        "title": "Control your full inventory and stock from one platform",
+        "description": "Centralize inbound, outbound, and stock levels by product to prevent stockouts, overstock, and blind decisions."
+      },
+      {
+        "label": "Products, services and variants",
+        "title": "Create flexible offers without losing control",
+        "description": "Combine inventory into one sellable item and manage variant pricing, photos, and details."
+      }
+    ],
+    "inventoryProducts": [
+      {
+        "id": "margherita-pizza",
+        "name": "Margherita Pizza",
+        "category": "Main dish",
+        "baseSku": "FD-PZA-MAR",
+        "warehouse": "Hot Kitchen",
+        "reorderPoint": 14,
+        "variants": [
+          { "id": "s", "label": "Personal", "sku": "FD-PZA-MAR-P", "price": 12, "stock": 32, "imageLabel": "Top view margherita" },
+          { "id": "m", "label": "Medium", "sku": "FD-PZA-MAR-M", "price": 16, "stock": 24, "imageLabel": "Sliced table shot" },
+          { "id": "l", "label": "Family", "sku": "FD-PZA-MAR-F", "price": 21, "stock": 18, "imageLabel": "Family serving board" }
+        ]
+      },
+      {
+        "id": "grilled-salmon-bowl",
+        "name": "Grilled Salmon Bowl",
+        "category": "Healthy bowl",
+        "baseSku": "FD-BWL-SLM",
+        "warehouse": "Cold Prep",
+        "reorderPoint": 10,
+        "variants": [
+          { "id": "s", "label": "Light", "sku": "FD-BWL-SLM-L", "price": 14, "stock": 20, "imageLabel": "Bowl with mixed greens" },
+          { "id": "m", "label": "Regular", "sku": "FD-BWL-SLM-R", "price": 18, "stock": 16, "imageLabel": "Protein-focused plating" },
+          { "id": "l", "label": "Double protein", "sku": "FD-BWL-SLM-D", "price": 23, "stock": 11, "imageLabel": "Large serving close-up" }
+        ]
+      },
+      {
+        "id": "chicken-caesar-wrap",
+        "name": "Chicken Caesar Wrap",
+        "category": "Wrap",
+        "baseSku": "FD-WRP-CSR",
+        "warehouse": "Line Station A",
+        "reorderPoint": 12,
+        "variants": [
+          { "id": "s", "label": "Half", "sku": "FD-WRP-CSR-H", "price": 9, "stock": 26, "imageLabel": "Half wrap cross-section" },
+          { "id": "m", "label": "Regular", "sku": "FD-WRP-CSR-R", "price": 13, "stock": 22, "imageLabel": "Classic wrapped set" },
+          { "id": "l", "label": "Combo", "sku": "FD-WRP-CSR-C", "price": 17, "stock": 15, "imageLabel": "Wrap with side and drink" }
+        ]
+      },
+      {
+        "id": "truffle-mushroom-risotto",
+        "name": "Truffle Mushroom Risotto",
+        "category": "Main dish",
+        "baseSku": "FD-RST-TRF",
+        "warehouse": "Hot Kitchen",
+        "reorderPoint": 9,
+        "variants": [
+          { "id": "s", "label": "Starter", "sku": "FD-RST-TRF-S", "price": 13, "stock": 17, "imageLabel": "Small ceramic bowl" },
+          { "id": "m", "label": "Regular", "sku": "FD-RST-TRF-R", "price": 19, "stock": 13, "imageLabel": "Full plated risotto" },
+          { "id": "l", "label": "Chef special", "sku": "FD-RST-TRF-C", "price": 24, "stock": 9, "imageLabel": "Truffle shaving garnish" }
+        ]
+      },
+      {
+        "id": "avocado-quinoa-salad",
+        "name": "Avocado Quinoa Salad",
+        "category": "Salad",
+        "baseSku": "FD-SLD-AVQ",
+        "warehouse": "Cold Prep",
+        "reorderPoint": 11,
+        "variants": [
+          { "id": "s", "label": "Small", "sku": "FD-SLD-AVQ-S", "price": 10, "stock": 24, "imageLabel": "Fresh top view" },
+          { "id": "m", "label": "Regular", "sku": "FD-SLD-AVQ-R", "price": 14, "stock": 19, "imageLabel": "Mixed seeds garnish" },
+          { "id": "l", "label": "Protein add-on", "sku": "FD-SLD-AVQ-P", "price": 18, "stock": 12, "imageLabel": "Chicken topping variant" }
+        ]
+      },
+      {
+        "id": "beef-tacos-plate",
+        "name": "Beef Tacos Plate",
+        "category": "Main dish",
+        "baseSku": "FD-TCO-BEF",
+        "warehouse": "Line Station B",
+        "reorderPoint": 13,
+        "variants": [
+          { "id": "s", "label": "2 tacos", "sku": "FD-TCO-BEF-2", "price": 11, "stock": 29, "imageLabel": "Pair on wooden board" },
+          { "id": "m", "label": "3 tacos", "sku": "FD-TCO-BEF-3", "price": 15, "stock": 23, "imageLabel": "Trio with salsa set" },
+          { "id": "l", "label": "5 tacos", "sku": "FD-TCO-BEF-5", "price": 21, "stock": 14, "imageLabel": "Sharing plate presentation" }
+        ]
+      },
+      {
+        "id": "shrimp-pasta-alfredo",
+        "name": "Shrimp Pasta Alfredo",
+        "category": "Pasta",
+        "baseSku": "FD-PST-SHR",
+        "warehouse": "Hot Kitchen",
+        "reorderPoint": 8,
+        "variants": [
+          { "id": "s", "label": "Lunch", "sku": "FD-PST-SHR-L", "price": 14, "stock": 18, "imageLabel": "Lunch bowl plating" },
+          { "id": "m", "label": "Dinner", "sku": "FD-PST-SHR-D", "price": 20, "stock": 15, "imageLabel": "Creamy sauce close-up" },
+          { "id": "l", "label": "Family tray", "sku": "FD-PST-SHR-F", "price": 28, "stock": 9, "imageLabel": "Family tray top view" }
+        ]
+      },
+      {
+        "id": "vegan-burger-combo",
+        "name": "Vegan Burger Combo",
+        "category": "Combo",
+        "baseSku": "FD-BRG-VGN",
+        "warehouse": "Line Station A",
+        "reorderPoint": 10,
+        "variants": [
+          { "id": "s", "label": "Burger only", "sku": "FD-BRG-VGN-O", "price": 11, "stock": 21, "imageLabel": "Single burger hero shot" },
+          { "id": "m", "label": "Combo", "sku": "FD-BRG-VGN-C", "price": 15, "stock": 16, "imageLabel": "Burger with fries" },
+          { "id": "l", "label": "Double patty combo", "sku": "FD-BRG-VGN-D", "price": 19, "stock": 11, "imageLabel": "Double stack with drink" }
+        ]
+      },
+      {
+        "id": "chicken-ramen-bowl",
+        "name": "Chicken Ramen Bowl",
+        "category": "Soup bowl",
+        "baseSku": "FD-RMN-CHK",
+        "warehouse": "Soup Station",
+        "reorderPoint": 9,
+        "variants": [
+          { "id": "s", "label": "Light broth", "sku": "FD-RMN-CHK-L", "price": 12, "stock": 20, "imageLabel": "Broth-forward close-up" },
+          { "id": "m", "label": "Classic", "sku": "FD-RMN-CHK-C", "price": 16, "stock": 15, "imageLabel": "Classic ramen composition" },
+          { "id": "l", "label": "Extra toppings", "sku": "FD-RMN-CHK-X", "price": 20, "stock": 10, "imageLabel": "Loaded toppings bowl" }
+        ]
+      },
+      {
+        "id": "berry-cheesecake-slice",
+        "name": "Berry Cheesecake Slice",
+        "category": "Dessert",
+        "baseSku": "FD-DST-BCH",
+        "warehouse": "Dessert Fridge",
+        "reorderPoint": 7,
+        "variants": [
+          { "id": "s", "label": "Slice", "sku": "FD-DST-BCH-S", "price": 7, "stock": 25, "imageLabel": "Single slice plate" },
+          { "id": "m", "label": "Double slice", "sku": "FD-DST-BCH-D", "price": 12, "stock": 17, "imageLabel": "Two-slice sharing plate" },
+          { "id": "l", "label": "Whole cake", "sku": "FD-DST-BCH-W", "price": 36, "stock": 8, "imageLabel": "Whole cake top shot" }
+        ]
+      }
+    ],
+    "modules": [
+      {
+        "label": "CRM & Sales",
+        "title": "Capture new contacts and turn them into sales",
+        "description": "Manage interested contacts, follow-up, and ownership in one easy commercial flow.",
+        "chip": "Contacts, follow-up, sales"
+      },
+      {
+        "label": "Access governance",
+        "title": "Users and role-based permissions per organization",
+        "description": "Create users, define roles, and limit access by organization so each team operates only in its own space.",
+        "chip": "Users, roles, permissions"
+      },
+      {
+        "label": "Operations Flow",
+        "title": "From scheduling to delivery in one flow",
+        "description": "Schedule work, assign owners, and keep execution moving from one unified workspace.",
+        "chip": "Scheduling, owners, delivery"
+      },
+      {
+        "label": "Proposals",
+        "title": "Structured proposals with approvals",
+        "description": "Create proposals linked to customers, pricing, and validation steps before execution starts.",
+        "chip": "Templates, approvals, clarity"
+      },
+      {
+        "label": "Reporting & Automation",
+        "title": "Live dashboards and operational alerts",
+        "description": "Connect operations and sales data to track progress and automate repetitive actions.",
+        "chip": "Dashboards, alerts, automation"
+      }
+    ]
+  },
+  "whyUs": {
+    "title": "Control Multiple Units from One Structure",
+    "description": "Manage clients, branches, and teams from a parent account while each area keeps role-based permissions.",
+    "points": [
+      "Central oversight across entities",
+      "Role-based responsibility by team",
+      "Stronger control as you scale"
+    ],
+    "roles": [
+      {
+        "role": "Operations",
+        "value": "Run daily execution with clearer ownership and fewer bottlenecks."
+      },
+      {
+        "role": "Finance",
+        "value": "Track payment flow and business performance with stronger control."
+      },
+      {
+        "role": "Leadership",
+        "value": "Get one reliable view to prioritize and decide faster."
+      }
+    ]
+  },
+  "proof": {
+    "title": "How We Demonstrate Value Before You Buy",
+    "description": "Every demo is built around your real operation so you can evaluate fit with confidence and zero pressure.",
+    "items": [
+      {
+        "title": "Your real workflow in the demo",
+        "description": "We map your current process and run it inside DatumSaaS step by step."
+      },
+      {
+        "title": "Hierarchy and roles in action",
+        "description": "You see how leadership, operations, and finance work in one system without losing role-level control."
+      },
+      {
+        "title": "Clear fit and next step",
+        "description": "Each session ends with a practical fit review, an implementation plan, and clear 90-day improvement goals."
+      }
+    ]
+  },
+  "support": {
+    "title": "Our Support Commitment From Day One",
+    "description": "You are not left alone after signing. We work with your team before go-live, during launch, and in daily operation.",
+    "items": [
+      {
+        "title": "Guided setup and go-live",
+        "description": "We define scope with your team and execute a practical setup so you can start operating quickly."
+      },
+      {
+        "title": "Done-with-you implementation",
+        "description": "We configure core flows with real users so adoption stays grounded in day-to-day work."
+      },
+      {
+        "title": "Continuous operational support",
+        "description": "After launch, we stay close to resolve incidents, adjust flows, and keep execution stable."
+      }
+    ]
+  },
+  "confidence": {
+    "title": "Trust Signals You Can Validate",
+    "description": "We currently work with 4 active clients. We only publish references and reviews with explicit client approval.",
+    "items": [
+      {
+        "title": "4 active clients operating today",
+        "description": "Current customers are already running real workflows on DatumSaaS."
+      },
+      {
+        "title": "References shared in sales calls",
+        "description": "When approved by each client, we share context and direct operational feedback."
+      },
+      {
+        "title": "Live workflow demonstration",
+        "description": "You can evaluate the platform on your own process, not generic slides."
+      }
+    ]
+  },
+  "demoProcess": {
+    "title": "What Happens in a Sales Demo",
+    "steps": [
+      "Understand your current operation",
+      "Show your workflow inside DatumSaaS",
+      "Define fit, implementation plan, and 90-day improvement targets"
+    ],
+    "ctaLabel": "Get My Go-Live Plan",
+    "ctaHref": "#contact"
+  },
+  "faq": {
+    "title": "Commercial FAQ",
+    "description": "The most common questions we hear from teams evaluating an all-in-one ERP to organize and scale operations.",
+    "items": [
+      {
+        "question": "How long does implementation usually take?",
+        "answer": "Most teams can start operating in about 5 days. Timing depends on migration volume and process complexity."
+      },
+      {
+        "question": "Can we migrate from our current tools?",
+        "answer": "Yes. We review your stack and define a migration approach that avoids disrupting daily operations."
+      },
+      {
+        "question": "Is DatumSaaS only for one industry?",
+        "answer": "No. It is designed for operationally complex teams across sectors, including services, retail, and tech."
+      },
+      {
+        "question": "What support do we get after starting?",
+        "answer": "You get direct support during go-live and continued guidance as your team consolidates operational gains over the first 90 days."
+      }
+    ]
+  },
+  "cta": {
+    "title": "See Your Operation Running in One Connected System",
+    "description": "Book a live demo and receive an implementation plan to operate in days, with clear 90-day improvement goals.",
+    "buttonLabel": "Book a Live Demo",
+    "buttonHref": "#contact",
+    "secondaryButtonLabel": "Talk to Sales",
+    "microTrust": "Initial go-live can happen in about 5 days, depending on how much data and how many clients need to be moved."
+  },
+  "footer": {
+    "copyright": "(c) DatumSaas. All rights reserved."
+  },
+  "seo": {
+    "title": "DatumSaas | One System to Run Your Entire Operation",
+    "description": "Connect leads, operations, sales, payments, and reporting in one platform built for growing companies."
+  }
+}

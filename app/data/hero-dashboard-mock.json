@@ -1,0 +1,161 @@
+{
+  "labels": {
+    "previewAriaLabel": "DatumSaaS dashboard preview",
+    "searchAriaLabel": "Search",
+    "navigationAriaLabel": "Main navigation",
+    "chartAriaLabel": "Quotes activity chart"
+  },
+  "brandName": "DatumSaaS",
+  "breadcrumb": "Dashboard",
+  "profileName": "James Smith",
+  "welcomeTitle": "Welcome Back, James Smith",
+  "searchPlaceholder": "Search...",
+  "menuItems": [
+    { "key": "dashboard", "label": "Dashboard", "icon": "ChartBarSquareIcon", "active": true },
+    { "key": "quotes", "label": "Quotes", "icon": "DocumentTextIcon", "active": false },
+    { "key": "orders", "label": "Orders", "icon": "ClipboardDocumentListIcon", "active": false },
+    { "key": "items", "label": "Items", "icon": "CubeIcon", "active": false },
+    { "key": "companies", "label": "Companies", "icon": "BuildingOffice2Icon", "active": false },
+    { "key": "customers", "label": "Customers", "icon": "UsersIcon", "active": false },
+    { "key": "contacts", "label": "Contacts", "icon": "IdentificationIcon", "active": false },
+    { "key": "suppliers", "label": "Suppliers", "icon": "TruckIcon", "active": false },
+    { "key": "users", "label": "Users", "icon": "UserGroupIcon", "active": false },
+    { "key": "roles", "label": "Roles", "icon": "ShieldCheckIcon", "active": false },
+    { "key": "permissions", "label": "Permissions", "icon": "KeyIcon", "active": false }
+  ],
+  "rangeTabs": [
+    { "key": "today", "label": "Today" },
+    { "key": "yesterday", "label": "Yesterday" },
+    { "key": "last7", "label": "Last 7 Days" },
+    { "key": "last30", "label": "Last 30 Days" },
+    { "key": "allTime", "label": "All Time" }
+  ],
+  "activeRange": "last30",
+  "notice": {
+    "message": "New catalog of modern doors available - explore and quote faster.",
+    "ctaLabel": "Explore Now"
+  },
+  "activityChart": {
+    "title": "Quotes Activity by Status",
+    "legend": [
+      { "label": "Approved", "tone": "green" },
+      { "label": "Pending", "tone": "blue" },
+      { "label": "Rejected", "tone": "red" }
+    ]
+  },
+  "topCustomers": {
+    "title": "Top Customers"
+  },
+  "ranges": {
+    "today": {
+      "periodLabel": "today",
+      "stats": [
+        { "label": "Conversion Rate", "value": "27%", "delta": "+2.1% vs yesterday" },
+        { "label": "Quotes Created", "value": "11", "delta": "+3 vs yesterday" },
+        { "label": "Projected Sales Value", "value": "$12,840", "delta": "+7.6% vs yesterday" },
+        { "label": "Total Sales", "value": "$8,940", "delta": "+5.3% vs yesterday" }
+      ],
+      "topCustomers": [
+        { "name": "Northline Manufacturing", "amount": "$2,640" },
+        { "name": "BluePeak Logistics", "amount": "$1,980" },
+        { "name": "Vertex Retail Group", "amount": "$1,420" },
+        { "name": "Nova IT Services", "amount": "$1,180" }
+      ],
+      "chart": {
+        "periodLabel": "(Today)",
+        "approvedArea": "M0 232 C130 225, 260 172, 430 156 C590 140, 760 152, 1000 134 L1000 300 L0 300 Z",
+        "pendingArea": "M0 256 C140 250, 280 268, 470 244 C650 223, 810 234, 1000 246 L1000 300 L0 300 Z",
+        "approvedLine": "M0 232 C130 225, 260 172, 430 156 C590 140, 760 152, 1000 134",
+        "pendingLine": "M0 256 C140 250, 280 268, 470 244 C650 223, 810 234, 1000 246"
+      }
+    },
+    "yesterday": {
+      "periodLabel": "yesterday",
+      "stats": [
+        { "label": "Conversion Rate", "value": "24%", "delta": "-1.4% vs previous day" },
+        { "label": "Quotes Created", "value": "8", "delta": "-2 vs previous day" },
+        { "label": "Projected Sales Value", "value": "$10,320", "delta": "-5.1% vs previous day" },
+        { "label": "Total Sales", "value": "$7,650", "delta": "-2.9% vs previous day" }
+      ],
+      "topCustomers": [
+        { "name": "BluePeak Logistics", "amount": "$2,120" },
+        { "name": "Northline Manufacturing", "amount": "$1,860" },
+        { "name": "Mercury Wholesale", "amount": "$1,240" },
+        { "name": "Nova IT Services", "amount": "$1,030" }
+      ],
+      "chart": {
+        "periodLabel": "(Yesterday)",
+        "approvedArea": "M0 236 C110 238, 250 185, 430 164 C610 146, 770 160, 1000 150 L1000 300 L0 300 Z",
+        "pendingArea": "M0 258 C150 250, 320 272, 510 252 C700 234, 840 244, 1000 258 L1000 300 L0 300 Z",
+        "approvedLine": "M0 236 C110 238, 250 185, 430 164 C610 146, 770 160, 1000 150",
+        "pendingLine": "M0 258 C150 250, 320 272, 510 252 C700 234, 840 244, 1000 258"
+      }
+    },
+    "last7": {
+      "periodLabel": "last 7 days",
+      "stats": [
+        { "label": "Conversion Rate", "value": "25%", "delta": "+3.2% vs previous 7 days" },
+        { "label": "Quotes Created", "value": "49", "delta": "+9 vs previous 7 days" },
+        { "label": "Projected Sales Value", "value": "$74,260", "delta": "+12.7% vs previous 7 days" },
+        { "label": "Total Sales", "value": "$52,940", "delta": "+9.1% vs previous 7 days" }
+      ],
+      "topCustomers": [
+        { "name": "Northline Manufacturing", "amount": "$12,440" },
+        { "name": "Vertex Retail Group", "amount": "$9,860" },
+        { "name": "BluePeak Logistics", "amount": "$8,210" },
+        { "name": "Nova IT Services", "amount": "$6,480" }
+      ],
+      "chart": {
+        "periodLabel": "(Past 7 Days)",
+        "approvedArea": "M0 226 C120 232, 250 180, 420 162 C585 145, 740 125, 1000 120 L1000 300 L0 300 Z",
+        "pendingArea": "M0 252 C130 248, 270 266, 460 246 C640 228, 810 232, 1000 246 L1000 300 L0 300 Z",
+        "approvedLine": "M0 226 C120 232, 250 180, 420 162 C585 145, 740 125, 1000 120",
+        "pendingLine": "M0 252 C130 248, 270 266, 460 246 C640 228, 810 232, 1000 246"
+      }
+    },
+    "last30": {
+      "periodLabel": "last 30 days",
+      "stats": [
+        { "label": "Conversion Rate", "value": "22%", "delta": "+4.8% vs previous 30 days" },
+        { "label": "Quotes Created", "value": "84", "delta": "+12 vs previous 30 days" },
+        { "label": "Projected Sales Value", "value": "$128,400", "delta": "+18.4% vs previous 30 days" },
+        { "label": "Total Sales", "value": "$96,120", "delta": "+9.6% vs previous 30 days" }
+      ],
+      "topCustomers": [
+        { "name": "Northline Manufacturing", "amount": "$21,480" },
+        { "name": "BluePeak Logistics", "amount": "$17,260" },
+        { "name": "Vertex Retail Group", "amount": "$14,930" },
+        { "name": "Nova IT Services", "amount": "$12,450" }
+      ],
+      "chart": {
+        "periodLabel": "(Past 30 Days)",
+        "approvedArea": "M0 220 C120 230, 180 170, 300 150 C420 130, 520 180, 640 120 C760 90, 860 130, 1000 120 L1000 300 L0 300 Z",
+        "pendingArea": "M0 250 C120 240, 180 280, 300 275 C420 260, 520 210, 640 220 C760 240, 860 230, 1000 260 L1000 300 L0 300 Z",
+        "approvedLine": "M0 220 C120 230, 180 170, 300 150 C420 130, 520 180, 640 120 C760 90, 860 130, 1000 120",
+        "pendingLine": "M0 250 C120 240, 180 280, 300 275 C420 260, 520 210, 640 220 C760 240, 860 230, 1000 260"
+      }
+    },
+    "allTime": {
+      "periodLabel": "all time",
+      "stats": [
+        { "label": "Conversion Rate", "value": "19%", "delta": "+1.9% lifetime trend" },
+        { "label": "Quotes Created", "value": "1,264", "delta": "+126 this quarter" },
+        { "label": "Projected Sales Value", "value": "$1,842,000", "delta": "+14.3% yearly trend" },
+        { "label": "Total Sales", "value": "$1,266,410", "delta": "+11.2% yearly trend" }
+      ],
+      "topCustomers": [
+        { "name": "Northline Manufacturing", "amount": "$302,880" },
+        { "name": "BluePeak Logistics", "amount": "$244,600" },
+        { "name": "Vertex Retail Group", "amount": "$198,540" },
+        { "name": "Nova IT Services", "amount": "$174,220" }
+      ],
+      "chart": {
+        "periodLabel": "(All Time)",
+        "approvedArea": "M0 238 C130 226, 280 166, 470 150 C640 136, 810 110, 1000 102 L1000 300 L0 300 Z",
+        "pendingArea": "M0 260 C140 252, 300 262, 500 238 C690 214, 840 226, 1000 236 L1000 300 L0 300 Z",
+        "approvedLine": "M0 238 C130 226, 280 166, 470 150 C640 136, 810 110, 1000 102",
+        "pendingLine": "M0 260 C140 252, 300 262, 500 238 C690 214, 840 226, 1000 236"
+      }
+    }
+  }
+}

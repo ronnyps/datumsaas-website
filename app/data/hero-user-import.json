@@ -1,0 +1,97 @@
+{
+    "title":  "User Management",
+    "subtitle":  "Importing users into your workspace",
+    "searchPlaceholder":  "Search users...",
+    "filtersLabel":  "Filters",
+    "groupLabel":  "Group by Organization",
+    "newUserLabel":  "New User",
+    "progressLabel":  "Import progress",
+    "columns":  [
+                    {
+                        "key":  "username",
+                        "label":  "Username"
+                    },
+                    {
+                        "key":  "email",
+                        "label":  "Email"
+                    },
+                    {
+                        "key":  "organization",
+                        "label":  "Organization"
+                    },
+                    {
+                        "key":  "status",
+                        "label":  "Status"
+                    },
+                    {
+                        "key":  "firstName",
+                        "label":  "First Name"
+                    },
+                    {
+                        "key":  "lastName",
+                        "label":  "Last Name"
+                    }
+                ],
+    "rows":  [
+                 {
+                     "id":  "u-001",
+                     "username":  "james.smith",
+                     "email":  "james.smith@datumsaas.com",
+                     "organization":  "Northline Manufacturing",
+                     "status":  "Active",
+                     "firstName":  "James",
+                     "lastName":  "Smith",
+                     "role":  "Operator"
+                 },
+                 {
+                     "id":  "u-002",
+                     "username":  "olivia.johnson",
+                     "email":  "olivia.johnson@datumsaas.com",
+                     "organization":  "BluePeak Logistics",
+                     "status":  "Active",
+                     "firstName":  "Olivia",
+                     "lastName":  "Johnson",
+                     "role":  "Operator"
+                 },
+                 {
+                     "id":  "u-003",
+                     "username":  "liam.williams",
+                     "email":  "liam.williams@datumsaas.com",
+                     "organization":  "Vertex Retail Group",
+                     "status":  "Inactive",
+                     "firstName":  "Liam",
+                     "lastName":  "Williams",
+                     "role":  "Operator"
+                 },
+                 {
+                     "id":  "u-004",
+                     "username":  "emma.brown",
+                     "email":  "emma.brown@datumsaas.com",
+                     "organization":  "Nova IT Services",
+                     "status":  "Active",
+                     "firstName":  "Emma",
+                     "lastName":  "Brown",
+                     "role":  "Operator"
+                 },
+                 {
+                     "id":  "u-005",
+                     "username":  "noah.jones",
+                     "email":  "noah.jones@datumsaas.com",
+                     "organization":  "Mercury Wholesale",
+                     "status":  "Inactive",
+                     "firstName":  "Noah",
+                     "lastName":  "Jones",
+                     "role":  "Operator"
+                 },
+                 {
+                     "id":  "u-006",
+                     "username":  "ava.davis",
+                     "email":  "ava.davis@datumsaas.com",
+                     "organization":  "Crestline Services",
+                     "status":  "Active",
+                     "firstName":  "Ava",
+                     "lastName":  "Davis",
+                     "role":  "Operator"
+                 }
+             ]
+}

@@ -1,0 +1,238 @@
+:root {
+  /* ── Brand palette ──────────────────────────────────────────── */
+  --color-midnight-500: #061027;
+  --color-midnight-500-ch: 6 16 39;
+  --color-blue-600: #0046e0;
+  --color-blue-500: #0055ff;
+  --color-blue-500-ch: 0 85 255;
+  --color-blue-400: #0092ff;
+  --color-blue-400-ch: 0 146 255;
+  --color-blue-300: #94c5ff;
+  --color-blue-300-ch: 148 197 255;
+  --color-blue-200: #c7e0ff;
+  --color-blue-200-ch: 199 224 255;
+  --color-neutral-0: #ffffff;
+  --color-neutral-0-ch: 255 255 255;
+  --color-neutral-50: #fdfdfd;
+  --color-neutral-50-ch: 246 249 252;
+  --color-neutral-25: #fffefe; /* fondo base, tono más frío — stop final del gradiente de página */
+  --color-neutral-300: #cbd5e1;
+  --color-neutral-600: #475569;
+  --color-neutral-900: #0f172a;
+  --color-red-500-ch: 220 72 66;
+  --color-red-100-ch: 255 226 224;
+  --handoff-conflict-bg-ch: var(--color-red-100-ch);
+
+  /* ── Tipografía ─────────────────────────────────────────────── */
+  --font-heading:
+    "SF Compact Display", "SF Compact Text", "SF Pro Display", "SF Pro Text",
+    -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-body:
+    "SF Compact Text", "SF Compact Display", "SF Pro Text", "SF Pro Display",
+    -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+  /* ── Espaciado ──────────────────────────────────────────────── */
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-12: 48px;
+  --space-16: 64px;
+
+  /* ── Radios ─────────────────────────────────────────────────── */
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 0.875rem;
+  --radius-card: 0.625rem;
+  --radius-inner-panel: 0.5rem;
+  --radius-pill: 999px;
+
+  /* ── Movimiento ─────────────────────────────────────────────── */
+  --motion-duration-fast: 180ms;
+  --motion-duration-base: 260ms;
+  --motion-ease-standard: cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* ── Alpha utilities — derivan de los canales de brand ──────── */
+  --ink-a05: rgb(var(--color-midnight-500-ch) / 0.05);
+  --ink-a08: rgb(var(--color-midnight-500-ch) / 0.08);
+  --ink-a10: rgb(var(--color-midnight-500-ch) / 0.1);
+  --ink-a12: rgb(var(--color-midnight-500-ch) / 0.12);
+  --blue-a08: rgb(var(--color-blue-500-ch) / 0.08);
+  --blue-a12: rgb(var(--color-blue-500-ch) / 0.12);
+  --blue-a22: rgb(var(--color-blue-500-ch) / 0.22);
+  --blue-a28: rgb(var(--color-blue-500-ch) / 0.28);
+
+  /* ── Accent (glows decorativos, no son brand primarios) ─────── */
+  --color-accent-violet-ch: 112 58 255;
+  --color-accent-pink-ch: 255 92 184;
+  --color-accent-indigo-ch: 96 86 255;
+  --color-dark-panel-from: #071535;
+  --color-dark-panel-mid: #0a1f51;
+  --color-dark-panel-to: #0b2462;
+
+  /* ── Semánticos ─────────────────────────────────────────────── */
+  --semantic-bg: var(--color-neutral-0);
+  --semantic-page-bg: var(--color-neutral-25);
+  --semantic-surface: var(--color-neutral-50);
+  --semantic-text: var(--color-neutral-900);
+  --semantic-text-muted: var(--color-neutral-600);
+  --semantic-border: var(--color-neutral-300);
+  --semantic-primary: var(--color-blue-500);
+  --semantic-primary-hover: var(--color-blue-600);
+  --semantic-primary-soft: var(--color-blue-200);
+  --semantic-secondary: var(--color-midnight-500);
+
+  /* ── Dashboard mock ─────────────────────────────────────────── */
+  --dash-bg: var(--color-neutral-0);
+  --dash-bg-muted: #f9fafb;
+  --dash-surface: var(--color-neutral-0);
+  --dash-surface-item: #f8fafc;
+  --dash-line: #d9dee7;
+  --dash-text: #1f2937;
+  --dash-text-muted: var(--semantic-text-muted);
+  --dash-text-subtle: var(--color-neutral-300);
+  --dash-text-secondary: #334155;
+  --dash-text-nav: #596274;
+  --dash-icon: #96a0b2;
+  --dash-icon-info: #8fa0ba;
+  --dash-icon-wrap-active: #e1e6ee;
+  --dash-brand: var(--semantic-primary);
+  --dash-avatar-bg: linear-gradient(145deg, #d1d5db, #9ca3af);
+  --dash-chart-grid: #e4e7ec;
+  --dash-status-green-text: #11843a;
+  --dash-status-green-border: #9adfb3;
+  --dash-status-green-bg: #eefaf2;
+  --dash-status-blue-text: #2057dc;
+  --dash-status-blue-border: #b5cdfa;
+  --dash-status-blue-bg: #eff5ff;
+  --dash-status-red-text: #d10e4d;
+  --dash-status-red-border: #f7bfd0;
+  --dash-status-red-bg: #fff1f5;
+  --dash-notice-dot: #0ea5e9;
+  --dash-notice-dot-ring: rgba(14, 165, 233, 0.16);
+  --dash-notice-border: #b9ddfd;
+  --dash-notice-bg: #eef6ff;
+  --dash-notice-btn-border: #9fd2ff;
+
+  /* -- Role pointer variants (pastel by role) --------------------------- */
+  --role-you-accent-ch: 108 176 238;
+  --role-ceo-accent-ch: 92 182 145;
+  --role-hr-accent-ch: 111 157 244;
+  --role-cfo-accent-ch: 233 164 104;
+  --role-coo-accent-ch: 170 137 229;
+  --role-cto-accent-ch: 96 187 191;
+  --role-sales-accent-ch: 223 132 173;
+  --role-legal-accent-ch: 143 154 174;
+  --role-ops-accent-ch: 224 127 127;
+
+  /* -- File variants (ProblemSection visual) ------------------------------ */
+  --file-pdf-accent-ch: 220 72 66;
+  --file-pdf-soft-ch: 238 122 115;
+  --file-pdf-paper-ch: 255 248 248;
+  --file-pdf-border-ch: 233 72 68;
+
+  --file-doc-accent-ch: 37 109 246;
+  --file-doc-soft-ch: 97 149 255;
+  --file-doc-paper-ch: 248 251 255;
+  --file-doc-border-ch: 39 113 255;
+
+  --file-xls-accent-ch: 20 134 80;
+  --file-xls-soft-ch: 70 172 124;
+  --file-xls-paper-ch: 247 255 251;
+  --file-xls-border-ch: 28 142 88;
+
+  --file-ppt-accent-ch: 222 104 44;
+  --file-ppt-soft-ch: 241 152 103;
+  --file-ppt-paper-ch: 255 249 246;
+  --file-ppt-border-ch: 225 112 56;
+
+  --file-txt-accent-ch: 194 144 43;
+  --file-txt-soft-ch: 219 183 92;
+  --file-txt-paper-ch: 255 252 245;
+  --file-txt-border-ch: 198 145 44;
+
+  --file-csv-accent-ch: 21 142 148;
+  --file-csv-soft-ch: 74 180 186;
+  --file-csv-paper-ch: 244 255 255;
+  --file-csv-border-ch: 30 150 155;
+
+  --file-zip-accent-ch: 102 113 130;
+  --file-zip-soft-ch: 145 157 176;
+  --file-zip-paper-ch: 249 250 252;
+  --file-zip-border-ch: 108 117 133;
+
+  --file-json-accent-ch: 114 92 210;
+  --file-json-soft-ch: 153 132 236;
+  --file-json-paper-ch: 248 246 255;
+  --file-json-border-ch: 118 94 215;
+
+  /* ── Hero experience ────────────────────────────────────────── */
+  --hero-exp-center-title: var(--semantic-text);
+  --hero-exp-center-copy: var(--dash-text-muted);
+  --hero-exp-node-bg: var(--dash-brand);
+  --hero-exp-node-ring: rgb(var(--color-blue-500-ch) / 0.16);
+  --hero-exp-beam-start: rgb(var(--color-blue-500-ch) / 0.16);
+  --hero-exp-beam-mid: rgb(var(--color-blue-500-ch) / 0.7);
+  --hero-exp-beam-end: rgb(var(--color-blue-500-ch) / 0.14);
+  --hero-exp-install-overlay: var(--dash-bg-muted);
+  --hero-exp-install-flash-a: rgba(190, 232, 255, 0.9);
+  --hero-exp-install-flash-b: rgba(190, 232, 255, 0.34);
+  --hero-exp-install-flash-c: rgba(243, 246, 251, 0);
+  --hero-exp-install-flash-d: rgba(214, 231, 255, 0.42);
+  --hero-exp-install-wave-a: rgba(255, 255, 255, 0.72);
+  --hero-exp-install-wave-b: rgba(255, 255, 255, 0.38);
+  /* ↓ orbit — no alterar */
+  --hero-exp-install-wave-transparent: rgba(255, 255, 255, 0);
+  --hero-exp-install-wave-c1: rgba(147, 197, 253, 0.82);
+  --hero-exp-install-wave-c2: rgba(125, 211, 252, 0.76);
+  --hero-exp-install-wave-c3: rgba(167, 139, 250, 0.74);
+  --hero-exp-install-wave-c4: rgba(244, 114, 182, 0.74);
+  --hero-exp-install-wave-c5: rgba(251, 207, 232, 0.72);
+  /* ↑ orbit — no alterar */
+  --hero-exp-topbar-bg: var(--dash-surface);
+  --hero-exp-topbar-dot: var(--dash-text-subtle);
+  --hero-exp-orb-track: rgba(148, 163, 184, 0.24);
+  --hero-exp-orb-progress: var(--color-blue-400);
+  --hero-exp-orb-rim-border: rgba(255, 255, 255, 0.56);
+  --hero-exp-orb-rim-bg-a: rgba(255, 255, 255, 0.28);
+  --hero-exp-orb-rim-bg-b: rgba(255, 255, 255, 0.04);
+  --hero-exp-orb-shadow-a: rgb(var(--color-blue-500-ch) / 0.32);
+  --hero-exp-orb-shadow-b: rgba(8, 18, 36, 0);
+  --hero-exp-install-subline: var(--dash-text-muted);
+  --hero-exp-step-border: rgba(181, 193, 214, 0.82);
+  --hero-exp-step-bg: rgba(255, 255, 255, 0.62);
+  --hero-exp-step-fill: rgb(var(--color-blue-500-ch) / 0.1);
+  --hero-exp-step-label-ring: rgb(var(--color-blue-500-ch) / 0.15);
+  --hero-exp-step-percent: var(--dash-brand);
+  --hero-exp-ready-border: rgba(16, 185, 129, 0.34);
+  --hero-exp-ready-bg: rgba(16, 185, 129, 0.14);
+  --hero-exp-ready-text: #047857;
+  --hero-exp-ready-dot: #16a34a;
+  --hero-exp-import-btn-border: rgb(var(--color-blue-500-ch) / 0.4);
+  --hero-exp-import-ghost-border: rgb(var(--color-midnight-500-ch) / 0.14);
+  --hero-exp-import-table-line: var(--dash-line);
+  --hero-exp-import-checkbox-border: rgb(var(--color-midnight-500-ch) / 0.2);
+  --hero-exp-import-icon-primary: var(--dash-brand);
+  --hero-exp-import-icon-danger: #ef4444;
+  --hero-exp-import-avatar-border: var(--ink-a12);
+  --hero-exp-import-avatar-bg: var(--dash-bg-muted);
+  --hero-exp-status-active-text: #15803d;
+  --hero-exp-status-active-border: rgba(34, 197, 94, 0.35);
+  --hero-exp-status-active-bg: rgba(34, 197, 94, 0.12);
+  --hero-exp-status-inactive-text: #ea580c;
+  --hero-exp-status-inactive-border: rgba(251, 146, 60, 0.34);
+  --hero-exp-status-inactive-bg: rgba(251, 146, 60, 0.12);
+  --hero-exp-bridge-hover-bg: rgb(var(--color-blue-500-ch) / 0.03);
+  --hero-exp-bridge-active-text: var(--dash-brand);
+  --hero-exp-bridge-progress-bg: rgba(148, 163, 184, 0.25);
+
+  /* ── Escala tipográfica ──────────────────────────────────────── */
+  --type-h1-font: var(--font-heading);
+  --type-h1-line: 1.1;
+  --type-h1-weight: 700;
+  --type-h2-font: var(--font-heading);
+  --type-h2-line: 1.15;
+  --type-h2-weight: 700;
+}
+

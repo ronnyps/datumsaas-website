@@ -1,0 +1,290 @@
+.hero {
+  padding: clamp(2.2rem, 5vw, 4.6rem) 0 clamp(3.5rem, 7vw, 6rem);
+}
+
+.hero__container {
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  min-height: min(100dvh, 860px);
+  grid-template-columns: 1fr 1.08fr;
+  align-items: center;
+  gap: clamp(1.75rem, 3.2vw, 4rem);
+  border: 1px solid rgb(var(--color-blue-300-ch) / 0.35);
+  border-radius: 28px;
+  padding: clamp(2.2rem, 4.5vw, 4.8rem);
+  background:
+    linear-gradient(160deg, rgba(255, 255, 255, 0.98), rgba(243, 248, 255, 0.92)),
+    radial-gradient(620px 320px at 80% 30%, var(--blue-a08), transparent 75%);
+  box-shadow: 0 28px 66px var(--ink-a08), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+.hero__copy {
+  position: relative;
+  z-index: 2;
+}
+
+.hero__eyebrow {
+  display: inline-flex;
+  margin: 0 0 var(--space-4);
+  padding: 6px 12px;
+  border-radius: var(--radius-pill);
+  background: var(--semantic-primary-soft);
+  color: var(--semantic-primary);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.hero__title {
+  margin: 0;
+  max-width: 16ch;
+}
+
+.hero__title--wide {
+  max-width: 19ch;
+  text-wrap: balance;
+}
+
+.hero__subtitle {
+  margin: var(--space-6) 0 0;
+  max-width: 62ch;
+}
+
+.hero__actions {
+  margin-top: var(--space-8);
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+.hero__micro-trust {
+  margin: var(--space-4) 0 0;
+}
+
+.hero__inline-media {
+  display: inline-block;
+  width: clamp(64px, 9vw, 112px);
+  height: clamp(32px, 4vw, 52px);
+  margin-left: 0.4rem;
+  border-radius: var(--radius-pill);
+  vertical-align: middle;
+  background-image: url("https://picsum.photos/seed/datum-hero-inline/320/180");
+  background-position: center;
+  background-size: cover;
+  filter: grayscale(0.7) contrast(1.12) brightness(0.92);
+}
+
+.hero__visual {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  border-radius: 26px;
+  border: 1px solid rgb(var(--color-blue-300-ch) / 0.46);
+  background:
+    radial-gradient(240px 180px at 22% 24%, var(--blue-a22), transparent 71%),
+    radial-gradient(190px 160px at 72% 64%, rgb(var(--color-blue-400-ch) / 0.19), transparent 77%),
+    linear-gradient(165deg, rgba(255, 255, 255, 0.82), rgb(var(--color-blue-200-ch) / 0.58));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.75), 0 24px 56px var(--ink-a12);
+}
+
+.hero__flow-strip {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  right: 16px;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: var(--space-2);
+  z-index: 2;
+}
+
+.hero__flow-strip span {
+  border: 1px solid rgb(var(--color-blue-500-ch) / 0.24);
+  border-radius: var(--radius-pill);
+  background: rgba(255, 255, 255, 0.86);
+  text-align: center;
+  font-size: 0.74rem;
+  font-weight: 600;
+  color: var(--semantic-secondary);
+  padding: 6px 8px;
+}
+
+.hero__orb {
+  position: absolute;
+  border-radius: var(--radius-pill);
+  filter: blur(0.1px);
+}
+
+.hero__orb--one {
+  top: 14%;
+  left: 18%;
+  width: 64px;
+  height: 64px;
+  background: var(--blue-a22);
+}
+
+.hero__orb--two {
+  right: 14%;
+  bottom: 18%;
+  width: 86px;
+  height: 86px;
+  background: rgb(var(--color-blue-400-ch) / 0.20);
+}
+
+.hero__grid {
+  position: absolute;
+  inset: 16px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.hero__grid span {
+  border-radius: 10px;
+  border: 1px solid var(--blue-a22);
+  background: rgba(255, 255, 255, 0.44);
+}
+
+.section.hero {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(1rem, 2.4vw, 1.8rem) 0 0;
+}
+
+.hero::before {
+  content: none;
+}
+
+.hero__container {
+  position: relative;
+  z-index: 1;
+  min-height: min(76dvh, 52rem);
+  grid-template-columns: 1fr;
+  border: 0;
+  border-radius: 0;
+  padding: clamp(1.2rem, 2.8vw, 2.4rem) var(--content-inset) 0;
+  background: transparent;
+  box-shadow: none;
+  overflow: hidden;
+}
+
+.hero__container::before {
+  content: none;
+}
+
+.hero__copy {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  max-width: 72rem;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.hero__announce {
+  margin: 0 0 var(--space-4);
+}
+
+.hero__title--wide {
+  margin: 0 auto;
+  max-width: 16.5ch;
+}
+
+.hero__subtitle {
+  margin-top: var(--space-4);
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 62ch;
+}
+
+.hero__actions {
+  margin-top: var(--space-6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+.hero__micro-trust {
+  margin: var(--space-4) auto 0;
+  max-width: 58ch;
+}
+
+.hero__video-shell {
+  width: calc(100% + (var(--content-inset) * 2));
+  max-width: none;
+  height: clamp(22rem, 40vw, 34rem);
+  margin: clamp(1.5rem, 3.4vw, 2.5rem) auto 0;
+  margin-left: calc(var(--content-inset) * -1);
+  margin-right: calc(var(--content-inset) * -1);
+  border: 0.0625rem solid var(--ink-a10);
+  border-radius: 0.75rem 0.75rem 0 0;
+  background: rgba(255, 255, 255, 0.56);
+  overflow: hidden;
+}
+
+.hero__video-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgb(var(--color-midnight-500-ch) / 0.50);
+  font-size: 0.92rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.62), rgba(246, 250, 255, 0.7)),
+    repeating-linear-gradient(
+      -45deg,
+      rgb(var(--color-midnight-500-ch) / 0.03),
+      rgb(var(--color-midnight-500-ch) / 0.03) 12px,
+      rgb(var(--color-midnight-500-ch) / 0.015) 12px,
+      rgb(var(--color-midnight-500-ch) / 0.015) 24px
+    );
+}
+
+.hero__video-shell > * {
+  width: 100%;
+  height: 100%;
+}
+
+@media (max-width: 60em) {
+  .hero__container {
+    grid-template-columns: 1fr;
+    min-height: auto;
+    padding-top: var(--space-8);
+    padding-bottom: 0;
+  }
+
+  .hero__title--wide {
+    max-width: 12.5ch;
+  }
+
+  .hero__subtitle {
+    max-width: 42ch;
+  }
+
+  .hero__video-shell {
+    margin-top: var(--space-6);
+    border-radius: 0.6rem 0.6rem 0 0;
+    width: 100%;
+    height: clamp(16rem, 68vw, 23rem);
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .section.hero {
+    padding-top: var(--space-12);
+    padding-bottom: 0;
+  }
+
+  .hero__container::before {
+    inset: 38% -56% -34% -24%;
+    transform: rotate(-9deg);
+    opacity: 0.42;
+  }
+}

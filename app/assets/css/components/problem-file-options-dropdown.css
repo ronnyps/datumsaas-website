@@ -1,0 +1,54 @@
+.problem-file-options-dropdown {
+  position: absolute;
+  right: 1.8rem;
+  top: 0.45rem;
+  width: 7.9rem;
+  border-radius: 0.62rem;
+  border: 1px solid rgb(var(--color-midnight-500-ch) / 0.14);
+  background: rgb(var(--color-neutral-0-ch) / 0.98);
+  box-shadow: 0 10px 20px rgb(var(--color-midnight-500-ch) / 0.16);
+  opacity: 0;
+  transform: translateY(-0.2rem) scale(0.97);
+  transition:
+    opacity 180ms var(--motion-ease-standard),
+    transform 220ms var(--motion-ease-standard);
+  pointer-events: none;
+  z-index: 6;
+}
+
+.problem-file-options-dropdown--visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+.problem-file-options-dropdown__list {
+  margin: 0;
+  padding: 0.2rem;
+  list-style: none;
+  display: grid;
+  gap: 0.06rem;
+}
+
+.problem-file-options-dropdown__item {
+  display: block;
+}
+
+.problem-file-options-dropdown__button {
+  appearance: none;
+  border: 0;
+  width: 100%;
+  border-radius: 0.45rem;
+  background: transparent;
+  color: rgb(var(--color-midnight-500-ch) / 0.62);
+  font-size: 0.67rem;
+  font-weight: 600;
+  text-align: left;
+  padding: 0.38rem 0.48rem;
+  cursor: pointer;
+}
+
+.problem-file-options-dropdown__button:hover {
+  background: rgb(var(--color-blue-300-ch) / 0.2);
+  color: rgb(var(--color-midnight-500-ch) / 0.72);
+}
