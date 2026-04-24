@@ -5,9 +5,9 @@
 
 .cta__panel {
   position: relative;
-  border: 1px solid var(--ink-a12);
-  border-radius: var(--radius-lg);
-  padding: clamp(1.5rem, 4vw, 3rem);
+  border: 1px solid var(--surface-border-strong);
+  border-radius: var(--surface-radius-panel);
+  padding: var(--surface-padding-panel-loose);
   text-align: left;
   box-shadow: none;
   background:

@@ -12,10 +12,10 @@
 
 .services__card {
   position: relative;
-  border: 1px solid var(--ink-a10);
-  border-radius: var(--radius-card);
-  padding: var(--space-6);
-  background: rgba(255, 255, 255, 0.86);
+  border: 1px solid var(--surface-border-subtle);
+  border-radius: var(--surface-radius-card);
+  padding: var(--surface-padding-card);
+  background: var(--surface-bg-card);
   box-shadow: none;
   overflow: hidden;
   transition: transform 350ms var(--motion-ease-standard);
@@ -110,14 +110,14 @@
   margin: var(--space-4) 0 0;
   display: inline-flex;
   align-items: center;
-  border: 0.0625rem solid var(--ink-a10);
+  border: 0.0625rem solid var(--surface-border-subtle);
   border-radius: var(--radius-pill);
   padding: 0.45rem 0.8rem;
   color: rgb(var(--color-midnight-500-ch) / 0.58);
   font-size: 0.82rem;
   line-height: 1.2;
   font-weight: 600;
-  background: rgba(255, 255, 255, 0.88);
+  background: var(--surface-bg-card-soft);
 }
 
 .services__card--a {

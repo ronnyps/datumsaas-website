@@ -80,6 +80,19 @@ a {
   --home-dots-hover-y: 16%;
   --home-dots-hover-opacity: 0;
   --home-dots-area-height: calc(min(76dvh, 52rem) + clamp(4rem, 8vw, 6.5rem));
+  --surface-border-subtle: var(--ink-a10);
+  --surface-border-strong: var(--ink-a12);
+  --surface-border-accent: var(--blue-a22);
+  --surface-radius-card: var(--radius-card);
+  --surface-radius-panel: var(--radius-lg);
+  --surface-radius-tile: 0.5rem;
+  --surface-padding-card: var(--space-6);
+  --surface-padding-panel: clamp(1.75rem, 4vw, 3rem);
+  --surface-padding-panel-compact: clamp(1.75rem, 3.2vw, 2.8rem);
+  --surface-padding-panel-loose: clamp(1.5rem, 4vw, 3rem);
+  --surface-bg-card: rgba(255, 255, 255, 0.86);
+  --surface-bg-card-soft: rgba(255, 255, 255, 0.88);
+  --surface-bg-elevated: rgba(255, 255, 255, 0.92);
 }
 
 .overflow-x-hidden {

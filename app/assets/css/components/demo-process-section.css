@@ -1,8 +1,8 @@
 .demo-process__panel {
   position: relative;
-  border: 1px solid var(--ink-a12);
-  border-radius: var(--radius-lg);
-  padding: clamp(1.75rem, 4vw, 3rem);
+  border: 1px solid var(--surface-border-strong);
+  border-radius: var(--surface-radius-panel);
+  padding: var(--surface-padding-panel);
   display: grid;
   grid-template-columns: 0.9fr 1.1fr;
   gap: var(--space-6);
@@ -22,14 +22,14 @@
 }
 
 .demo-process__item {
-  border: 1px solid var(--ink-a10);
-  border-radius: 0.5rem;
+  border: 1px solid var(--surface-border-subtle);
+  border-radius: var(--surface-radius-tile);
   padding: var(--space-4);
   display: grid;
   grid-template-columns: auto 1fr;
   align-items: start;
   gap: var(--space-3);
-  background: rgba(255, 255, 255, 0.86);
+  background: var(--surface-bg-card);
 }
 
 .demo-process__index {

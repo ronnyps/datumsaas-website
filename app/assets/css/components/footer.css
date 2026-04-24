@@ -1,7 +1,7 @@
 .footer {
   margin-top: var(--section-space);
   border-top: 1px solid var(--semantic-border);
-  border-top-color: var(--ink-a10);
+  border-top-color: var(--surface-border-subtle);
   background: rgb(var(--color-neutral-50-ch) / 0.86);
 }
 
