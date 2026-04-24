@@ -1,0 +1,35 @@
+.cta {
+  padding-top: var(--section-space);
+  padding-bottom: var(--section-space);
+}
+
+.cta__panel {
+  position: relative;
+  border: 1px solid var(--ink-a12);
+  border-radius: var(--radius-lg);
+  padding: clamp(1.5rem, 4vw, 3rem);
+  text-align: left;
+  box-shadow: none;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(245, 249, 255, 0.95)),
+    radial-gradient(33.75rem 15rem at 98% 0%, rgb(var(--color-accent-indigo-ch) / 0.18), transparent 76%);
+}
+
+.cta__panel::before {
+  content: none;
+}
+
+.cta__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+.cta__text {
+  margin: 0;
+  max-width: 56ch;
+}
+
+.cta__micro-trust {
+  margin: 0;
+}

@@ -1,0 +1,16 @@
+.footer {
+  margin-top: var(--section-space);
+  border-top: 1px solid var(--semantic-border);
+  border-top-color: var(--ink-a10);
+  background: rgb(var(--color-neutral-50-ch) / 0.86);
+}
+
+.footer__inner {
+  padding: var(--space-6) 0;
+}
+
+.footer__copy {
+  color: var(--semantic-text-muted);
+  font-size: 0.875rem;
+  letter-spacing: 0.01em;
+}
