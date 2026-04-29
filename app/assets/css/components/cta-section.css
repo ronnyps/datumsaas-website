@@ -1,18 +1,45 @@
 .cta {
+  position: relative;
   padding-top: var(--section-space);
   padding-bottom: var(--section-space);
+  background: var(--color-midnight-500);
+  border-top: 0.0625rem solid color-mix(in srgb, var(--color-neutral-300) 44%, transparent);
+  overflow: hidden;
+}
+
+.cta::before {
+  content: none;
+}
+
+/* Keep CTA top divider visible even after dark-guides sections */
+.section--dark-guides + .cta::before {
+  content: none;
+}
+
+.cta > :not(.dots-layer) {
+  position: relative;
+  z-index: 1;
+}
+
+.cta .dots-layer {
+  opacity: 0.58;
+}
+
+.cta .dots-layer--interactive {
+  opacity: calc(var(--dots-hover-opacity, 0) * 0.62);
 }
 
 .cta__panel {
   position: relative;
+  display: grid;
+  justify-items: center;
   border: 1px solid var(--surface-border-strong);
   border-radius: var(--surface-radius-panel);
   padding: var(--surface-padding-panel-loose);
-  text-align: left;
+  text-align: center;
   box-shadow: none;
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(245, 249, 255, 0.95)),
-    radial-gradient(33.75rem 15rem at 98% 0%, rgb(var(--color-accent-indigo-ch) / 0.18), transparent 76%);
+  background: transparent;
+  backdrop-filter: none;
 }
 
 .cta__panel::before {
@@ -23,13 +50,24 @@
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-3);
+  justify-content: center;
 }
 
 .cta__text {
   margin: 0;
   max-width: 56ch;
+  margin-inline: auto;
+  color: rgb(var(--color-neutral-0-ch) / 0.82);
 }
 
 .cta__micro-trust {
   margin: 0;
+  color: rgb(var(--color-neutral-0-ch) / 0.74);
+}
+
+.cta__title {
+  color: var(--color-neutral-0);
+  margin: 0;
+  max-width: 20ch;
+  text-align: center;
 }

@@ -7,7 +7,7 @@ defineProps<{
 </script>
 
 <template>
-  <section id="faq" class="section faq" data-aida="faq">
+  <section id="faq" class="section faq home-info-section section--dark-guides" data-aida="faq">
     <div class="container home-section__container">
       <HomeSharedSectionIntro :title="title" :description="description" />
       <div class="faq-list">

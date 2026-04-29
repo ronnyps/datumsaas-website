@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref, watch } from "vue";
+import { computed, onBeforeUnmount, ref, watch } from "vue";
 
 const props = defineProps<{
   locale?: "en" | "es";
@@ -50,6 +50,22 @@ function resolveRows() {
   return source.slice(0, MAX_STACK_ITEMS);
 }
 
+// Generates unique keys even when the same row content appears more than once.
+// First occurrence uses the content string (stable across position shifts so
+// Vue can reuse the element and fire CSS transitions). Subsequent duplicates
+// get an occurrence suffix to avoid the "duplicate keys" warning.
+const resolvedRows = computed(() => {
+  const rows = resolveRows();
+  const hasRealRows = Boolean(props.rows?.length);
+  const seen = new Map<string, number>();
+  return rows.map((row, index) => {
+    if (!hasRealRows) return { row, key: String(index) };
+    const count = seen.get(row) ?? 0;
+    seen.set(row, count + 1);
+    return { row, key: count === 0 ? row : `${row}__${count}` };
+  });
+});
+
 function depthClass(index: number) {
   if (index === 0) return "flow-entity-node__stack-item--latest";
   if (index === 1) return "flow-entity-node__stack-item--mid";
@@ -96,21 +112,31 @@ watch(
     }, 920);
   }
 );
+
+onBeforeUnmount(() => {
+  if (enterResetTimer !== null) {
+    window.clearTimeout(enterResetTimer);
+    enterResetTimer = null;
+  }
+});
 </script>
 
 <template>
   <div class="flow-node-shell surface-pastel" :class="{ 'is-active': active }">
-    <article class="flow-workflow-node flow-workflow-node--entity" :class="[{ 'is-active': active }, variant ? `flow-workflow-node--entity-${variant}` : '']">
-      <p class="flow-workflow-node__title">{{ label }}</p>
+    <article class="flow-workflow-node flow-workflow-node--entity" :class="{ 'is-active': active }">
+      <p class="flow-workflow-node__title ui-app-mode-title">{{ label }}</p>
       <ul class="flow-entity-node__rows ui-list-reset" :class="{ 'flow-entity-node__rows--contact': (props.variant ?? 'customer') === 'contact' }">
         <li
-          v-for="(row, index) in resolveRows()"
-          :key="row"
-          :class="[depthClass(index), row === enteringKey ? 'flow-entity-node__stack-item--entering' : '']"
+          v-for="({ row, key }, index) in resolvedRows"
+          :key="key"
+          :class="[
+            depthClass(index),
+            index === 0 && row === enteringKey ? 'flow-entity-node__stack-item--entering' : '',
+          ]"
         >
           <span class="flow-entity-node__dot" :class="rowColorClass(row)" aria-hidden="true">{{ rowInitials(row) }}</span>
           <span class="flow-entity-node__text-lines">
-            <span v-for="(part, partIndex) in rowParts(row)" :key="`${row}-${partIndex}`" class="flow-entity-node__line">{{ part }}</span>
+            <span v-for="(part, partIndex) in rowParts(row)" :key="`${row}-${partIndex}`" class="flow-entity-node__line ui-app-table-row-text">{{ part }}</span>
           </span>
         </li>
       </ul>

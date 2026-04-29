@@ -4,6 +4,7 @@ const props = defineProps<{
 }>();
 
 const content = await getHomeContent(props.locale);
+const productVariants = await getProductVariantsContent(props.locale);
 const path = props.locale === "es" ? "/es" : "/";
 
 useHomeDotsHover();
@@ -26,12 +27,9 @@ useLocalizedSeo({
     <HomeBridgeSection v-bind="content.bridge" />
     <HomeProblemSection :locale="props.locale" v-bind="content.problem" />
     <HomeFlowSection :locale="props.locale" v-bind="content.flow" />
-    <HomeServicesSection :locale="props.locale" v-bind="content.services" />
+    <HomeServicesSection :locale="props.locale" v-bind="content.services" :product-variants="productVariants.products" />
     <HomeWhyUsSection v-bind="content.whyUs" />
-    <HomeProofSection v-bind="content.proof" />
     <HomeSupportSection v-bind="content.support" />
-    <HomeConfidenceSection v-bind="content.confidence" />
-    <HomeDemoProcessSection v-bind="content.demoProcess" />
     <HomeFaqSection v-bind="content.faq" />
     <HomeCtaSection v-bind="content.cta" />
     <LayoutSiteFooter v-bind="content.footer" />

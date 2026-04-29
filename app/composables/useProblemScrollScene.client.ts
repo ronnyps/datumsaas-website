@@ -64,16 +64,7 @@ export const useProblemScrollScene = () => {
 
     if (compactScreen) {
       sceneMode.value = "compact";
-      scrollTrigger = ScrollTrigger.create({
-        trigger: element,
-        start: "top 82%",
-        end: "bottom 8%",
-        scrub: 0.95,
-        onUpdate(self) {
-          lastProgress = self.progress;
-          syncFromProgress();
-        }
-      });
+      activeBulletIndex.value = 0;
       return;
     }
 

@@ -362,15 +362,18 @@
     "items": [
       {
         "title": "Configuracion guiada y puesta en marcha",
-        "description": "Definimos alcance con tu equipo y ejecutamos una configuracion practica para empezar a operar rapido."
+        "description": "Definimos alcance con tu equipo y ejecutamos una configuracion practica para empezar a operar rapido.",
+        "videoSrc": "/videos/our-support/Guided-setup-and-go-live.mp4"
       },
       {
         "title": "Implementacion done-with-you",
-        "description": "Configuramos los flujos clave junto a usuarios reales para que la adopcion se apoye en el trabajo diario."
+        "description": "Configuramos los flujos clave junto a usuarios reales para que la adopcion se apoye en el trabajo diario.",
+        "videoSrc": "/videos/our-support/Done-with-you-implementation.mp4"
       },
       {
         "title": "Soporte operativo continuo",
-        "description": "Despues del lanzamiento, seguimos cerca para resolver incidencias, ajustar flujos y mantener estabilidad."
+        "description": "Despues del lanzamiento, seguimos cerca para resolver incidencias, ajustar flujos y mantener estabilidad.",
+        "videoSrc": "/videos/our-support/Continuous-operational-support.mp4"
       }
     ]
   },

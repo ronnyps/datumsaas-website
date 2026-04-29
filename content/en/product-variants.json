@@ -1,0 +1,194 @@
+{
+  "products": [
+    {
+      "id": "artisan-blend",
+      "name": "Artisan Coffee Blend",
+      "category": "Beverages",
+      "badge": "Top Seller",
+      "previewTheme": "amber",
+      "emoji": "☕",
+      "variants": [
+        {
+          "id": "whole-bean",
+          "label": "Whole Bean",
+          "detail": "1 kg",
+          "swatchClass": "amber",
+          "price": 28.99,
+          "currency": "USD",
+          "sku": "CF-WB-1K"
+        },
+        {
+          "id": "ground",
+          "label": "Ground",
+          "detail": "1 kg",
+          "swatchClass": "earth",
+          "price": 25.99,
+          "originalPrice": 32.99,
+          "currency": "USD",
+          "sku": "CF-GR-1K"
+        },
+        {
+          "id": "capsules",
+          "label": "Capsules ×24",
+          "detail": "×24",
+          "swatchClass": "midnight",
+          "price": 34.99,
+          "currency": "USD",
+          "sku": "CF-CP-24"
+        }
+      ]
+    },
+    {
+      "id": "running-shoe",
+      "name": "Urban Runner Pro",
+      "category": "Footwear",
+      "badge": "New",
+      "previewTheme": "blue",
+      "emoji": "👟",
+      "variants": [
+        {
+          "id": "black-white",
+          "label": "Black / White",
+          "detail": "Classic",
+          "swatchClass": "midnight",
+          "price": 94.99,
+          "currency": "USD",
+          "sku": "SH-BW-001"
+        },
+        {
+          "id": "navy-white",
+          "label": "Navy / White",
+          "detail": "Original",
+          "swatchClass": "ocean",
+          "price": 89.99,
+          "originalPrice": 119.99,
+          "currency": "USD",
+          "sku": "SH-NW-001"
+        },
+        {
+          "id": "coral",
+          "label": "Coral",
+          "detail": "Limited",
+          "swatchClass": "coral",
+          "price": 99.99,
+          "currency": "USD",
+          "sku": "SH-CO-001"
+        }
+      ]
+    },
+    {
+      "id": "wireless-speaker",
+      "name": "Studio Sound Speaker",
+      "category": "Electronics",
+      "badge": "Staff Pick",
+      "previewTheme": "violet",
+      "emoji": "🔊",
+      "variants": [
+        {
+          "id": "slate",
+          "label": "Slate",
+          "detail": "40W",
+          "swatchClass": "slate",
+          "price": 129.00,
+          "currency": "USD",
+          "sku": "SP-SL-40"
+        },
+        {
+          "id": "ocean",
+          "label": "Ocean Blue",
+          "detail": "40W",
+          "swatchClass": "ocean",
+          "price": 139.00,
+          "originalPrice": 169.00,
+          "currency": "USD",
+          "sku": "SP-OB-40"
+        },
+        {
+          "id": "cream",
+          "label": "Cream",
+          "detail": "40W",
+          "swatchClass": "cream",
+          "price": 145.00,
+          "currency": "USD",
+          "sku": "SP-CR-40"
+        }
+      ]
+    },
+    {
+      "id": "ergo-chair",
+      "name": "Ergo Workspace Chair",
+      "category": "Furniture",
+      "badge": "Best Value",
+      "previewTheme": "forest",
+      "emoji": "🪑",
+      "variants": [
+        {
+          "id": "mesh-black",
+          "label": "Mesh Black",
+          "detail": "Lumbar+",
+          "swatchClass": "midnight",
+          "price": 349.00,
+          "currency": "USD",
+          "sku": "CH-MB-LB"
+        },
+        {
+          "id": "mesh-gray",
+          "label": "Mesh Gray",
+          "detail": "Lumbar+",
+          "swatchClass": "slate",
+          "price": 299.00,
+          "originalPrice": 379.00,
+          "currency": "USD",
+          "sku": "CH-MG-LB"
+        },
+        {
+          "id": "leather",
+          "label": "Full Leather",
+          "detail": "Executive",
+          "swatchClass": "earth",
+          "price": 499.00,
+          "currency": "USD",
+          "sku": "CH-LE-EX"
+        }
+      ]
+    },
+    {
+      "id": "chef-knife-set",
+      "name": "Chef's Knife Set",
+      "category": "Culinary",
+      "badge": "Chef's Pick",
+      "previewTheme": "slate",
+      "emoji": "🔪",
+      "variants": [
+        {
+          "id": "3-piece",
+          "label": "3-Piece",
+          "detail": "Starter",
+          "swatchClass": "silver",
+          "price": 89.99,
+          "originalPrice": 109.99,
+          "currency": "USD",
+          "sku": "KN-3P-ST"
+        },
+        {
+          "id": "5-piece",
+          "label": "5-Piece",
+          "detail": "Pro",
+          "swatchClass": "slate",
+          "price": 139.99,
+          "currency": "USD",
+          "sku": "KN-5P-PR"
+        },
+        {
+          "id": "7-piece",
+          "label": "7-Piece",
+          "detail": "Master",
+          "swatchClass": "midnight",
+          "price": 199.99,
+          "currency": "USD",
+          "sku": "KN-7P-MA"
+        }
+      ]
+    }
+  ]
+}

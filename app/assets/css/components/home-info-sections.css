@@ -1,3 +1,7 @@
+.home-info-section {
+  background: var(--color-midnight-500);
+}
+
 .home-section__container {
   padding-inline: var(--content-inset);
 }
@@ -9,6 +13,14 @@
 .home-section__text {
   margin: 0;
   max-width: 62ch;
+}
+
+.home-info-section .section__title {
+  color: var(--color-neutral-0);
+}
+
+.home-info-section .home-section__text {
+  color: rgb(var(--color-neutral-0-ch) / 0.82);
 }
 
 .info-card-grid {
@@ -24,6 +36,24 @@
   border-radius: var(--radius-md);
   padding: var(--space-6);
   background: rgba(255, 255, 255, 0.9);
+}
+
+.info-card__media {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 0.0625rem solid var(--ink-a10);
+  border-radius: calc(var(--radius-md) - 0.25rem);
+  margin-bottom: var(--space-4);
+  overflow: hidden;
+  background:
+    linear-gradient(135deg, rgb(var(--color-neutral-0-ch) / 0.72), rgb(var(--color-blue-100-ch) / 0.42));
+}
+
+.info-card__media-video {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
 }
 
 .info-card--confidence {

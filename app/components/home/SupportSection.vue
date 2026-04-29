@@ -2,7 +2,7 @@
 defineProps<{
   title: string;
   description: string;
-  items: { title: string; description: string }[];
+  items: { title: string; description: string; videoSrc?: string; videoPoster?: string }[];
 }>();
 </script>
 

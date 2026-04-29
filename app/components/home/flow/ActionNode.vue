@@ -172,12 +172,12 @@ onBeforeUnmount(() => {
       class="flow-workflow-node flow-workflow-node--action"
       :class="[{ 'is-active': active }, variant ? `flow-workflow-node--${variant}` : '']"
     >
-      <p class="flow-workflow-node__title">{{ label }}</p>
+      <p class="flow-workflow-node__title ui-app-mode-title">{{ label }}</p>
       <ul v-if="variant === 'quote'" class="flow-action-node__quote-list ui-list-reset">
         <li
           v-for="(orderNumber, index) in (quoteHistory?.length ? quoteHistory : [quoteNumber ?? 101])"
           :key="index === 0 ? `quote-${orderNumber}-${quoteAnimateToken ?? 0}` : `quote-${orderNumber}-${index}`"
-          class="flow-action-node__quote-id"
+          class="flow-action-node__quote-id ui-app-table-row-text"
           :class="{ 'flow-action-node__quote-id--entering': index === 0 }"
         >
           {{ quotePrefix }} #{{ orderNumber }}
@@ -191,9 +191,9 @@ onBeforeUnmount(() => {
       >
         <template v-if="record">
           <div class="flow-action-node__proposal-meta">
-            <span>{{ record.companyName }}</span>
-            <span>{{ record.fullName }}</span>
-            <span>{{ record.email }}</span>
+            <span class="ui-app-micro-text">{{ record.companyName }}</span>
+            <span class="ui-app-micro-text">{{ record.fullName }}</span>
+            <span class="ui-app-micro-text">{{ record.email }}</span>
           </div>
           <div class="flow-action-node__proposal-lines">
             <span />
@@ -211,8 +211,8 @@ onBeforeUnmount(() => {
               <span
                 v-if="visibleDecision"
                 :key="`decision-${visibleDecision}`"
-                class="flow-action-node__proposal-decision-tag"
-                :class="visibleDecision === 'payment' ? 'is-payment' : 'is-cancel'"
+                class="flow-action-node__proposal-decision-tag ui-app-tag ui-app-table-badge"
+                :class="visibleDecision === 'payment' ? 'ui-app-tag--success' : 'ui-app-tag--danger'"
               >
                 {{ visibleDecision === "payment" ? paymentLabel : cancelLabel }}
               </span>

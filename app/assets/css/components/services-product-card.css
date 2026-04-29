@@ -1,0 +1,454 @@
+/* Card mount */
+.services__card--with-product-visual {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.services__product-visual-mount {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1 1 auto;
+  min-height: 17.9rem;
+  padding: 0 0.5rem;
+}
+
+/* Scene: background table + foreground modal card */
+.pcard-scene {
+  position: relative;
+  width: 100%;
+  max-width: none;
+  min-height: 17.9rem;
+}
+
+.pcard-backdrop {
+  position: absolute;
+  inset: 0 0 1rem;
+  z-index: 1;
+  border-radius: 0.5rem;
+  padding: 0.26rem;
+  overflow: hidden;
+  background: linear-gradient(
+    180deg,
+    rgb(var(--color-neutral-0-ch) / 0.48),
+    rgb(var(--color-blue-100-ch) / 0.28)
+  );
+  border: 1px solid var(--ui-app-border-soft-color);
+  backdrop-filter: saturate(165%) blur(16px);
+  -webkit-backdrop-filter: saturate(165%) blur(16px);
+  box-shadow:
+    inset 0 1px 0 rgb(var(--color-neutral-0-ch) / 0.68),
+    0 10px 24px rgb(var(--color-midnight-500-ch) / 0.08);
+}
+
+.pcard-backdrop__glass {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: 0.3rem;
+}
+
+.pcard-backdrop__head {
+  display: flex;
+  align-items: center;
+  gap: 0.44rem;
+  min-height: 2rem;
+  padding: 0.42rem 0.44rem;
+  border: 1px solid var(--ui-app-border-soft-color);
+  border-bottom: 0;
+  border-radius: 0.3rem 0.3rem 0 0;
+  background: linear-gradient(
+    180deg,
+    rgb(var(--color-neutral-0-ch) / 0.54),
+    rgb(var(--color-blue-100-ch) / 0.3)
+  );
+  backdrop-filter: saturate(150%) blur(14px);
+  -webkit-backdrop-filter: saturate(150%) blur(14px);
+}
+
+.pcard-backdrop__mac-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.34rem;
+}
+
+.pcard-backdrop__mac-dot {
+  width: 0.54rem;
+  height: 0.54rem;
+  border-radius: 999px;
+  border: 1px solid var(--ui-app-border-soft-color);
+}
+
+.pcard-backdrop__mac-dot--red {
+  background: rgb(var(--color-accent-pink-ch) / 0.34);
+}
+
+.pcard-backdrop__mac-dot--yellow {
+  background: rgb(var(--color-accent-violet-ch) / 0.28);
+}
+
+.pcard-backdrop__mac-dot--green {
+  background: rgb(var(--color-blue-400-ch) / 0.42);
+}
+
+.pcard-backdrop__title {
+  margin: 0;
+  margin-left: auto;
+  text-align: right;
+}
+
+.pcard-backdrop__surface {
+  flex: 1 1 auto;
+  min-height: 0;
+  background: rgb(var(--color-neutral-0-ch));
+  border: 1px solid rgb(var(--color-blue-200-ch) / 0.52);
+  border-top: 0;
+  border-radius: 0 0 0.3rem 0.3rem;
+  padding: 0.32rem 0.36rem 0.36rem;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+}
+
+.pcard-backdrop__table-head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 6.1rem 3.3rem;
+  gap: 0.42rem;
+  margin-bottom: 0.24rem;
+  padding: 0 0.26rem;
+}
+
+.pcard-backdrop__table-head span:last-child {
+  text-align: right;
+}
+
+.pcard-backdrop__rows {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 0;
+  overflow: hidden;
+}
+
+.pcard-backdrop__row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 6.1rem 3.3rem;
+  gap: 0.42rem;
+  align-items: center;
+  border: 0;
+  border-radius: 0;
+  padding: 0.31rem 0.26rem;
+  background: #fff;
+}
+
+.pcard-backdrop__row + .pcard-backdrop__row {
+  border-top: 1px solid var(--ui-app-divider-color);
+}
+
+.pcard-backdrop__row-main {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-width: 0;
+}
+
+.pcard-backdrop__avatar {
+  flex: 0 0 auto;
+}
+
+.pcard-backdrop__avatar-media {
+  font-size: 0.72rem;
+  line-height: 1;
+}
+
+.pcard-backdrop__row-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.pcard-backdrop__row-sku {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align: center;
+}
+
+.pcard-backdrop__row-price {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.pcard-backdrop__row.is-active {
+  background: rgb(var(--color-blue-100-ch) / 0.26);
+}
+
+.pcard-backdrop__row.is-active .pcard-backdrop__row-name {
+  color: rgb(var(--color-midnight-500-ch) / 0.78);
+}
+
+/* Foreground product card */
+.pcard {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 2;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  max-width: 15.8rem;
+  height: auto;
+  min-height: 16.9rem;
+  border-radius: var(--surface-radius-card);
+  border: 1px solid var(--surface-border-subtle);
+  background: rgb(var(--color-neutral-0-ch) / 1);
+  padding: 0.52rem;
+  overflow: hidden;
+  box-shadow: var(--ui-app-shadow-md);
+  font-family: var(--ui-app-font-family);
+  user-select: none;
+}
+
+/* Card transition */
+.pcard-switch-enter-active {
+  transition:
+    opacity 320ms var(--motion-ease-standard),
+    transform 360ms var(--motion-ease-standard);
+}
+
+.pcard-switch-leave-active {
+  transition:
+    opacity 220ms cubic-bezier(0.4, 0, 1, 1),
+    transform 220ms cubic-bezier(0.4, 0, 1, 1);
+}
+
+.pcard-switch-enter-from {
+  opacity: 0;
+  transform: translate(-50%, calc(-50% + 0.6rem)) scale(0.97);
+}
+
+.pcard-switch-leave-to {
+  opacity: 0;
+  transform: translate(-50%, calc(-50% - 0.4rem)) scale(0.98);
+}
+
+/* Media transition (variant image swap) */
+.pcard-media-enter-active {
+  transition:
+    opacity 240ms var(--motion-ease-standard),
+    transform 320ms var(--motion-ease-standard);
+}
+
+.pcard-media-leave-active {
+  transition:
+    opacity 180ms cubic-bezier(0.4, 0, 1, 1),
+    transform 180ms cubic-bezier(0.4, 0, 1, 1);
+}
+
+.pcard-media-enter-from {
+  opacity: 0;
+  transform: translateY(0.35rem) scale(0.985);
+}
+
+.pcard-media-leave-to {
+  opacity: 0;
+  transform: translateY(-0.2rem) scale(0.99);
+}
+
+/* Preview */
+.pcard__preview {
+  --ui-app-media-radius: calc(var(--surface-radius-card) - 0.25rem);
+  --ui-app-media-fit: contain;
+  --ui-app-media-fallback-size: 3.4rem;
+  --ui-app-media-border-color: rgb(var(--color-midnight-500-ch) / 0.16);
+  --ui-app-media-border-width: 1px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  height: auto;
+  margin-inline: auto;
+}
+
+.pcard__preview-emoji {
+  display: inline-flex;
+}
+
+.pcard__preview-image {
+  display: block;
+}
+
+.pcard__preview--amber {
+  background: linear-gradient(160deg, #fef9c3 0%, #fde68a 100%);
+}
+
+.pcard__preview--slate {
+  background: linear-gradient(160deg, #f8fafc 0%, #e2e8f0 100%);
+}
+
+.pcard__preview--blue {
+  background: linear-gradient(
+    160deg,
+    rgb(var(--color-blue-200-ch) / 0.5) 0%,
+    rgb(var(--color-blue-300-ch) / 0.45) 100%
+  );
+}
+
+.pcard__preview--violet {
+  background: linear-gradient(
+    160deg,
+    rgb(var(--color-accent-violet-ch) / 0.14) 0%,
+    rgb(var(--color-accent-indigo-ch) / 0.1) 100%
+  );
+}
+
+.pcard__preview--forest {
+  background: linear-gradient(160deg, #d1fae5 0%, #a7f3d0 100%);
+}
+
+.pcard__preview--has-image {
+  background: #fff;
+  background-image: none;
+}
+
+.pcard__preview-badge {
+  position: absolute;
+  z-index: 1;
+  top: 0.5rem;
+  left: 0.5rem;
+}
+
+/* Body */
+.pcard__body {
+  padding: 0.62rem 0.32rem 0.34rem;
+  display: grid;
+  grid-template-rows: auto auto minmax(1.25rem, auto);
+  gap: 0.5rem;
+}
+
+.pcard__headline-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+/* Swatches */
+.pcard__swatches {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  flex: 0 0 auto;
+}
+
+.pcard__swatch {
+  width: 0.88rem;
+  height: 0.88rem;
+  min-width: 0.88rem;
+  border-radius: 999px;
+  border: 1.5px solid transparent;
+  cursor: pointer;
+  transition:
+    transform 180ms var(--motion-ease-standard),
+    border-color 180ms var(--motion-ease-standard),
+    box-shadow 180ms var(--motion-ease-standard);
+  will-change: transform;
+}
+
+.pcard__swatch.is-selected {
+  border-color: rgb(var(--color-blue-500-ch) / 0.7);
+  transform: scale(1.18);
+  box-shadow:
+    0 0 0 2px rgb(var(--color-neutral-0-ch)),
+    0 0 0 3.5px rgb(var(--color-blue-500-ch) / 0.4);
+}
+
+.pcard__swatch--amber { background: #d97706; }
+.pcard__swatch--earth { background: #78350f; }
+.pcard__swatch--midnight { background: rgb(var(--color-midnight-500-ch)); }
+.pcard__swatch--silver { background: #cbd5e1; }
+.pcard__swatch--slate { background: #64748b; }
+.pcard__swatch--ocean { background: #0284c7; }
+.pcard__swatch--coral { background: #f43f5e; }
+.pcard__swatch--cream {
+  background: #fef3c7;
+  border-color: var(--surface-border-subtle);
+}
+
+/* Text rows */
+.pcard__name {
+  margin: 0;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.pcard__meta {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.pcard__meta-dot {
+  width: 0.18rem;
+  height: 0.18rem;
+  border-radius: 999px;
+  background: rgb(var(--color-midnight-500-ch) / 0.3);
+  flex: 0 0 auto;
+}
+
+.pcard__sku {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.pcard__price-row {
+  display: flex;
+  align-items: baseline;
+  gap: 0.38rem;
+  flex-wrap: nowrap;
+  min-height: 1.25rem;
+}
+
+.pcard__price {
+  font-size: 0.9rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: rgb(var(--color-midnight-500-ch) / 0.88);
+  font-variant-numeric: tabular-nums;
+  transition: color 180ms var(--motion-ease-standard);
+}
+
+.pcard__original-price {
+  flex: 0 0 auto;
+  text-decoration: line-through;
+  color: rgb(var(--color-midnight-500-ch) / 0.38);
+  font-size: 0.72rem;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.pcard__price-row .ui-app-tag {
+  flex: 0 0 auto;
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pcard__preview-emoji,
+  .pcard__swatch,
+  .pcard__price,
+  .pcard-switch-enter-active,
+  .pcard-switch-leave-active,
+  .pcard-media-enter-active,
+  .pcard-media-leave-active {
+    transition: none;
+    animation: none;
+  }
+}

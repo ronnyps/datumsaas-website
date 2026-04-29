@@ -743,7 +743,7 @@ watch(stage, async () => {
         <p class="flow__text typo-p-body-muted">{{ props.description }}</p>
       </div>
 
-      <div ref="canvasEl" class="flow-workflow" aria-hidden="true">
+      <div ref="canvasEl" class="flow-workflow ui-app-view ui-app-table-scale-compact" aria-hidden="true">
         <svg
           class="flow-workflow__lines ui-abs-fill ui-size-full"
           :viewBox="`0 0 ${canvasSize.width} ${canvasSize.height}`"
@@ -789,7 +789,6 @@ watch(stage, async () => {
               :variant="node.variant"
               :active="activeNodeIds.has(node.id)"
               :stage="stage"
-              :split-active="stage === 'split'"
               :form="props.workflow.triggerForm"
               :record="node.id === 'proposal' ? proposalRecord : currentContact"
               :rows="resolveRowsForNode(node.id)"

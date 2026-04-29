@@ -51,30 +51,30 @@ const productValue = computed(() => asTypedText(props.record?.productService ?? 
 <template>
   <article class="flow-node-shell flow-trigger-shell surface-pastel" :class="{ 'is-active': active }">
     <div class="flow-workflow-node flow-workflow-node--trigger" :class="{ 'is-active': active }">
-      <p class="flow-trigger-form__title">{{ form.title }}</p>
+      <p class="flow-trigger-form__title ui-app-mode-title">{{ form.title }}</p>
       <div class="flow-trigger-form__grid">
         <div class="flow-trigger-form__field">
-          <span class="flow-trigger-form__input" :class="{ 'is-typing': isTyping, 'is-filled': isSubmitted }">{{ companyValue }}</span>
+          <span class="flow-trigger-form__input ui-app-table-row-text" :class="{ 'is-typing': isTyping, 'is-filled': isSubmitted }">{{ companyValue }}</span>
         </div>
         <div class="flow-trigger-form__field">
-          <span class="flow-trigger-form__input" :class="{ 'is-typing': isTyping, 'is-filled': isSubmitted }">{{ fullNameValue }}</span>
+          <span class="flow-trigger-form__input ui-app-table-row-text" :class="{ 'is-typing': isTyping, 'is-filled': isSubmitted }">{{ fullNameValue }}</span>
         </div>
         <div class="flow-trigger-form__field">
-          <span class="flow-trigger-form__input" :class="{ 'is-typing': isTyping, 'is-filled': isSubmitted }">{{ emailValue }}</span>
+          <span class="flow-trigger-form__input ui-app-table-row-text" :class="{ 'is-typing': isTyping, 'is-filled': isSubmitted }">{{ emailValue }}</span>
         </div>
         <div class="flow-trigger-form__field">
-          <span class="flow-trigger-form__input" :class="{ 'is-typing': isTyping, 'is-filled': isSubmitted }">{{ phoneValue }}</span>
+          <span class="flow-trigger-form__input ui-app-table-row-text" :class="{ 'is-typing': isTyping, 'is-filled': isSubmitted }">{{ phoneValue }}</span>
         </div>
-        <div class="flow-trigger-form__field flow-trigger-form__field--full">
-          <span class="flow-trigger-form__input flow-trigger-form__input--select" :class="{ 'is-typing': isTyping, 'is-filled': isSubmitted }">
+        <div class="flow-trigger-form__field">
+          <span class="flow-trigger-form__input ui-app-table-row-text" :class="{ 'is-typing': isTyping, 'is-filled': isSubmitted }">
             {{ productValue }}
-            <span class="flow-trigger-form__caret" aria-hidden="true">v</span>
+            <span class="flow-trigger-form__caret ui-app-micro-text" aria-hidden="true">v</span>
           </span>
         </div>
       </div>
       <button
         type="button"
-        class="flow-trigger-form__submit"
+        class="flow-trigger-form__submit ui-app-table-badge"
         :class="{ 'is-submitted': isSubmitted, 'is-pressing': isSubmitting }"
       >
         {{ form.submitLabel }}
@@ -82,4 +82,3 @@ const productValue = computed(() => asTypedText(props.record?.productService ?? 
     </div>
   </article>
 </template>
-

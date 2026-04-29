@@ -16,13 +16,18 @@
 @import "./components/problem-point-visibility-visual.css";
 @import "./components/role-pointer-tag.css";
 @import "./components/services-inventory-holder.css";
+@import "./components/services-crm-globe.css";
+@import "./components/services-product-card.css";
+@import "./components/services-users-access.css";
+@import "./components/services-scheduling-visual.css";
+@import "./components/services-proposal-builder.css";
+@import "./components/services-dashboard-visual.css";
 @import "./components/flow-section.css";
 @import "./components/site-header.css";
 @import "./components/hero-section.css";
 @import "./components/bridge-section.css";
 @import "./components/services-section.css";
 @import "./components/why-us-section.css";
-@import "./components/demo-process-section.css";
 @import "./components/cta-section.css";
 @import "./components/footer.css";
 
@@ -445,6 +450,29 @@ button:focus-visible {
   pointer-events: none;
 }
 
+.section--dark-guides::before,
+.section--dark-guides::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 0.0625rem;
+  background: color-mix(in srgb, var(--color-neutral-300) 24%, transparent);
+  pointer-events: none;
+}
+
+.section--dark-guides::before {
+  left: calc(50% - var(--guide-half));
+}
+
+.section--dark-guides::after {
+  right: calc(50% - var(--guide-half));
+}
+
+.section--dark-guides + .section::before {
+  border-top-color: color-mix(in srgb, var(--color-neutral-300) 24%, transparent);
+}
+
 .problem__container,
 .flow .container,
 .services .container {
@@ -514,6 +542,24 @@ button:focus-visible {
   .flow .container::before,
   .services .container::before {
     display: none;
+  }
+}
+
+@media (min-width: 120em) {
+  .home {
+    --page-max: 104rem;
+    --page-gutter: clamp(2.75rem, 6vw, 6rem);
+    --content-inset: clamp(0.9rem, 2vw, 1.8rem);
+    --guide-half: calc((var(--page-max) / 2) + 2.5rem);
+  }
+}
+
+@media (min-width: 140em) {
+  .home {
+    --page-max: 114rem;
+    --page-gutter: clamp(3.5rem, 7vw, 7.5rem);
+    --content-inset: clamp(1rem, 2.2vw, 2rem);
+    --guide-half: calc((var(--page-max) / 2) + 4rem);
   }
 }
 

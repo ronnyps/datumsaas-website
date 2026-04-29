@@ -3,7 +3,6 @@ const props = defineProps<{
   locale?: "en" | "es";
   label: string;
   active?: boolean;
-  splitActive?: boolean;
 }>();
 
 const chips = props.locale === "es"
@@ -14,8 +13,8 @@ const chips = props.locale === "es"
 <template>
   <div class="flow-node-shell surface-pastel" :class="{ 'is-active': active }">
     <article class="flow-workflow-node flow-workflow-node--system" :class="{ 'is-active': active }">
-      <p class="flow-workflow-node__title">{{ label }}</p>
-      <div class="flow-system-node__chips" :class="{ 'is-split-active': splitActive }">
+      <p class="flow-workflow-node__title ui-app-mode-title">{{ label }}</p>
+      <div>
         <span v-for="chip in chips" :key="chip">{{ chip }}</span>
       </div>
     </article>

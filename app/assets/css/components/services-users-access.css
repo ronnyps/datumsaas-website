@@ -1,0 +1,345 @@
+.services-users-access {
+  --glass-border-color: var(--ui-app-border-soft-color);
+  --glass-background: linear-gradient(
+    180deg,
+    rgb(var(--color-neutral-0-ch) / 0.5),
+    rgb(var(--color-blue-100-ch) / 0.3)
+  );
+  --glass-backdrop: saturate(165%) blur(18px);
+  --glass-shadow:
+    inset 0 1px 0 rgb(var(--color-neutral-0-ch) / 0.72),
+    0 14px 32px rgb(var(--color-midnight-500-ch) / 0.08);
+  position: relative;
+  isolation: isolate;
+  border-radius: 0.42rem;
+  padding: 0.26rem;
+  overflow: hidden;
+  user-select: none;
+  pointer-events: none;
+}
+
+.services-users-access > * {
+  position: relative;
+  z-index: 1;
+}
+
+.services-users-access__head {
+  display: flex;
+  align-items: center;
+  gap: 0.62rem;
+  min-height: 2.25rem;
+  padding: 0.42rem 0.38rem;
+}
+
+.services-users-access__mac-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.34rem;
+  margin-left: auto;
+}
+
+.services-users-access__mac-dot {
+  width: 0.58rem;
+  height: 0.58rem;
+  border-radius: 999px;
+  border: 1px solid var(--ui-app-border-soft-color);
+}
+
+.services-users-access__mac-dot--red {
+  background: rgb(var(--color-accent-pink-ch) / 0.35);
+}
+
+.services-users-access__mac-dot--yellow {
+  background: rgb(var(--color-accent-violet-ch) / 0.3);
+}
+
+.services-users-access__mac-dot--green {
+  background: rgb(var(--color-blue-400-ch) / 0.42);
+}
+
+.services-users-access__head-meta {
+  display: grid;
+  gap: 0.12rem;
+  min-width: 0;
+}
+
+.services-users-access__mode-title {
+  margin: 0;
+}
+
+.services-users-access__mode-subtitle {
+  margin: 0;
+}
+
+.services-users-access__surface {
+  background: #fff;
+  border-radius: 0 0 0.3rem 0.3rem;
+  overflow: hidden;
+  padding: 0.45rem 0.45rem 0.5rem;
+}
+
+.services-users-access__table-head {
+  padding: 0 0.22rem 0.35rem;
+}
+
+.services-users-access__rows {
+  display: grid;
+  gap: 0;
+}
+
+.services-users-access__row {
+  display: block;
+  padding: 0.4rem 0.22rem;
+  border-top: 1px solid var(--ui-app-divider-color);
+  transform-origin: center;
+  border-radius: 0.6rem;
+}
+
+.services-users-access__row:first-child {
+  border-top: 0;
+}
+
+.services-users-access__row.ui-app-pressable-row--pressed {
+  background: rgb(var(--color-blue-300-ch) / 0.22);
+  animation: uiAppButtonPress 200ms cubic-bezier(0.23, 1, 0.32, 1) both;
+}
+
+.services-users-access__row-user {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-width: 0;
+}
+
+.services-users-access__row-copy {
+  display: grid;
+  gap: 0.2rem;
+  min-width: 0;
+}
+
+.services-users-access__row-name {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.services-users-access__row-org {
+  justify-self: start;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.services__card--with-users-access {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.services__users-access-mount {
+  align-self: center;
+  width: min(100%, 34rem);
+  margin-block: auto;
+}
+
+.services-users-access__modal {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+  z-index: 4;
+  opacity: 0;
+  transform: translate3d(0, 0.6rem, 0) scale(0.985);
+  filter: blur(0.6px);
+  transition:
+    opacity 200ms var(--ui-app-ease-out),
+    transform 260ms var(--ui-app-ease-out),
+    filter 260ms var(--ui-app-ease-out);
+}
+
+.services-users-access.is-active.is-modal-open .services-users-access__modal {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1);
+  filter: blur(0);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .services__card--with-users-access:hover .services-users-access.is-modal-open .services-users-access__modal {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+    filter: blur(0);
+  }
+}
+
+.services-users-access__modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgb(var(--color-neutral-0-ch) / 0.5);
+  backdrop-filter: blur(var(--ui-app-modal-enter-blur));
+  -webkit-backdrop-filter: blur(var(--ui-app-modal-enter-blur));
+}
+
+.services-users-access__modal-card {
+  position: relative;
+  width: min(92%, 18.5rem);
+  border-radius: 0.85rem;
+  background: rgb(var(--color-neutral-0-ch) / 0.88);
+  backdrop-filter: blur(12px) saturate(155%);
+  -webkit-backdrop-filter: blur(12px) saturate(155%);
+  padding: 0.9rem 0.85rem 0.85rem;
+  display: grid;
+  gap: 0.85rem;
+  overflow: visible;
+}
+
+.services-users-access__modal-user {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-width: 0;
+}
+
+.services-users-access__modal-copy {
+  min-width: 0;
+  display: grid;
+  gap: 0.18rem;
+}
+
+.services-users-access__modal-name,
+.services-users-access__modal-org {
+  margin: 0;
+}
+
+.services-users-access__modal-name {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.services-users-access__modal-controls {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.services-users-access__modal-control {
+  height: 2.25rem;
+  border-radius: 0.6rem;
+  background: rgb(var(--color-neutral-0-ch) / 0.76);
+  display: flex;
+  align-items: center;
+  padding: 0 0.72rem;
+  justify-content: space-between;
+  gap: 0.6rem;
+}
+
+.services-users-access__select {
+  position: relative;
+  display: grid;
+  gap: 0.45rem;
+  z-index: 0;
+}
+
+.services-users-access__select.is-open {
+  z-index: 3;
+}
+
+.services-users-access__select-label {
+  flex: 0 0 auto;
+  text-transform: none;
+  letter-spacing: 0;
+  font-weight: 500;
+  color: rgb(var(--color-midnight-500-ch) / 0.46);
+}
+
+.services-users-access__select-value {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align: right;
+}
+
+.services-users-access__select-caret {
+  flex: 0 0 auto;
+  margin-left: 0.35rem;
+  width: 0.95rem;
+  height: 0.95rem;
+  color: rgb(var(--color-midnight-500-ch) / 0.52);
+}
+
+.services-users-access__select-menu {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(100% + 0.42rem);
+  background: #fff;
+  border: 1px solid var(--ui-app-border-soft-color);
+  border-radius: 0.7rem;
+  overflow: hidden;
+  padding: 0.25rem;
+  display: grid;
+  gap: 0.12rem;
+  z-index: 5;
+  max-height: 10.5rem;
+  overflow: auto;
+  opacity: 0;
+  transform: translate3d(0, -0.35rem, 0) scale(0.99);
+  filter: blur(0.6px);
+  transition:
+    opacity 160ms var(--ui-app-ease-out),
+    transform 180ms var(--ui-app-ease-out),
+    filter 180ms var(--ui-app-ease-out);
+}
+
+.services-users-access__select--role .services-users-access__select-menu {
+  top: auto;
+  bottom: calc(100% + 0.42rem);
+  transform: translate3d(0, 0.35rem, 0) scale(0.99);
+}
+
+.services-users-access__select--role.is-open .services-users-access__select-menu {
+  transform: translate3d(0, 0, 0) scale(1);
+}
+
+.services-users-access__select.is-open .services-users-access__select-menu {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1);
+  filter: blur(0);
+}
+
+.services-users-access__select-item {
+  border: 0;
+  background: transparent;
+  text-align: left;
+  padding: 0.45rem 0.55rem;
+  border-radius: 0.55rem;
+}
+
+.services-users-access__select-item.is-highlighted {
+  background: rgb(var(--color-blue-300-ch) / 0.22);
+}
+
+.services-users-access__select-item.is-selected {
+  background: rgb(var(--color-blue-300-ch) / 0.3);
+}
+
+.services-users-access__modal-actions {
+  display: flex;
+  gap: 0.6rem;
+  margin-top: 0.1rem;
+}
+
+.services-users-access__modal-actions .ui-app-btn {
+  flex: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .services-users-access__modal {
+    transition-duration: 0.01ms !important;
+  }
+}

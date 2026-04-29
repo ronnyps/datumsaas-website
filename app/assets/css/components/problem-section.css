@@ -101,6 +101,29 @@
   height: clamp(21rem, 38vw, 26rem);
 }
 
+.problem__mobile-stack {
+  display: none;
+}
+
+.problem__mobile-scene {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.problem__mobile-visual {
+  position: relative;
+  min-height: 18rem;
+}
+
+.problem__mobile-visual .problem-visual {
+  height: 100%;
+}
+
+.problem__mobile-caption {
+  margin: 0;
+  padding-inline: 0.125rem;
+}
+
 .problem-visual {
   position: relative;
   width: 100%;
@@ -161,12 +184,34 @@
 
 @media (max-width: 980px) {
   .problem__container {
+    grid-template-columns: 1fr;
     min-height: auto;
     gap: var(--space-6);
   }
 
-  .problem__visual,
+  .problem__copy--mobile {
+    align-content: start;
+  }
+
+  .problem__list,
+  .problem__visual {
+    display: none;
+  }
+
+  .problem__mobile-stack {
+    display: grid;
+    gap: var(--space-8);
+  }
+
+  .problem__mobile-visual {
+    min-height: clamp(18rem, 66vw, 24rem);
+  }
+
+  .problem__mobile-visual .problem-visual {
+    height: 100%;
+  }
+
   .problem-visual {
-    height: auto;
+    padding: clamp(0.9rem, 3.8vw, 1.15rem);
   }
 }

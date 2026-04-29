@@ -388,7 +388,7 @@ watch(
     window.requestAnimationFrame(() => {
       isModalMotionReady.value = true;
       animateModalNumberProgressTo(1, {
-        duration: 520,
+        duration: 1100,
         easing: "easeOutQuint",
         precision: 3,
       });
@@ -397,10 +397,21 @@ watch(
   { immediate: true },
 );
 
+watch(
+  () => props.active,
+  (active) => {
+    if (active) {
+      startAutoDemo();
+    } else {
+      stopAutoDemo();
+      closeProductModal();
+    }
+  },
+);
+
 onMounted(() => {
   reportDateLabel.value = formatReportDate();
   window.addEventListener("keydown", onWindowKeydown);
-  startAutoDemo();
 });
 
 onBeforeUnmount(() => {
@@ -431,7 +442,7 @@ onBeforeUnmount(() => {
         />
       </div>
       <div class="services-inventory-holder__head-meta">
-        <p class="services-inventory-holder__mode-title ui-app-heading">
+        <p class="services-inventory-holder__mode-title ui-app-mode-title">
           {{ copy.inventoryModeLabel }}
         </p>
         <span
@@ -450,17 +461,17 @@ onBeforeUnmount(() => {
           aria-label="Inventory table"
         >
           <div class="services-inventory-holder__table-head">
-            <span class="ui-app-table-head-text">{{ copy.tableProduct }}</span>
+            <span class="ui-app-table-head-text ui-app-table-head-text--alt">{{ copy.tableProduct }}</span>
             <span
-              class="services-inventory-holder__head-category ui-app-table-head-text"
+              class="services-inventory-holder__head-category ui-app-table-head-text ui-app-table-head-text--alt"
               >{{ copy.tableCategory }}</span
             >
             <span
-              class="services-inventory-holder__head-stock ui-app-table-head-text"
+              class="services-inventory-holder__head-stock ui-app-table-head-text ui-app-table-head-text--alt"
               >{{ copy.tableStock }}</span
             >
             <span
-              class="services-inventory-holder__head-state ui-app-table-head-text"
+              class="services-inventory-holder__head-state ui-app-table-head-text ui-app-table-head-text--alt"
               >{{ copy.tableState }}</span
             >
           </div>

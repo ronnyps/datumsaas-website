@@ -90,7 +90,8 @@
   border: 0;
   border-radius: var(--surface-radius-card);
   background: rgb(var(--color-neutral-0-ch) / 1);
-  transition: transform 220ms var(--motion-ease-standard);
+  will-change: transform;
+  transition: transform 280ms var(--motion-ease-standard);
 }
 
 .flow-workflow-node.is-active {
@@ -99,10 +100,6 @@
 
 .flow-workflow-node__title {
   margin: 0 0 0.52rem;
-  color: rgb(var(--color-midnight-500-ch) / 0.75);
-  font-size: 0.72rem;
-  line-height: 1.25;
-  font-weight: 700;
 }
 
 .flow-node-shell {
@@ -125,9 +122,6 @@
 
 .flow-trigger-form__title {
   margin: 0 0 0.52rem;
-  color: rgb(var(--color-midnight-500-ch) / 0.75);
-  font-size: 0.72rem;
-  font-weight: 700;
 }
 
 .flow-trigger-form__grid {
@@ -148,8 +142,6 @@
   align-items: center;
   justify-content: space-between;
   color: rgb(var(--color-midnight-500-ch) / 0.48);
-  font-size: 0.72rem;
-  font-weight: 600;
   background: rgb(var(--color-neutral-0-ch) / 0.9);
 }
 
@@ -163,7 +155,6 @@
 
 .flow-trigger-form__caret {
   color: rgb(var(--color-midnight-500-ch) / 0.56);
-  font-size: 0.74rem;
 }
 
 .flow-trigger-form__submit {
@@ -174,8 +165,6 @@
   border-radius: 0.42rem;
   background: rgb(var(--color-blue-500-ch) / 0.12);
   color: rgb(var(--color-blue-500-ch) / 0.94);
-  font-size: 0.72rem;
-  font-weight: 700;
 }
 
 .flow-trigger-form__submit.is-submitted {
@@ -195,6 +184,7 @@
 .flow-entity-node__rows {
   position: relative;
   min-height: 5.16rem;
+  contain: layout;
 }
 
 .flow-entity-node__rows--contact {
@@ -213,14 +203,15 @@
   gap: 0.5rem;
   background: rgb(var(--color-neutral-0-ch) / 0.94);
   transition:
-    top 620ms cubic-bezier(0.22, 1, 0.36, 1),
-    inset-inline 620ms cubic-bezier(0.22, 1, 0.36, 1),
-    min-height 620ms cubic-bezier(0.22, 1, 0.36, 1),
-    padding-inline 620ms cubic-bezier(0.22, 1, 0.36, 1),
-    transform 620ms cubic-bezier(0.22, 1, 0.36, 1),
-    opacity 620ms cubic-bezier(0.22, 1, 0.36, 1),
-      border-color 220ms var(--motion-ease-standard),
-      background-color 220ms var(--motion-ease-standard);
+    top 700ms cubic-bezier(0.23, 1, 0.32, 1),
+    inset-inline 700ms cubic-bezier(0.23, 1, 0.32, 1),
+    min-height 700ms cubic-bezier(0.23, 1, 0.32, 1),
+    padding-inline 700ms cubic-bezier(0.23, 1, 0.32, 1),
+    transform 700ms cubic-bezier(0.23, 1, 0.32, 1),
+    opacity 700ms cubic-bezier(0.23, 1, 0.32, 1),
+    border-color 220ms var(--motion-ease-standard),
+    background-color 220ms var(--motion-ease-standard);
+  will-change: transform, opacity;
 }
 
 .flow-entity-node__rows--contact li {
@@ -350,9 +341,6 @@
   overflow: hidden;
   text-overflow: ellipsis;
   color: rgb(var(--color-midnight-500-ch) / 0.6);
-  font-size: 0.7rem;
-  font-weight: 500;
-  line-height: 1.12;
 }
 
 .flow-entity-node__rows li.flow-entity-node__stack-item--latest .flow-entity-node__line {
@@ -368,21 +356,47 @@
 }
 
 .flow-entity-node__rows li.flow-entity-node__stack-item--entering {
-  animation: flowStackEntry 540ms cubic-bezier(0.23, 1, 0.32, 1);
+  animation: flowStackEntry 720ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.flow-entity-node__rows li.flow-entity-node__stack-item--entering .flow-entity-node__dot {
+  animation: flowStackDotIn 520ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.flow-entity-node__rows li.flow-entity-node__stack-item--entering .flow-entity-node__text-lines {
+  animation: flowStackTextIn 460ms cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 @keyframes flowStackEntry {
   0% {
     opacity: 0;
-    transform: translate3d(0, -0.5rem, 0) scale(0.96);
-  }
-  60% {
-    opacity: 1;
-    transform: translate3d(0, 0.06rem, 0) scale(1.012);
+    transform: translate3d(0, 0.5rem, 0) scale(0.97);
   }
   100% {
     opacity: 1;
     transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+@keyframes flowStackDotIn {
+  0% {
+    transform: scale(0.6);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes flowStackTextIn {
+  0% {
+    opacity: 0;
+    transform: translate3d(0.2rem, 0, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
   }
 }
 
@@ -416,9 +430,6 @@
 .flow-action-node__quote-id {
   margin: 0.08rem 0 0;
   color: rgb(var(--color-midnight-500-ch) / 0.76);
-  font-size: 0.7rem;
-  font-weight: 500;
-  line-height: 1.12;
 }
 
 .flow-action-node__quote-list {
@@ -450,11 +461,7 @@
 @keyframes flowQuoteEntry {
   0% {
     opacity: 0;
-    transform: translate3d(0, -0.28rem, 0) scale(0.97);
-  }
-  62% {
-    opacity: 1;
-    transform: translate3d(0, 0.04rem, 0) scale(1.014);
+    transform: translate3d(0, -0.3rem, 0) scale(0.97);
   }
   100% {
     opacity: 1;
@@ -562,7 +569,6 @@
 
 .flow-action-node__proposal-meta span {
   color: rgb(var(--color-midnight-500-ch) / 0.52);
-  font-size: 0.62rem;
 }
 
 .flow-action-node__proposal-lines {
@@ -604,7 +610,8 @@
   align-items: center;
   justify-content: center;
   color: rgb(var(--color-midnight-500-ch) / 0.56);
-  font-size: 0.74rem;
+  font-size: var(--ui-app-table-size-badge-compact);
+  line-height: var(--ui-app-line-badge);
   font-weight: 600;
   background: rgb(var(--color-neutral-0-ch) / 1);
   cursor: pointer;
@@ -640,22 +647,16 @@
 .flow-action-node__proposal-decision-tag {
   width: 100%;
   min-height: 1.96rem;
-  border-radius: 999px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.68rem;
-  font-weight: 700;
-  letter-spacing: 0.01em;
-  border: 1px solid transparent;
   animation: flowProposalDecisionTagIn 260ms cubic-bezier(0.23, 1, 0.32, 1) both;
 }
 
 .flow-proposal-decision-enter-active {
   transition:
     opacity 260ms cubic-bezier(0.22, 1, 0.36, 1),
-    transform 320ms cubic-bezier(0.22, 1, 0.36, 1),
-    filter 320ms cubic-bezier(0.22, 1, 0.36, 1);
+    transform 320ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .flow-proposal-decision-leave-active {
@@ -668,7 +669,6 @@
 .flow-proposal-decision-leave-to {
   opacity: 0;
   transform: translate3d(0, 0.2rem, 0) scale(0.97);
-  filter: blur(0.5px);
 }
 
 .flow-proposal-decision-enter-to,
@@ -676,18 +676,6 @@
   opacity: 1;
   transform: translate3d(0, 0, 0) scale(1);
   filter: blur(0);
-}
-
-.flow-action-node__proposal-decision-tag.is-payment {
-  color: rgb(22 101 52 / 0.94);
-  background: rgb(34 197 94 / 0.14);
-  border-color: rgb(34 197 94 / 0.28);
-}
-
-.flow-action-node__proposal-decision-tag.is-cancel {
-  color: rgb(153 27 27 / 0.94);
-  background: rgb(239 68 68 / 0.14);
-  border-color: rgb(239 68 68 / 0.28);
 }
 
 .flow-workflow-node--output {
@@ -712,13 +700,6 @@
 
 .flow-output-node__stats small {
   color: rgb(var(--color-midnight-500-ch) / 0.56);
-  font-size: 0.62rem;
-}
-
-.flow-output-node__stats strong {
-  color: rgb(var(--color-midnight-500-ch) / 0.92);
-  font-size: 1.04rem;
-  line-height: 1.1;
 }
 
 .flow-output-node__rows {
@@ -737,7 +718,6 @@
   justify-content: space-between;
   gap: 0.46rem;
   color: rgb(var(--color-midnight-500-ch) / 0.64);
-  font-size: 0.66rem;
 }
 
 .flow-output-node__row--entering {
@@ -758,24 +738,6 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border-radius: 999px;
-  border: 1px solid transparent;
-  padding: 0.06rem 0.36rem;
-  font-size: 0.5rem;
-  font-weight: 600;
-  letter-spacing: 0.01em;
-}
-
-.flow-output-node__row-tag.is-payment {
-  color: rgb(22 101 52 / 0.94);
-  background: rgb(34 197 94 / 0.14);
-  border-color: rgb(34 197 94 / 0.26);
-}
-
-.flow-output-node__row-tag.is-cancel {
-  color: rgb(153 27 27 / 0.94);
-  background: rgb(239 68 68 / 0.14);
-  border-color: rgb(239 68 68 / 0.28);
 }
 
 .flow-workflow__node-slot--form-submit {
@@ -892,6 +854,11 @@
     animation: none;
   }
 
+  .flow-entity-node__rows li.flow-entity-node__stack-item--entering .flow-entity-node__dot,
+  .flow-entity-node__rows li.flow-entity-node__stack-item--entering .flow-entity-node__text-lines {
+    animation: none;
+  }
+
   .flow-trigger-form__submit.is-pressing {
     animation: none;
   }
@@ -918,30 +885,21 @@
   0% {
     opacity: 0;
     transform: translate3d(0, 0.6rem, 0) scale(0.96);
-    filter: blur(2px);
-  }
-  65% {
-    opacity: 1;
-    transform: translate3d(0, -0.05rem, 0) scale(1.008);
-    filter: blur(0);
   }
   100% {
     opacity: 1;
     transform: translate3d(0, 0, 0) scale(1);
-    filter: blur(0);
   }
 }
 
 @keyframes flowProposalRevealIn {
   0% {
     opacity: 0;
-    transform: translate3d(0, 0.34rem, 0);
-    clip-path: inset(0 0 100% 0);
+    transform: translate3d(0, 0.3rem, 0);
   }
   100% {
     opacity: 1;
     transform: translate3d(0, 0, 0);
-    clip-path: inset(0 0 0 0);
   }
 }
 
@@ -1013,11 +971,7 @@
 @keyframes flowProposalDecisionTagIn {
   0% {
     opacity: 0;
-    transform: translate3d(0, 0.18rem, 0) scale(0.94);
-  }
-  65% {
-    opacity: 1;
-    transform: translate3d(0, -0.02rem, 0) scale(1.016);
+    transform: translate3d(0, 0.2rem, 0) scale(0.94);
   }
   100% {
     opacity: 1;
@@ -1028,11 +982,7 @@
 @keyframes flowReportRowEnter {
   0% {
     opacity: 0;
-    transform: translate3d(0.24rem, 0, 0) scale(0.97);
-  }
-  60% {
-    opacity: 1;
-    transform: translate3d(-0.04rem, 0, 0) scale(1.01);
+    transform: translate3d(0.3rem, 0, 0) scale(0.97);
   }
   100% {
     opacity: 1;

@@ -25,6 +25,7 @@
   --ui-app-color-badge: rgb(var(--color-midnight-500-ch) / 0.66);
   --ui-app-color-micro: rgb(var(--color-midnight-500-ch) / 0.56);
   --ui-app-table-size-head-compact: 0.67rem;
+  --ui-app-table-size-head-alt: 0.69rem;
   --ui-app-table-size-body-compact: 0.7rem;
   --ui-app-table-size-value-compact: 0.72rem;
   --ui-app-table-size-badge-compact: 0.68rem;
@@ -45,6 +46,8 @@
   --ui-app-tag-warning-text: rgb(var(--color-accent-violet-ch) / 0.88);
   --ui-app-tag-danger-bg: rgb(239 68 68 / 0.2);
   --ui-app-tag-danger-text: rgb(185 28 28 / 0.92);
+  --ui-app-tag-success-bg: rgb(34 197 94 / 0.2);
+  --ui-app-tag-success-text: rgb(22 101 52 / 0.92);
   --ui-app-tag-info-bg: rgb(var(--color-blue-300-ch) / 0.32);
   --ui-app-tag-info-text: rgb(var(--color-blue-500-ch) / 0.78);
   --ui-app-tag-slate-bg: rgb(var(--color-midnight-500-ch) / 0.12);
@@ -77,11 +80,27 @@
   color: var(--ui-app-color-heading);
 }
 
+.ui-app-mode-title {
+  font-size: 0.78rem;
+  line-height: 1.2;
+  font-weight: 600;
+  color: rgb(var(--color-midnight-500-ch) / 0.66);
+}
+
 .ui-app-table-head-text {
   font-size: var(--ui-app-size-label);
   line-height: var(--ui-app-line-label);
   font-weight: var(--ui-app-weight-label);
   color: var(--ui-app-color-label);
+}
+
+.ui-app-table-head-text--alt {
+  font-size: var(--ui-app-table-size-head-alt);
+  line-height: 1.18;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: rgb(var(--color-midnight-500-ch) / 0.56);
 }
 
 .ui-app-table-row-text {
@@ -212,6 +231,21 @@
   color: rgb(var(--color-accent-violet-ch) / 0.92);
 }
 
+.ui-app-avatar--media {
+  overflow: hidden;
+  padding: 0;
+  background: rgb(var(--color-neutral-0-ch) / 1);
+  color: rgb(var(--color-midnight-500-ch) / 0.72);
+}
+
+.ui-app-avatar-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
 .ui-app-tag {
   display: inline-flex;
   align-items: center;
@@ -240,6 +274,12 @@
   background: var(--ui-app-tag-danger-bg);
   background-color: var(--ui-app-tag-danger-bg);
   color: var(--ui-app-tag-danger-text);
+}
+
+.ui-app-tag--success {
+  background: var(--ui-app-tag-success-bg);
+  background-color: var(--ui-app-tag-success-bg);
+  color: var(--ui-app-tag-success-text);
 }
 
 .ui-app-tag--info {
@@ -353,6 +393,32 @@
   transform: scale(0.97);
 }
 
+.ui-app-media-frame {
+  border:
+    var(--ui-app-media-border-width, 1px)
+    solid
+    var(--ui-app-media-border-color, var(--ui-app-border-soft-color));
+  border-radius: var(--ui-app-media-radius, 0.5rem);
+  overflow: hidden;
+}
+
+.ui-app-media-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: var(--ui-app-media-fit, contain);
+  object-position: center;
+  transition: transform 400ms var(--motion-ease-standard);
+  will-change: transform;
+}
+
+.ui-app-media-fallback {
+  font-size: var(--ui-app-media-fallback-size, 3.4rem);
+  line-height: 1;
+  transition: transform 400ms var(--motion-ease-standard);
+  will-change: transform;
+}
+
 .ui-app-shadow-xs {
   box-shadow: var(--ui-app-shadow-xs);
 }
@@ -400,6 +466,83 @@
   transform: scale(0.95);
   background: rgb(var(--color-midnight-500-ch) / 0.08);
   border-radius: 0.35rem;
+}
+
+.ui-app-btn {
+  appearance: none;
+  border: 1px solid var(--ui-app-border-soft-color);
+  border-radius: 0.6rem;
+  background: rgb(var(--color-neutral-0-ch) / 0.86);
+  color: rgb(var(--color-midnight-500-ch) / 0.72);
+  height: 2.25rem;
+  padding: 0 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: inherit;
+  font-size: var(--ui-app-size-badge);
+  line-height: 1.12;
+  font-weight: 520;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  user-select: none;
+  transition:
+    transform 140ms var(--ui-app-ease-out),
+    background-color 160ms var(--ui-app-ease-out),
+    border-color 180ms var(--ui-app-ease-out),
+    color 180ms var(--ui-app-ease-out),
+    box-shadow 180ms var(--ui-app-ease-out);
+  will-change: transform;
+}
+
+@keyframes uiAppButtonPress {
+  0% { transform: translate3d(0, 0, 0) scale(1); }
+  28% { transform: translate3d(0, 0.06rem, 0) scale(0.96); }
+  66% { transform: translate3d(0, -0.03rem, 0) scale(1.01); }
+  100% { transform: translate3d(0, 0, 0) scale(1); }
+}
+
+.ui-app-btn:active {
+  transform: translate3d(0, 0.04rem, 0) scale(0.985);
+}
+
+.ui-app-btn.is-pressing {
+  animation: uiAppButtonPress 200ms cubic-bezier(0.23, 1, 0.32, 1) both;
+}
+
+.ui-app-btn--neutral {
+  border-color: var(--ui-app-border-soft-color);
+  background: rgb(var(--color-neutral-0-ch) / 0.86);
+  color: rgb(var(--color-midnight-500-ch) / 0.66);
+}
+
+.ui-app-btn--primary {
+  border-color: rgb(var(--color-blue-500-ch) / 0.34);
+  background: rgb(var(--color-blue-500-ch) / 0.12);
+  color: rgb(var(--color-blue-500-ch) / 0.94);
+}
+
+.ui-app-btn--primary:active {
+  transform: translate3d(0, 0.05rem, 0) scale(0.98);
+}
+
+.ui-app-btn:focus-visible {
+  outline: 2px solid rgb(var(--color-blue-500-ch) / 0.32);
+  outline-offset: 2px;
+}
+
+.ui-app-btn:disabled,
+.ui-app-btn[aria-disabled="true"] {
+  cursor: default;
+  pointer-events: none;
+  filter: saturate(0.92);
+}
+
+.ui-app-btn--primary.is-active {
+  background: rgb(var(--color-blue-500-ch) / 0.95);
+  border-color: rgb(var(--color-blue-500-ch) / 0.38);
+  color: rgb(var(--color-neutral-0-ch) / 1);
 }
 
 .ui-app-border-soft {

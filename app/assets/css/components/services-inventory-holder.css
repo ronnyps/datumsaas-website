@@ -4,6 +4,11 @@
   gap: var(--space-4);
 }
 
+.services__card--with-wave-bg > *:not(.services__card-wave-bg) {
+  position: relative;
+  z-index: 2;
+}
+
 .services__card--a.services__card--with-holder {
   position: relative;
   isolation: isolate;
@@ -16,28 +21,35 @@
   margin-top: auto;
 }
 
-.services__card--a.services__card--with-holder > *:not(.services__inventory-holder-mount):not(.services__card-wave-bg) {
-  position: relative;
-  z-index: 2;
-}
-
 .services__card-wave-bg {
   position: absolute !important;
+  pointer-events: none;
+  overflow: visible;
+  z-index: 0;
+}
+
+.services__card-wave-bg--inventory {
   inset: 0;
   width: calc(100% + 2px);
   height: 100%;
   left: -1px;
-  z-index: 0;
-  pointer-events: none;
-  overflow: visible;
+  opacity: 0.92;
+}
+
+.services__card-wave-bg--access {
+  left: -1px;
+  right: -1px;
+  bottom: -1px;
+  top: auto;
+  width: auto;
+  height: 74%;
+  opacity: 0.92;
 }
 
 .services__card-wave-path--primary {
-  fill: url(#services-wave-gradient-primary);
 }
 
 .services__card-wave-path--secondary {
-  fill: url(#services-wave-gradient-secondary);
 }
 
 .services-inventory-holder {
@@ -119,10 +131,6 @@
 
 .services-inventory-holder__mode-title {
   margin: 0;
-  font-size: 0.78rem;
-  line-height: 1.2;
-  font-weight: 600;
-  color: rgb(var(--color-midnight-500-ch) / 0.66);
 }
 
 .services-inventory-holder__body {
@@ -288,7 +296,7 @@
   border-radius: 0.6rem;
   background: rgb(var(--color-neutral-0-ch) / 0.96);
   padding: 0.9rem;
-  will-change: transform, opacity, filter;
+  will-change: transform, opacity;
 }
 
 .services-inventory-holder__modal-head {
@@ -450,46 +458,47 @@
   height: 100%;
   border-radius: inherit;
   transform-origin: left center;
-  transform: translateX(-10px) scaleX(0.68);
-  opacity: 0.26;
+  transform: scaleX(0);
+  opacity: 0;
+  will-change: transform, opacity;
   transition:
-    transform 520ms var(--ui-app-ease-out),
-    opacity 320ms var(--ui-app-ease-out);
+    transform 680ms var(--ui-app-ease-out),
+    opacity 400ms var(--ui-app-ease-out);
 }
 
 .services-inventory-holder__variants-list--animated .services-inventory-holder__variant-meter-fill {
-  transform: translateX(0) scaleX(1);
+  transform: scaleX(1);
   opacity: 1;
 }
 
 .services-inventory-holder__variants-list--animated
   .services-inventory-holder__variant-row:nth-child(1)
   .services-inventory-holder__variant-meter-fill {
-  transition-delay: 40ms;
+  transition-delay: 60ms;
 }
 
 .services-inventory-holder__variants-list--animated
   .services-inventory-holder__variant-row:nth-child(2)
   .services-inventory-holder__variant-meter-fill {
-  transition-delay: 80ms;
+  transition-delay: 130ms;
 }
 
 .services-inventory-holder__variants-list--animated
   .services-inventory-holder__variant-row:nth-child(3)
   .services-inventory-holder__variant-meter-fill {
-  transition-delay: 120ms;
+  transition-delay: 200ms;
 }
 
 .services-inventory-holder__variants-list--animated
   .services-inventory-holder__variant-row:nth-child(4)
   .services-inventory-holder__variant-meter-fill {
-  transition-delay: 160ms;
+  transition-delay: 270ms;
 }
 
 .services-inventory-holder__variants-list--animated
   .services-inventory-holder__variant-row:nth-child(5)
   .services-inventory-holder__variant-meter-fill {
-  transition-delay: 200ms;
+  transition-delay: 340ms;
 }
 
 .services-inventory-holder__variant-meter-fill--healthy {
@@ -508,25 +517,23 @@
 }
 
 .services-inventory-modal-enter-active {
-  transition: opacity 320ms var(--ui-app-ease-out);
+  transition: opacity 420ms var(--ui-app-ease-out);
 }
 
 .services-inventory-modal-leave-active {
-  transition: opacity 460ms var(--ui-app-ease-in-out);
+  transition: opacity 540ms var(--ui-app-ease-in-out);
 }
 
 .services-inventory-modal-enter-active .services-inventory-holder__modal {
   transition:
-    transform 380ms var(--ui-app-ease-out),
-    opacity 320ms var(--ui-app-ease-out),
-    filter 380ms var(--ui-app-ease-out);
+    transform 540ms var(--ui-app-ease-out),
+    opacity 420ms var(--ui-app-ease-out);
 }
 
 .services-inventory-modal-leave-active .services-inventory-holder__modal {
   transition:
-    transform 460ms var(--ui-app-ease-in-out),
-    opacity 380ms var(--ui-app-ease-in-out),
-    filter 460ms var(--ui-app-ease-in-out);
+    transform 440ms var(--ui-app-ease-in-out),
+    opacity 360ms var(--ui-app-ease-in-out);
 }
 
 .services-inventory-modal-enter-from,
@@ -537,14 +544,12 @@
 .services-inventory-modal-enter-from .services-inventory-holder__modal,
 .services-inventory-modal-leave-to .services-inventory-holder__modal {
   opacity: 0;
-  transform: translateY(8px) scale(0.985);
-  filter: blur(var(--ui-app-modal-enter-blur));
+  transform: translateY(10px) scale(0.982);
 }
 
 .services-inventory-modal-enter-to .services-inventory-holder__modal,
 .services-inventory-modal-leave-from .services-inventory-holder__modal {
   transform: translateY(0) scale(1);
-  filter: blur(0);
 }
 
 @media (prefers-reduced-motion: reduce) {

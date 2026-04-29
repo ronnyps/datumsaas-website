@@ -362,15 +362,18 @@
     "items": [
       {
         "title": "Guided setup and go-live",
-        "description": "We define scope with your team and execute a practical setup so you can start operating quickly."
+        "description": "We define scope with your team and execute a practical setup so you can start operating quickly.",
+        "videoSrc": "/videos/our-support/Guided-setup-and-go-live.mp4"
       },
       {
         "title": "Done-with-you implementation",
-        "description": "We configure core flows with real users so adoption stays grounded in day-to-day work."
+        "description": "We configure core flows with real users so adoption stays grounded in day-to-day work.",
+        "videoSrc": "/videos/our-support/Done-with-you-implementation.mp4"
       },
       {
         "title": "Continuous operational support",
-        "description": "After launch, we stay close to resolve incidents, adjust flows, and keep execution stable."
+        "description": "After launch, we stay close to resolve incidents, adjust flows, and keep execution stable.",
+        "videoSrc": "/videos/our-support/Continuous-operational-support.mp4"
       }
     ]
   },

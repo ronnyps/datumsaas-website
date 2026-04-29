@@ -2,7 +2,9 @@ import { z } from "zod";
 
 const TitleDescriptionItemSchema = z.object({
   title: z.string().min(1),
-  description: z.string().min(1)
+  description: z.string().min(1),
+  videoSrc: z.string().min(1).optional(),
+  videoPoster: z.string().min(1).optional()
 });
 
 const SectionTitleDescriptionSchema = z.object({

@@ -101,30 +101,33 @@ const orderPrefix = computed(() => (props.locale === "es" ? "Orden" : "Order"));
 <template>
   <div class="flow-node-shell surface-pastel" :class="{ 'is-active': active }">
     <article class="flow-workflow-node flow-workflow-node--output" :class="{ 'is-active': active }">
-      <p class="flow-workflow-node__title">{{ label }}</p>
+      <p class="flow-workflow-node__title ui-app-mode-title">{{ label }}</p>
       <div class="flow-output-node__stats" aria-hidden="true">
         <div>
-          <small>{{ statRateLabel }}</small>
-          <strong>{{ rateText }}</strong>
+          <small class="ui-app-micro-text">{{ statRateLabel }}</small>
+          <strong class="ui-app-mode-title">{{ rateText }}</strong>
         </div>
         <div>
-          <small>{{ statQuotesLabel }}</small>
-          <strong>{{ quotesText }}</strong>
+          <small class="ui-app-micro-text">{{ statQuotesLabel }}</small>
+          <strong class="ui-app-mode-title">{{ quotesText }}</strong>
         </div>
         <div>
-          <small>{{ statSalesLabel }}</small>
-          <strong>{{ salesText }}</strong>
+          <small class="ui-app-micro-text">{{ statSalesLabel }}</small>
+          <strong class="ui-app-mode-title">{{ salesText }}</strong>
         </div>
       </div>
       <div class="flow-output-node__rows" aria-hidden="true">
         <span
           v-for="row in (props.rows ?? [])"
           :key="row.id"
-          class="flow-output-node__row"
+          class="flow-output-node__row ui-app-table-row-text"
           :class="{ 'flow-output-node__row--entering': row.id === props.latestEntryId }"
         >
-          <span class="flow-output-node__row-order">{{ orderPrefix }}: {{ row.customerName }}</span>
-          <span class="flow-output-node__row-tag" :class="row.status === 'payment' ? 'is-payment' : 'is-cancel'">
+          <span class="flow-output-node__row-order ui-app-table-row-text">{{ orderPrefix }}: {{ row.customerName }}</span>
+          <span
+            class="flow-output-node__row-tag ui-app-tag ui-app-table-badge"
+            :class="row.status === 'payment' ? 'ui-app-tag--success' : 'ui-app-tag--danger'"
+          >
             {{ getStatusLabel(row.status) }}
           </span>
         </span>
