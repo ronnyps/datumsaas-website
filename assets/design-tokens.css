@@ -53,6 +53,15 @@
   --motion-duration-base: 260ms;
   --motion-ease-standard: cubic-bezier(0.22, 1, 0.36, 1);
 
+  /* Mobile foundations */
+  --bp-sm: 640px;
+  --bp-md: 960px;
+  --bp-lg: 1280px;
+  --mobile-blur: 18px;
+  --tap-target-min: 2.75rem;
+  --safe-area-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-area-top: env(safe-area-inset-top, 0px);
+
   /* ── Alpha utilities — derivan de los canales de brand ──────── */
   --ink-a05: rgb(var(--color-midnight-500-ch) / 0.05);
   --ink-a08: rgb(var(--color-midnight-500-ch) / 0.08);

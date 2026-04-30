@@ -19,6 +19,7 @@
 }
 
 .problem-you-cursor__node .role-pointer-tag {
+  --pointer-stroke: rgb(var(--color-neutral-0-ch));
   transform: translate(-0.95rem, -2.15rem);
 }
 

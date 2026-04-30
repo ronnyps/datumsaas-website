@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { computed, onBeforeUnmount, onMounted, ref, watch } from "vue";
+
 type LegendToneClassMap = Record<string, string>;
 
 type DashboardRange = {
@@ -39,6 +41,69 @@ const emit = defineEmits<{
 const onSelectRange = (rangeKey: string) => {
   emit("select-range", rangeKey);
 };
+
+const isMobileOverview = ref(false);
+const activeStatIndex = ref(0);
+let statAutoplayTimer: ReturnType<typeof setInterval> | null = null;
+
+const visibleStats = computed(() => {
+  if (!isMobileOverview.value) return props.activeRangeData.stats;
+  return [props.activeRangeData.stats[activeStatIndex.value]].filter(Boolean);
+});
+
+const updateMobileState = () => {
+  if (typeof window === "undefined") return;
+  isMobileOverview.value = window.innerWidth <= 704;
+};
+
+const startStatAutoplay = () => {
+  if (!isMobileOverview.value || props.activeRangeData.stats.length <= 1) return;
+  stopStatAutoplay();
+  statAutoplayTimer = setInterval(() => {
+    activeStatIndex.value = (activeStatIndex.value + 1) % props.activeRangeData.stats.length;
+  }, 2300);
+};
+
+const stopStatAutoplay = () => {
+  if (!statAutoplayTimer) return;
+  clearInterval(statAutoplayTimer);
+  statAutoplayTimer = null;
+};
+
+onMounted(() => {
+  updateMobileState();
+  startStatAutoplay();
+  window.addEventListener("resize", updateMobileState, { passive: true });
+});
+
+watch(
+  () => isMobileOverview.value,
+  () => {
+    activeStatIndex.value = 0;
+    startStatAutoplay();
+  }
+);
+
+watch(
+  () => props.selectedRange,
+  () => {
+    activeStatIndex.value = 0;
+    startStatAutoplay();
+  }
+);
+
+watch(
+  () => props.activeRangeData.stats.length,
+  () => {
+    if (activeStatIndex.value >= props.activeRangeData.stats.length) activeStatIndex.value = 0;
+    startStatAutoplay();
+  }
+);
+
+onBeforeUnmount(() => {
+  stopStatAutoplay();
+  window.removeEventListener("resize", updateMobileState);
+});
 </script>
 
 <template>
@@ -70,15 +135,29 @@ const onSelectRange = (rangeKey: string) => {
 
     <div class="metrics-layout">
       <div class="stats">
-        <article
-          v-for="stat in props.activeRangeData.stats"
-          :key="stat.label"
-          class="stat-card"
-        >
-          <p>{{ stat.label }}</p>
-          <strong class="stat-card__value">{{ props.formatAnimatedMetric(stat.label, stat.value) }}</strong>
-          <small>{{ stat.delta }}</small>
-        </article>
+        <template v-if="!isMobileOverview">
+          <article
+            v-for="stat in props.activeRangeData.stats"
+            :key="stat.label"
+            class="stat-card"
+          >
+            <p>{{ stat.label }}</p>
+            <strong class="stat-card__value">{{ props.formatAnimatedMetric(stat.label, stat.value) }}</strong>
+            <small>{{ stat.delta }}</small>
+          </article>
+        </template>
+
+        <Transition v-else name="stat-slide" mode="out-in">
+          <article
+            v-if="visibleStats[0]"
+            :key="`mobile-stat-${props.selectedRange}-${visibleStats[0].label}`"
+            class="stat-card stat-card--mobile-slide"
+          >
+            <p>{{ visibleStats[0].label }}</p>
+            <strong class="stat-card__value">{{ props.formatAnimatedMetric(visibleStats[0].label, visibleStats[0].value) }}</strong>
+            <small>{{ visibleStats[0].delta }}</small>
+          </article>
+        </Transition>
       </div>
 
       <article class="stat-card stat-card--top-customers">

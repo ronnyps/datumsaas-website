@@ -343,3 +343,29 @@
 .services-scheduling__more {
   margin-left: 0.35rem;
 }
+
+@media (max-width: 760px) {
+  .services-scheduling__timeline {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .services-scheduling__times,
+  .services-scheduling__row-time {
+    display: none;
+  }
+
+  .services-scheduling__viewport::before {
+    left: 0;
+  }
+
+  .services-scheduling__row {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .services-scheduling__event {
+    margin-left: var(--sched-shell-pad);
+    margin-right: var(--sched-shell-pad);
+  }
+}

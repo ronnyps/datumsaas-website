@@ -101,6 +101,7 @@ const props = defineProps<{
 
 const rootEl = ref<HTMLElement | null>(null);
 const canvasEl = ref<HTMLElement | null>(null);
+const mobileCardFrameEl = ref<HTMLElement | null>(null);
 const stage = ref<WorkflowStage>("typing");
 const isMobile = ref(false);
 const typingProgress = ref(1);
@@ -119,6 +120,8 @@ const quoteNumber = ref(100);
 const quoteAnimateToken = ref(0);
 const quoteHistory = ref<number[]>([100, 99, 98]);
 const proposalAnimateToken = ref(0);
+const tableEntryAnimateToken = ref(0);
+const mobileCardMaxHeight = ref(0);
 
 const packetRefs = new Map<string, HTMLElement>();
 const nodeSlotRefs = new Map<string, HTMLElement>();
@@ -150,6 +153,7 @@ const STAGE_DURATIONS: Record<WorkflowStage, number> = {
 };
 const QUOTE_TO_PROPOSAL_PAUSE_MS = 220;
 const PROPOSAL_DECISION_HOLD_MS = 380;
+const MOBILE_TIMING_MULTIPLIER = 1.7;
 
 const STAGE_FOCUS: Record<WorkflowStage, { nodes: string[]; edges: string[] }> =
   {
@@ -182,12 +186,49 @@ const STAGE_FOCUS: Record<WorkflowStage, { nodes: string[]; edges: string[] }> =
 
 const activeNodeIds = computed(() => new Set(STAGE_FOCUS[stage.value].nodes));
 const activeEdgeIds = computed(() => new Set(STAGE_FOCUS[stage.value].edges));
+const MOBILE_STAGE_NODES: Record<WorkflowStage, string | string[]> = {
+  typing: "form-submit",
+  submit: "form-submit",
+  ingest: ["customer-table", "contact-table"],
+  split: ["customer-table", "contact-table"],
+  quote: "quote",
+  proposal_sent: "proposal",
+  proposal_accepted: "proposal",
+  payment_approved: "proposal",
+  reporting: "live-reporting",
+  reset: "live-reporting",
+};
+const MOBILE_STEP_ORDER = [
+  "form-submit",
+  "customer-table",
+  "contact-table",
+  "quote",
+  "proposal",
+  "live-reporting",
+] as const;
 
 const visibleNodes = computed(() => {
   if (!isMobile.value) return props.workflow.nodes;
   const visible = new Set(props.workflow.mobileVisibleNodeIds);
   return props.workflow.nodes.filter((node) => visible.has(node.id));
 });
+const mobileActiveNodeIds = computed(() => {
+  const nodeConfig = MOBILE_STAGE_NODES[stage.value];
+  return Array.isArray(nodeConfig) ? nodeConfig : [nodeConfig];
+});
+const mobileActiveNodes = computed(() =>
+  mobileActiveNodeIds.value
+    .map((nodeId) => props.workflow.nodes.find((node) => node.id === nodeId))
+    .filter((node): node is WorkflowNode => Boolean(node)),
+);
+const mobileStepIndex = computed(() => {
+  const index = MOBILE_STEP_ORDER.indexOf(
+    mobileActiveNodeIds.value[0] as (typeof MOBILE_STEP_ORDER)[number],
+  );
+  return index >= 0 ? index + 1 : 1;
+});
+const mobileStepTotal = MOBILE_STEP_ORDER.length;
+const mobileCardReady = ref(true);
 
 const customerRows = computed(() =>
   recentContacts.value.slice(0, 3).map((item) => item.companyName),
@@ -274,6 +315,17 @@ function scheduleMeasure() {
     if (rect.width < 1 || rect.height < 1) return;
     canvasSize.value = { width: rect.width, height: rect.height };
   });
+}
+
+function measureMobileCardHeight() {
+  if (!isMobile.value) return;
+  if (!mobileCardFrameEl.value) return;
+  const nextHeight = Math.ceil(mobileCardFrameEl.value.getBoundingClientRect().height);
+  if (nextHeight <= 0) return;
+  if (nextHeight > mobileCardMaxHeight.value) {
+    mobileCardMaxHeight.value = nextHeight;
+    rootEl.value?.style.setProperty("--flow-mobile-card-min-height", `${nextHeight}px`);
+  }
 }
 
 function getFallbackPoint(nodeId: string) {
@@ -396,6 +448,17 @@ function waitFor(ms: number) {
   });
 }
 
+function getStageDuration(stageName: WorkflowStage) {
+  const baseDuration = STAGE_DURATIONS[stageName];
+  return isMobile.value
+    ? Math.round(baseDuration * MOBILE_TIMING_MULTIPLIER)
+    : baseDuration;
+}
+
+function getTimingDelay(ms: number) {
+  return isMobile.value ? Math.round(ms * MOBILE_TIMING_MULTIPLIER) : ms;
+}
+
 function clearPendingTimeouts() {
   for (const [timeoutId, resolve] of pendingTimeouts) {
     window.clearTimeout(timeoutId);
@@ -437,6 +500,7 @@ function pushCurrentContactToTables() {
     0,
     4,
   );
+  tableEntryAnimateToken.value += 1;
 }
 
 function advanceQuoteOrder() {
@@ -491,7 +555,40 @@ function resolveRowsForNode(nodeId: string) {
 function updateViewportFlags() {
   if (typeof window === "undefined") return;
   isMobile.value = window.matchMedia("(max-width: 60em)").matches;
+  if (!isMobile.value) {
+    mobileCardMaxHeight.value = 0;
+    rootEl.value?.style.removeProperty("--flow-mobile-card-min-height");
+  }
   scheduleMeasure();
+}
+
+function handleMobileCardBeforeEnter() {
+  mobileCardReady.value = false;
+}
+
+function handleMobileCardAfterEnter() {
+  mobileCardReady.value = true;
+  void nextTick(() => {
+    measureMobileCardHeight();
+  });
+}
+
+function getMobileStageNodeKey(stageName: WorkflowStage) {
+  const nodeConfig = MOBILE_STAGE_NODES[stageName];
+  const nodeIds = Array.isArray(nodeConfig) ? nodeConfig : [nodeConfig];
+  return nodeIds.join("|");
+}
+
+async function waitForMobileCardReady() {
+  if (!isMobile.value || mobileCardReady.value) return;
+
+  await new Promise<void>((resolve) => {
+    const stop = watch(mobileCardReady, (ready) => {
+      if (!ready) return;
+      stop();
+      resolve();
+    });
+  });
 }
 
 function shouldRunLoop() {
@@ -535,7 +632,7 @@ async function animatePacket(edgeId: string) {
   });
   gsap.to(carrier, {
     progress: 1,
-    duration: 0.7,
+    duration: isMobile.value ? 1.05 : 0.7,
     ease: "power2.inOut",
     onUpdate: () => {
       const point = pathEl.getPointAtLength(carrier.progress * totalLength);
@@ -545,8 +642,8 @@ async function animatePacket(edgeId: string) {
   gsap.to(packet, {
     autoAlpha: 0,
     scale: 0.72,
-    duration: 0.2,
-    delay: 0.48,
+    duration: isMobile.value ? 0.28 : 0.2,
+    delay: isMobile.value ? 0.66 : 0.48,
     ease: "power1.out",
   });
 }
@@ -558,20 +655,28 @@ async function runSingleCycle(token: number) {
     onAfterPackets?: () => void,
   ) => {
     if (token !== cycleToken) return;
+    if (isMobile.value) {
+      const currentKey = getMobileStageNodeKey(stage.value);
+      const nextKey = getMobileStageNodeKey(nextStage);
+      if (currentKey !== nextKey) {
+        mobileCardReady.value = false;
+      }
+    }
     stage.value = nextStage;
     if (nextStage === "typing") {
-      startTypingAnimation(STAGE_DURATIONS.typing);
+      startTypingAnimation(getStageDuration("typing"));
     } else {
       typingProgress.value = 1;
       clearTypingTimer();
     }
     await nextTick();
     scheduleMeasure();
+    await waitForMobileCardReady();
     if (packetEdges.length > 0) {
       await Promise.all(packetEdges.map((edgeId) => animatePacket(edgeId)));
     }
     onAfterPackets?.();
-    await waitFor(STAGE_DURATIONS[nextStage]);
+    await waitFor(getStageDuration(nextStage));
   };
 
   currentContact.value = nextContactFromTable();
@@ -580,20 +685,19 @@ async function runSingleCycle(token: number) {
     "form-submit->customer-table",
     "form-submit->contact-table",
   ]);
-  pushCurrentContactToTables();
-  await runStage("ingest");
+  await runStage("ingest", [], pushCurrentContactToTables);
   await runStage("split");
   await runStage(
     "quote",
     ["customer-table->quote", "contact-table->quote"],
     advanceQuoteOrder,
   );
-  await waitFor(QUOTE_TO_PROPOSAL_PAUSE_MS);
+  await waitFor(getTimingDelay(QUOTE_TO_PROPOSAL_PAUSE_MS));
   const decisionPromise = waitForProposalDecision(token);
   await runStage("proposal_sent", ["quote->proposal"], materializeProposal);
   const decision = await decisionPromise;
   if (!decision || token !== cycleToken) return;
-  await waitFor(PROPOSAL_DECISION_HOLD_MS);
+  await waitFor(getTimingDelay(PROPOSAL_DECISION_HOLD_MS));
   if (decision === "payment") {
     await runStage("payment_approved");
   } else {
@@ -721,9 +825,24 @@ watch(
   },
 );
 
+watch(
+  isMobile,
+  (mobile) => {
+    if (!mobile) {
+      mobileCardReady.value = true;
+      return;
+    }
+    if (!mobileCardReady.value) {
+      mobileCardReady.value = true;
+    }
+  },
+  { immediate: true },
+);
+
 watch(stage, async () => {
   await nextTick();
   scheduleMeasure();
+  measureMobileCardHeight();
 });
 </script>
 
@@ -743,7 +862,12 @@ watch(stage, async () => {
         <p class="flow__text typo-p-body-muted">{{ props.description }}</p>
       </div>
 
-      <div ref="canvasEl" class="flow-workflow ui-app-view ui-app-table-scale-compact" aria-hidden="true">
+      <div
+        v-if="!isMobile"
+        ref="canvasEl"
+        class="flow-workflow ui-app-view ui-app-table-scale-compact"
+        aria-hidden="true"
+      >
         <svg
           class="flow-workflow__lines ui-abs-fill ui-size-full"
           :viewBox="`0 0 ${canvasSize.width} ${canvasSize.height}`"
@@ -795,6 +919,7 @@ watch(stage, async () => {
               :latest-entry-id="node.id === 'live-reporting' ? latestReportEntryId : null"
               :stats="node.id === 'live-reporting' ? dashboardStats : undefined"
               :typing-progress="typingProgress"
+              :entry-animate-token="tableEntryAnimateToken"
               :quote-number="quoteNumber"
               :quote-animate-token="quoteAnimateToken"
               :quote-history="quoteHistory"
@@ -804,6 +929,55 @@ watch(stage, async () => {
           </li>
         </ul>
       </div>
+
+      <div
+        v-else
+        class="flow-mobile ui-app-table-scale-compact"
+        aria-hidden="true"
+      >
+        <Transition
+          name="flow-mobile-swap"
+          mode="out-in"
+          @before-enter="handleMobileCardBeforeEnter"
+          @after-enter="handleMobileCardAfterEnter"
+        >
+          <div
+            v-if="mobileActiveNodes.length > 0"
+            :key="mobileActiveNodeIds.join('|')"
+            class="flow-mobile__card"
+            :class="{ 'is-ready': mobileCardReady }"
+          >
+            <div
+              ref="mobileCardFrameEl"
+              class="flow-mobile__card-frame ui-app-view surface-pastel"
+            >
+              <component
+                v-for="node in mobileActiveNodes"
+                :key="node.id"
+                :is="resolveNodeComponent(node.type)"
+                :locale="props.locale ?? 'en'"
+                :label="node.label"
+                :variant="node.variant"
+                :active="mobileCardReady"
+                :stage="stage"
+                :form="props.workflow.triggerForm"
+                :record="node.id === 'proposal' ? proposalRecord : currentContact"
+                :rows="resolveRowsForNode(node.id)"
+                :latest-entry-id="node.id === 'live-reporting' ? latestReportEntryId : null"
+                :stats="node.id === 'live-reporting' ? dashboardStats : undefined"
+                :typing-progress="typingProgress"
+                :entry-animate-token="tableEntryAnimateToken"
+                :quote-number="quoteNumber"
+                :quote-animate-token="quoteAnimateToken"
+                :quote-history="quoteHistory"
+                :proposal-animate-token="proposalAnimateToken"
+                @proposal-decision="handleProposalDecision"
+              />
+            </div>
+          </div>
+        </Transition>
+      </div>
     </div>
   </section>
 </template>
+

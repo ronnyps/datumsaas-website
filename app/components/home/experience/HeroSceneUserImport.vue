@@ -175,7 +175,7 @@ const getUserInitials = (row: ImportRow) => {
                 <td
                   v-for="(column, columnIndex) in columns"
                   :key="`${row.id}-${column.key}`"
-                  class="hero-import__cell"
+                  :class="['hero-import__cell', `hero-import__cell--${column.key}`]"
                 >
                   <template v-if="column.key === 'username'">
                     <span class="hero-import__user">
@@ -184,6 +184,9 @@ const getUserInitials = (row: ImportRow) => {
                         <span>{{ getCellValue(row, column.key) }}</span>
                         <small>{{ row.role }}</small>
                       </span>
+                      <button class="hero-import__kebab" type="button" aria-label="User options">
+                        <span aria-hidden="true">•••</span>
+                      </button>
                     </span>
                   </template>
                   <span

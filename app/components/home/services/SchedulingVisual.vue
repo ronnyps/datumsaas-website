@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, onBeforeUnmount, onMounted, ref } from "vue";
+import { computed, onBeforeUnmount, onMounted, ref, watch } from "vue";
 import { ChevronLeftIcon, ChevronRightIcon, EllipsisHorizontalIcon } from "@heroicons/vue/24/outline";
 import type { SchedulingEvent, SchedulingLocale, SchedulingUser } from "~/data/scheduling";
 import { schedulingEvents, schedulingUsers } from "~/data/scheduling";
@@ -32,6 +32,10 @@ function capFirst(value: string) {
 const rootRef = ref<HTMLElement | null>(null);
 const prefersReducedMotion = ref(false);
 const isHovered = ref(false);
+const isMobileViewport = ref(false);
+const isInViewport = ref(false);
+let viewportObserver: IntersectionObserver | null = null;
+let onResizeHandler: (() => void) | null = null;
 
 const today = ref(new Date());
 let todayTimer: number | undefined;
@@ -51,13 +55,36 @@ onMounted(() => {
       today.value = next;
     }
   }, 60_000);
+  isMobileViewport.value = window.matchMedia("(max-width: 760px)").matches;
+  onResizeHandler = () => {
+    isMobileViewport.value = window.matchMedia("(max-width: 760px)").matches;
+  };
+  window.addEventListener("resize", onResizeHandler, { passive: true });
 
+  if (rootRef.value) {
+    viewportObserver = new IntersectionObserver(
+      (entries) => {
+        const entry = entries[0];
+        isInViewport.value = Boolean(entry?.isIntersecting);
+      },
+      { threshold: 0.22, rootMargin: "0px 0px -10% 0px" }
+    );
+    viewportObserver.observe(rootRef.value);
+  }
 });
 
 onBeforeUnmount(() => {
   if (todayTimer) window.clearInterval(todayTimer);
   stopAnimations(scrollAnimations);
   stopAnimations(returnAnimations);
+  if (onResizeHandler) {
+    window.removeEventListener("resize", onResizeHandler);
+    onResizeHandler = null;
+  }
+  if (viewportObserver) {
+    viewportObserver.disconnect();
+    viewportObserver = null;
+  }
 });
 
 const monthLabel = computed(() => {
@@ -235,6 +262,16 @@ function returnToStart() {
   }
 }
 
+watch([isMobileViewport, isInViewport, prefersReducedMotion], () => {
+  if (!isMobileViewport.value) return;
+  if (prefersReducedMotion.value) return;
+  if (isInViewport.value) {
+    startScrollLoop();
+    return;
+  }
+  returnToStart();
+});
+
 function assignedUsers(event: SchedulingEvent) {
   return event.assignedUserIds
     .map((id) => usersById.value.get(id))
@@ -251,7 +288,7 @@ function assignedUsers(event: SchedulingEvent) {
     :data-scroll-count="sortedEvents.length"
     aria-hidden="true"
     @pointerenter="isHovered = true; startScrollLoop()"
-    @pointerleave="isHovered = false; returnToStart()"
+    @pointerleave="isHovered = false; !isMobileViewport && returnToStart()"
   >
     <header class="services-scheduling__head">
       <div class="services-scheduling__head-nav" aria-hidden="true">

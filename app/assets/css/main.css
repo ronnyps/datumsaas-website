@@ -41,6 +41,7 @@ html,
 body {
   margin: 0;
   padding: 0;
+  overflow-x: clip;
 }
 
 html {
@@ -68,6 +69,8 @@ body {
   font-family: var(--font-body);
   color: var(--semantic-text);
   background: var(--semantic-page-bg);
+  -webkit-tap-highlight-color: transparent;
+  text-size-adjust: 100%;
 }
 
 a {
@@ -130,6 +133,11 @@ a {
   list-style: none;
 }
 
+.touch-target {
+  min-width: var(--tap-target-min);
+  min-height: var(--tap-target-min);
+}
+
 .ui-radius-panel {
   border-radius: var(--surface-radius-panel);
 }
@@ -161,6 +169,14 @@ a {
 .section {
   padding: var(--section-space) 0;
   position: relative;
+}
+
+.site-header {
+  padding-top: max(var(--space-3), var(--safe-area-top));
+}
+
+.footer__inner {
+  padding-bottom: max(var(--space-6), var(--safe-area-bottom));
 }
 
 .section__title {
@@ -297,11 +313,13 @@ a {
 .typo-p-body-muted {
   color: var(--semantic-text-muted);
   line-height: 1.7;
+  text-wrap: pretty;
 }
 
 .typo-p-body-md-muted {
   color: var(--semantic-text-muted);
   line-height: 1.65;
+  text-wrap: pretty;
 }
 
 .typo-p-body-strong {
@@ -312,6 +330,7 @@ a {
 .typo-p-panel-muted {
   color: rgba(255, 255, 255, 0.86);
   line-height: 1.65;
+  text-wrap: pretty;
 }
 
 .typo-p-micro {
@@ -528,20 +547,75 @@ button:focus-visible {
   .typo-h1-display {
     font-size: clamp(2.15rem, 9.8vw, 3.1rem);
     line-height: 1.02;
+    letter-spacing: -0.02em;
   }
 
   .typo-p-hero-subtitle {
-    font-size: 1rem;
+    font-size: 1.05rem;
+    line-height: 1.55;
   }
 
   .typo-p-micro-muted {
-    font-size: 0.88rem;
+    font-size: 0.92rem;
   }
 
   .problem__container::before,
   .flow .container::before,
   .services .container::before {
     display: none;
+  }
+}
+
+@media (max-width: 960px) {
+  :root {
+    --mobile-blur: 6px;
+  }
+
+  .home {
+    --surface-padding-card: clamp(1rem, 3.2vw, 1.25rem);
+    --surface-padding-panel: clamp(1.125rem, 4vw, 1.5rem);
+  }
+
+  .site-header__inner,
+  .pcard-backdrop,
+  .services-inventory-holder__modal-backdrop,
+  .ui-glass-apple,
+  .ui-sheet__backdrop {
+    backdrop-filter: blur(var(--mobile-blur));
+    -webkit-backdrop-filter: blur(var(--mobile-blur));
+  }
+
+  .surface-pastel,
+  .surface-pastel::before {
+    animation: none;
+  }
+}
+
+@media (max-width: 960px) and (prefers-reduced-motion: no-preference) and (min-resolution: 2dppx) {
+  .surface-pastel {
+    animation: problem-visual-bg-shift 14s ease-in-out infinite alternate;
+  }
+
+  .surface-pastel::before {
+    animation: problem-visual-aura-sweep 18s cubic-bezier(0.37, 0, 0.2, 1) infinite;
+  }
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .home__dots-hover,
+  .home::after,
+  .dots-layer,
+  .dots-layer--interactive {
+    display: none;
+  }
+
+  .btn--primary:hover,
+  .btn--ghost:hover,
+  .site-header__lang:hover,
+  .site-header__signin:hover,
+  .site-header__contact:hover,
+  .site-header__nav-link:hover {
+    transform: none;
   }
 }
 
@@ -585,22 +659,22 @@ button:focus-visible {
   background:
     linear-gradient(
       160deg,
-      rgba(255, 255, 255, 0.95),
-      rgb(var(--color-neutral-50-ch) / 0.92)
+      rgb(var(--color-neutral-0-ch) / 0.92),
+      rgb(var(--color-blue-100-ch) / 0.86)
     ),
     radial-gradient(
       380px 220px at 12% 18%,
-      rgb(var(--color-accent-pink-ch) / 0.16),
+      rgb(var(--color-blue-400-ch) / 0.22),
       transparent 72%
     ),
     radial-gradient(
       360px 220px at 88% 82%,
-      rgb(var(--color-accent-violet-ch) / 0.15),
+      rgb(var(--color-accent-indigo-ch) / 0.2),
       transparent 72%
     ),
     radial-gradient(
       320px 200px at 82% 16%,
-      rgb(var(--color-blue-400-ch) / 0.18),
+      rgb(var(--color-blue-500-ch) / 0.24),
       transparent 70%
     );
   background-size:
@@ -624,14 +698,14 @@ button:focus-visible {
   pointer-events: none;
   background: conic-gradient(
     from 210deg at 50% 50%,
-    rgb(var(--color-accent-indigo-ch) / 0.16),
-    rgb(var(--color-accent-pink-ch) / 0.12),
-    rgb(var(--color-blue-400-ch) / 0.14),
-    rgb(var(--color-accent-violet-ch) / 0.12),
-    rgb(var(--color-accent-indigo-ch) / 0.16)
+    rgb(var(--color-blue-500-ch) / 0.22),
+    rgb(var(--color-blue-300-ch) / 0.16),
+    rgb(var(--color-accent-indigo-ch) / 0.2),
+    rgb(var(--color-blue-400-ch) / 0.16),
+    rgb(var(--color-blue-500-ch) / 0.22)
   );
   filter: blur(44px);
-  opacity: 0.82;
+  opacity: 0.9;
   animation: problem-visual-aura-sweep 18s cubic-bezier(0.37, 0, 0.2, 1)
     infinite;
 }

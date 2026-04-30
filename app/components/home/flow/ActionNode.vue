@@ -98,7 +98,12 @@ function scheduleAutoDecision() {
   const PRE_CLICK_WAIT_MS = 920;
   const CLICK_PRESS_MS = 620;
 
-  if (props.variant !== "proposal" || props.stage !== "proposal_sent" || !props.record) {
+  if (
+    props.variant !== "proposal" ||
+    props.stage !== "proposal_sent" ||
+    !props.record ||
+    !props.active
+  ) {
     clearAutoDecisionTimer();
     clearAutoDecisionCommitTimer();
     clearAutoDecisionReleaseTimer();

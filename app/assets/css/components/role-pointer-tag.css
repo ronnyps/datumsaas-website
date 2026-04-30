@@ -1,6 +1,6 @@
 .role-pointer-tag {
   --pointer-fill: var(--color-blue-500);
-  --pointer-stroke: var(--color-midnight-500);
+  --pointer-stroke: rgb(var(--color-neutral-0-ch));
   --tag-bg: rgb(var(--color-blue-200-ch) / 0.35);
   --tag-text: var(--color-midnight-500);
   --tag-border: var(--color-midnight-500);

@@ -193,6 +193,11 @@
     align-content: start;
   }
 
+  .problem__copy--mobile .section__title {
+    max-width: none;
+    text-wrap: pretty;
+  }
+
   .problem__list,
   .problem__visual {
     display: none;

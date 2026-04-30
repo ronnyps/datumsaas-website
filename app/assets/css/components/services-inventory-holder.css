@@ -26,6 +26,14 @@
   pointer-events: none;
   overflow: visible;
   z-index: 0;
+  opacity: 0.2;
+  transition: opacity 220ms var(--motion-ease-standard);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .services__card--with-wave-bg:hover .services__card-wave-bg {
+    opacity: 0.4;
+  }
 }
 
 .services__card-wave-bg--inventory {
@@ -33,7 +41,6 @@
   width: calc(100% + 2px);
   height: 100%;
   left: -1px;
-  opacity: 0.92;
 }
 
 .services__card-wave-bg--access {
@@ -43,7 +50,6 @@
   top: auto;
   width: auto;
   height: 74%;
-  opacity: 0.92;
 }
 
 .services__card-wave-path--primary {
@@ -581,23 +587,63 @@
 }
 
 @media (max-width: 760px) {
+  .services-inventory-holder__modal-backdrop {
+    align-items: center;
+    justify-content: center;
+    padding: 0.42rem;
+  }
+
   .services-inventory-holder__modal {
-    width: min(94%, 25rem);
+    width: 100%;
+    max-width: 100%;
+    max-height: min(84vh, 34rem);
+    border-radius: 0.72rem 0.72rem 0.46rem 0.46rem;
+    padding: 0.72rem;
   }
 
   .services-inventory-holder__modal-layout {
     grid-template-columns: 1fr;
+    gap: 0.52rem;
+  }
+
+  .services-inventory-holder__modal-tags,
+  .services-inventory-holder__modal-info,
+  .services-inventory-holder__variants-title,
+  .services-inventory-holder__variant-stats {
+    display: none;
   }
 
   .services-inventory-holder__modal-info {
     padding-right: 0;
     border-right: 0;
-    padding-bottom: 0.56rem;
+    padding-bottom: 0.44rem;
     border-bottom: 1px solid var(--ui-app-divider-color);
   }
 
   .services-inventory-holder__variants {
     padding-left: 0;
+    margin-top: 0;
+  }
+
+  .services-inventory-holder__modal-kpis div,
+  .services-inventory-holder__modal-meta div {
+    padding: 0.34rem 0;
+  }
+
+  .services-inventory-holder__variant-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    padding: 0.22rem 0;
+  }
+
+  .services-inventory-holder__variant-main {
+    display: grid;
+    gap: 0.08rem;
+    margin-bottom: 0.16rem;
+  }
+
+  .services-inventory-holder__variant-meter {
+    height: 0.34rem;
   }
 
   .services-inventory-holder__table-head {

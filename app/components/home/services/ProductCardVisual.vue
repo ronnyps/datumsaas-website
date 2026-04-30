@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, onBeforeUnmount, ref, watch } from "vue";
+import { computed, onBeforeUnmount, onMounted, ref, watch } from "vue";
 import type { ProductCardItem, ProductVariant } from "~/types/product-variants";
 
 const props = defineProps<{
@@ -7,7 +7,17 @@ const props = defineProps<{
   locale?: "en" | "es";
   products: ProductCardItem[];
 }>();
-const isActive = computed(() => Boolean(props.active ?? true));
+const rootElementRef = ref<HTMLElement | null>(null);
+const isInViewport = ref(false);
+const isMobileViewport = ref(false);
+let viewportObserver: IntersectionObserver | null = null;
+
+const isActive = computed(() => {
+  const activeByProp = Boolean(props.active ?? true);
+  if (!activeByProp) return false;
+  if (!isMobileViewport.value) return true;
+  return isInViewport.value;
+});
 
 // ── State ─────────────────────────────────────────────────────────────────
 
@@ -192,17 +202,45 @@ function stopCycle() {
 }
 
 watch(
-  () => props.active,
+  () => isActive.value,
   (active) => {
     if (active) {
       startCycle();
-    } else {
-      stopCycle();
+      return;
     }
+    stopCycle();
   },
+  { immediate: true },
 );
 
+function updateMobileViewportState() {
+  if (typeof window === "undefined") return;
+  isMobileViewport.value = window.matchMedia("(max-width: 760px)").matches;
+}
+
+onMounted(() => {
+  updateMobileViewportState();
+  if (typeof window !== "undefined" && rootElementRef.value) {
+    viewportObserver = new IntersectionObserver(
+      (entries) => {
+        const entry = entries[0];
+        isInViewport.value = Boolean(entry?.isIntersecting);
+      },
+      { threshold: 0.35 }
+    );
+    viewportObserver.observe(rootElementRef.value);
+  }
+  window.addEventListener("resize", updateMobileViewportState, { passive: true });
+});
+
 onBeforeUnmount(clearAllTimers);
+onBeforeUnmount(() => {
+  window.removeEventListener("resize", updateMobileViewportState);
+  if (viewportObserver) {
+    viewportObserver.disconnect();
+    viewportObserver = null;
+  }
+});
 
 // ── Copy helpers ───────────────────────────────────────────────────────────
 
@@ -277,7 +315,7 @@ const backdropRows = computed(() =>
 </script>
 
 <template>
-  <div class="services__product-visual-mount" aria-hidden="true">
+  <div ref="rootElementRef" class="services__product-visual-mount" aria-hidden="true">
     <div class="pcard-scene ui-app-view">
       <section class="pcard-backdrop ui-app-view ui-app-table-scale-compact">
         <div class="pcard-backdrop__glass">

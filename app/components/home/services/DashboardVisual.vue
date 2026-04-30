@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, onBeforeUnmount, ref, watch } from "vue";
+import { computed, onBeforeUnmount, onMounted, ref, watch } from "vue";
 
 type Locale = "en" | "es";
 
@@ -17,7 +17,18 @@ const props = defineProps<{
 }>();
 
 const locale = computed<Locale>(() => props.locale ?? "en");
-const isActive = computed(() => Boolean(props.active));
+const rootElementRef = ref<HTMLElement | null>(null);
+const isMobileViewport = ref(false);
+const isInViewport = ref(false);
+const hasHoverPointer = ref(true);
+let viewportObserver: IntersectionObserver | null = null;
+
+const isActive = computed(() => {
+  const activeByProp = hasHoverPointer.value ? Boolean(props.active) : true;
+  if (!activeByProp) return false;
+  if (!isMobileViewport.value) return true;
+  return isInViewport.value;
+});
 
 const copy = computed(() => {
   if (locale.value === "es") {
@@ -238,13 +249,40 @@ watch(
   { immediate: true }
 );
 
+function updateViewportState() {
+  if (typeof window === "undefined") return;
+  isMobileViewport.value = window.matchMedia("(max-width: 760px)").matches;
+  hasHoverPointer.value = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+}
+
+onMounted(() => {
+  updateViewportState();
+  window.addEventListener("resize", updateViewportState, { passive: true });
+
+  if (rootElementRef.value) {
+    viewportObserver = new IntersectionObserver(
+      (entries) => {
+        const entry = entries[0];
+        isInViewport.value = Boolean(entry?.isIntersecting);
+      },
+      { threshold: 0.22, rootMargin: "0px 0px -10% 0px" }
+    );
+    viewportObserver.observe(rootElementRef.value);
+  }
+});
+
 onBeforeUnmount(() => {
   clearTicker();
+  window.removeEventListener("resize", updateViewportState);
+  if (viewportObserver) {
+    viewportObserver.disconnect();
+    viewportObserver = null;
+  }
 });
 </script>
 
 <template>
-  <div class="services-dashboard ui-glass-apple ui-app-view ui-app-table-scale-compact" aria-hidden="true">
+  <div ref="rootElementRef" class="services-dashboard ui-glass-apple ui-app-view ui-app-table-scale-compact" aria-hidden="true">
     <div class="services-dashboard__surface">
       <header class="services-dashboard__toolbar">
         <p class="services-dashboard__welcome ui-app-heading">{{ copy.welcome }}, James Smith</p>

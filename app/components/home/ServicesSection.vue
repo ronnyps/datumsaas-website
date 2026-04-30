@@ -204,23 +204,28 @@ const unifiedCards = computed(() => {
               >
                 <stop
                   offset="0%"
+                  stop-color="rgb(var(--color-blue-500-ch))"
+                  stop-opacity="0.22"
+                />
+                <stop
+                  offset="32%"
+                  stop-color="rgb(var(--color-blue-400-ch))"
+                  stop-opacity="0.18"
+                />
+                <stop
+                  offset="62%"
+                  stop-color="rgb(var(--color-blue-400-ch))"
+                  stop-opacity="0.14"
+                />
+                <stop
+                  offset="82%"
                   stop-color="rgb(var(--color-accent-indigo-ch))"
-                  stop-opacity="0.32"
-                />
-                <stop
-                  offset="40%"
-                  stop-color="rgb(var(--color-accent-violet-ch))"
-                  stop-opacity="0.26"
-                />
-                <stop
-                  offset="72%"
-                  stop-color="rgb(var(--color-accent-pink-ch))"
-                  stop-opacity="0.24"
+                  stop-opacity="0.16"
                 />
                 <stop
                   offset="100%"
-                  stop-color="rgb(var(--color-blue-400-ch))"
-                  stop-opacity="0.28"
+                  stop-color="rgb(var(--color-blue-300-ch))"
+                  stop-opacity="0.08"
                 />
               </linearGradient>
               <linearGradient
@@ -232,18 +237,23 @@ const unifiedCards = computed(() => {
               >
                 <stop
                   offset="0%"
-                  stop-color="rgb(var(--color-accent-indigo-ch))"
-                  stop-opacity="0.22"
-                />
-                <stop
-                  offset="55%"
-                  stop-color="rgb(var(--color-accent-violet-ch))"
+                  stop-color="rgb(var(--color-blue-500-ch))"
                   stop-opacity="0.18"
                 />
                 <stop
-                  offset="100%"
+                  offset="40%"
+                  stop-color="rgb(var(--color-accent-indigo-ch))"
+                  stop-opacity="0.14"
+                />
+                <stop
+                  offset="72%"
                   stop-color="rgb(var(--color-blue-400-ch))"
-                  stop-opacity="0.24"
+                  stop-opacity="0.12"
+                />
+                <stop
+                  offset="100%"
+                  stop-color="rgb(var(--color-blue-300-ch))"
+                  stop-opacity="0.06"
                 />
               </linearGradient>
               <filter

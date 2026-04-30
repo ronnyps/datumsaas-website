@@ -15,6 +15,20 @@ npm run generate
 
 Static files are generated in `.output/public`.
 
+## One-command git publish
+
+Use this command to stage all changes, create a commit, and push to the repository in one step:
+
+```bash
+npm run git:publish -- -Message "your commit message"
+```
+
+Optional: publish to a different branch:
+
+```bash
+npm run git:publish -- -Message "your commit message" -Branch "branch-name"
+```
+
 ## Apache deployment
 
 1. Build locally with `npm run generate`.

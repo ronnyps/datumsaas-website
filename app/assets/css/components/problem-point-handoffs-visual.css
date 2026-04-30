@@ -136,6 +136,7 @@
 }
 
 .problem-handoffs__pointer {
+  --pointer-stroke: rgb(var(--color-neutral-0-ch));
   position: absolute;
   top: var(--target-y);
   left: var(--target-x);
@@ -654,5 +655,10 @@
   .problem-handoffs__grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
     grid-template-rows: repeat(3, minmax(0, 1fr));
+  }
+
+  .problem-handoffs__tile {
+    min-height: 0;
+    aspect-ratio: 1 / 1;
   }
 }

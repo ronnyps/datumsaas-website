@@ -72,6 +72,12 @@ function animateStats(nextRate: number, nextQuotes: number, nextSales: number) {
 watch(
   () => [props.stats?.rate ?? 22, props.stats?.quotes ?? 84, props.stats?.sales ?? 100] as const,
   ([nextRate, nextQuotes, nextSales]) => {
+    if (!props.active) {
+      displayedRate.value = nextRate;
+      displayedQuotes.value = nextQuotes;
+      displayedSales.value = nextSales;
+      return;
+    }
     if (typeof window === "undefined") {
       displayedRate.value = nextRate;
       displayedQuotes.value = nextQuotes;

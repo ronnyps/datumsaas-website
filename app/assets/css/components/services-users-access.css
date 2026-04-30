@@ -343,3 +343,67 @@
     transition-duration: 0.01ms !important;
   }
 }
+
+@media (max-width: 760px) {
+  .services-users-access {
+    padding: 0.22rem;
+  }
+
+  .services-users-access__head {
+    min-height: 2rem;
+    padding: 0.36rem 0.34rem;
+  }
+
+  .services-users-access__mode-subtitle,
+  .services-users-access__mac-actions {
+    display: none;
+  }
+
+  .services-users-access__surface {
+    padding: 0.36rem 0.34rem 0.4rem;
+  }
+
+  .services-users-access__table-head {
+    display: none;
+  }
+
+  .services-users-access__row {
+    padding: 0.34rem 0.08rem;
+  }
+
+  .services-users-access__row-org {
+    max-width: 15.5rem;
+  }
+
+  .services-users-access__modal {
+    align-items: flex-end;
+    padding: 0.36rem;
+    transform: translate3d(0, 0.4rem, 0) scale(0.99);
+  }
+
+  .services-users-access__modal-card {
+    width: 100%;
+    max-width: 100%;
+    border-radius: 0.82rem 0.82rem 0.52rem 0.52rem;
+    padding: 0.74rem 0.7rem 0.72rem;
+    gap: 0.68rem;
+  }
+
+  .services-users-access__modal-user {
+    gap: 0.58rem;
+  }
+
+  .services-users-access__modal-controls {
+    gap: 0.42rem;
+  }
+
+  .services-users-access__modal-control {
+    height: 2.06rem;
+    padding: 0 0.62rem;
+  }
+
+  .services-users-access__modal-actions {
+    margin-top: 0;
+    gap: 0.48rem;
+  }
+}

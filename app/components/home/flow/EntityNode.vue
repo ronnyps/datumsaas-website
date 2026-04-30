@@ -7,6 +7,7 @@ const props = defineProps<{
   variant?: string;
   active?: boolean;
   rows?: string[];
+  entryAnimateToken?: number;
 }>();
 
 const rowsByVariant = computed<Record<string, string[]>>(() => {
@@ -99,9 +100,11 @@ function rowColorClass(row: string) {
 }
 
 watch(
-  () => props.rows?.[0] ?? null,
-  (next, prev) => {
-    if (!next || next === prev) return;
+  () => [props.rows?.[0] ?? null, props.entryAnimateToken ?? 0] as const,
+  ([next, nextToken], [prev, prevToken]) => {
+    if (!props.active) return;
+    if (!next) return;
+    if (next === prev && nextToken === prevToken) return;
     enteringKey.value = next;
     if (enterResetTimer !== null) {
       window.clearTimeout(enterResetTimer);

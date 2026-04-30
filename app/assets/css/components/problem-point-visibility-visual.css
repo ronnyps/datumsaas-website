@@ -367,6 +367,7 @@
 }
 
 .problem-visibility-explorer__pointer {
+  --pointer-stroke: rgb(var(--color-neutral-0-ch));
   transform: translate(-1rem, -2.38rem);
 }
 

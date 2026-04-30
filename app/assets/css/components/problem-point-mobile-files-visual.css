@@ -459,6 +459,7 @@
 }
 
 .problem-mobile-files__pointer {
+  --pointer-stroke: rgb(var(--color-neutral-0-ch));
   transform: translate(-1.02rem, -2.42rem);
 }
 

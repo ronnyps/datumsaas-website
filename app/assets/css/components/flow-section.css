@@ -770,6 +770,74 @@
   top: 50%;
 }
 
+.flow-mobile {
+  margin-top: 0;
+  min-height: 23rem;
+  border: 0;
+  border-radius: 1rem;
+  background: transparent;
+  padding: 0;
+}
+
+.flow-mobile__meta {
+  margin-bottom: 0.5rem;
+}
+
+.flow-mobile__step {
+  margin: 0;
+}
+
+.flow-mobile__card {
+  margin-top: var(--space-4);
+  min-height: 20.5rem;
+  display: grid;
+  gap: 0.6rem;
+  justify-items: center;
+  align-items: start;
+}
+
+.flow-mobile__card-frame {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  width: 100%;
+  max-width: none;
+  min-height: var(--flow-mobile-card-min-height, auto);
+  padding: 0.5rem;
+  border-radius: var(--surface-radius-card);
+  display: grid;
+  gap: 0.6rem;
+  justify-items: center;
+}
+
+.flow-mobile__card .flow-trigger-shell,
+.flow-mobile__card .flow-workflow-node--entity,
+.flow-mobile__card .flow-workflow-node--proposal,
+.flow-mobile__card .flow-workflow-node--output {
+  width: min(18rem, 92vw);
+}
+
+.flow-mobile__card .flow-workflow-node--quote {
+  min-width: min(9rem, 56vw);
+}
+
+.flow-mobile-swap-enter-active,
+.flow-mobile-swap-leave-active {
+  transition:
+    opacity 240ms var(--motion-ease-standard),
+    transform 240ms var(--motion-ease-standard);
+}
+
+.flow-mobile-swap-enter-from {
+  opacity: 0;
+  transform: translate3d(0.5rem, 0, 0);
+}
+
+.flow-mobile-swap-leave-to {
+  opacity: 0;
+  transform: translate3d(-0.5rem, 0, 0);
+}
+
 @media (max-width: 80em) {
   .flow-workflow {
     min-height: clamp(22.5rem, 46vw, 27rem);
@@ -842,6 +910,14 @@
     left: 50%;
     top: 96%;
   }
+
+  .flow-mobile {
+    min-height: 22rem;
+  }
+
+  .flow-mobile__card {
+    min-height: 19.75rem;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -872,6 +948,8 @@
   .flow-action-node__proposal-decision-tag,
   .flow-proposal-decision-enter-active,
   .flow-proposal-decision-leave-active,
+  .flow-mobile-swap-enter-active,
+  .flow-mobile-swap-leave-active,
   .flow-output-node__row--entering,
   .flow-action-node__proposal-waiting::before,
   .flow-action-node__proposal-waiting::after {

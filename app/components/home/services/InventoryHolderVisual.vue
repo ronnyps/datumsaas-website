@@ -47,6 +47,9 @@ const isModalOpen = ref(false);
 const isModalMotionReady = ref(false);
 const reportDateLabel = ref("");
 const isAutoDemoRunning = ref(false);
+const rootElementRef = ref<HTMLElement | null>(null);
+const isMobileViewport = ref(false);
+const isInViewport = ref(false);
 const {
   isPressed: isRowPressed,
   startPress: startRowPress,
@@ -60,6 +63,7 @@ const {
 const autoDemoTimeoutIds = ref<number[]>([]);
 const lastAutoRowId = ref("");
 let closeModalTimeoutId: number | undefined;
+let viewportObserver: IntersectionObserver | null = null;
 
 function cloneInventoryProducts(
   items: InventoryProduct[],
@@ -254,6 +258,27 @@ function onWindowKeydown(event: KeyboardEvent) {
   }
 }
 
+function updateMobileViewportState() {
+  if (typeof window === "undefined") return;
+  isMobileViewport.value = window.matchMedia("(max-width: 760px)").matches;
+}
+
+function shouldRunAutoDemo() {
+  const byProp = props.active !== false;
+  if (!byProp) return false;
+  if (!isMobileViewport.value) return true;
+  return isInViewport.value;
+}
+
+function syncAutoDemoState() {
+  if (shouldRunAutoDemo()) {
+    startAutoDemo();
+    return;
+  }
+  stopAutoDemo();
+  closeProductModal();
+}
+
 function formatReportDate() {
   if (typeof window === "undefined") return "";
 
@@ -399,19 +424,33 @@ watch(
 
 watch(
   () => props.active,
-  (active) => {
-    if (active) {
-      startAutoDemo();
-    } else {
-      stopAutoDemo();
-      closeProductModal();
-    }
+  () => {
+    syncAutoDemoState();
   },
 );
 
+watch([isMobileViewport, isInViewport], () => {
+  syncAutoDemoState();
+});
+
 onMounted(() => {
   reportDateLabel.value = formatReportDate();
+  updateMobileViewportState();
   window.addEventListener("keydown", onWindowKeydown);
+  window.addEventListener("resize", updateMobileViewportState, { passive: true });
+
+  if (typeof window !== "undefined" && rootElementRef.value) {
+    viewportObserver = new IntersectionObserver(
+      (entries) => {
+        const entry = entries[0];
+        isInViewport.value = Boolean(entry?.isIntersecting);
+      },
+      { threshold: 0.35 }
+    );
+    viewportObserver.observe(rootElementRef.value);
+  }
+
+  syncAutoDemoState();
 });
 
 onBeforeUnmount(() => {
@@ -421,11 +460,17 @@ onBeforeUnmount(() => {
     closeModalTimeoutId = undefined;
   }
   window.removeEventListener("keydown", onWindowKeydown);
+  window.removeEventListener("resize", updateMobileViewportState);
+  if (viewportObserver) {
+    viewportObserver.disconnect();
+    viewportObserver = null;
+  }
 });
 </script>
 
 <template>
   <article
+    ref="rootElementRef"
     class="services-inventory-holder ui-glass-apple ui-app-view ui-app-table-scale-compact"
     data-visual="inventory-holder"
   >

@@ -15,7 +15,8 @@ type BadgeColor = "blue" | "violet" | "indigo" | "pink";
 interface Badge {
   id: number;
   initials: string;
-  value: string;
+  leadName: string;
+  country: string;
   x: number;
   y: number;
   // Local-space 3D position on the globe — used to track rotation each frame
@@ -67,8 +68,25 @@ const PARTICLE_PALETTE: [number, number, number][] = [
 
 const BADGE_COLORS: BadgeColor[] = ["blue", "violet", "indigo", "pink"];
 
-const LEAD_NAMES = ["A.M.", "S.R.", "J.K.", "T.W.", "C.L.", "M.P.", "R.S.", "D.B.", "Q.H.", "L.V."];
-const LEAD_VALUES = ["$1,240", "$890", "$2,100", "$650", "$3,400", "$1,100", "$760", "$4,200", "$550", "$1,860"];
+const LEAD_POINTS = [
+  { leadName: "Ava Martinez", country: "Mexico" },
+  { leadName: "Sofia Rossi", country: "Italy" },
+  { leadName: "Jacob Kim", country: "South Korea" },
+  { leadName: "Tyler Wilson", country: "United States" },
+  { leadName: "Camila Lopez", country: "Colombia" },
+  { leadName: "Mateo Perez", country: "Spain" },
+  { leadName: "Riley Scott", country: "Canada" },
+  { leadName: "Daniel Brown", country: "United Kingdom" },
+  { leadName: "Quinn Hall", country: "Australia" },
+  { leadName: "Liam Vega", country: "Argentina" },
+];
+
+function getInitials(name: string): string {
+  const parts = name.trim().split(/\s+/).filter(Boolean);
+  if (parts.length === 0) return "LD";
+  if (parts.length === 1) return parts[0]!.slice(0, 2).toUpperCase();
+  return `${parts[0]![0] ?? ""}${parts[parts.length - 1]![0] ?? ""}`.toUpperCase();
+}
 
 // ── World map helpers ─────────────────────────────────────────────────────
 
@@ -337,10 +355,12 @@ function spawnBadge() {
   if (!screen) return; // currently behind globe
 
   const id = ++badgeIdSeq;
+  const leadPoint = LEAD_POINTS[(id - 1) % LEAD_POINTS.length]!;
   const badge: Badge = {
     id,
-    initials: LEAD_NAMES[(id - 1) % LEAD_NAMES.length]!,
-    value:    LEAD_VALUES[(id - 1) % LEAD_VALUES.length]!,
+    initials: getInitials(leadPoint.leadName),
+    leadName: leadPoint.leadName,
+    country: leadPoint.country,
     x: screen[0],
     y: screen[1],
     lx: lp.x, ly: lp.y, lz: lp.z,
@@ -424,7 +444,7 @@ function startAnimation() {
     globeGroup.rotation.y += ROT_SPEED;
 
     // Spawn new badge periodically
-    if (now >= nextBadgeTime) {
+    if (props.active && now >= nextBadgeTime) {
       spawnBadge();
       nextBadgeTime = now + BADGE_SPAWN_MS + Math.random() * 400;
     }
@@ -471,7 +491,7 @@ function dispose() {
 
 onMounted(async () => {
   await init();
-  if (props.active) startAnimation();
+  startAnimation();
 });
 
 onBeforeUnmount(dispose);
@@ -480,10 +500,9 @@ watch(
   () => props.active,
   (active) => {
     if (!T) return;
-    if (active) {
-      startAnimation();
-    } else {
-      stopAnimation();
+    if (!active) {
+      badges.value = [];
+      badgeEls.clear();
     }
   },
 );
@@ -509,8 +528,8 @@ watch(
           {{ badge.initials }}
         </span>
         <span class="crm-globe__badge-info">
-          <span class="crm-globe__badge-name">{{ badge.initials }}</span>
-          <span class="crm-globe__badge-value">{{ badge.value }}</span>
+          <span class="crm-globe__badge-name">{{ badge.leadName }}</span>
+          <span class="crm-globe__badge-value">{{ badge.country }}</span>
         </span>
       </div>
     </div>

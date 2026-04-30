@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ChevronDownIcon } from "@heroicons/vue/24/outline";
-import { computed, onBeforeUnmount, ref, watch } from "vue";
+import { computed, onBeforeUnmount, onMounted, ref, watch } from "vue";
 
 type AccessUser = {
   id: string;
@@ -13,6 +13,12 @@ const props = defineProps<{
   locale?: "en" | "es";
   active?: boolean;
 }>();
+
+const rootElementRef = ref<HTMLElement | null>(null);
+const isMobileViewport = ref(false);
+const isInViewport = ref(false);
+const hasHoverPointer = ref(true);
+let viewportObserver: IntersectionObserver | null = null;
 
 const copy = computed(() => {
   if (props.locale === "es") {
@@ -269,6 +275,21 @@ async function runSequence(abort: { canceled: boolean }) {
 
 let abortRef: { canceled: boolean } | null = null;
 
+const isSequenceActive = computed(() => {
+  // On touch/mobile there is no hover, so parent hover-driven `active` can stay false.
+  // In that context we drive activation from viewport visibility instead.
+  const activeByProp = hasHoverPointer.value ? Boolean(props.active ?? true) : true;
+  if (!activeByProp) return false;
+  if (!isMobileViewport.value) return true;
+  return isInViewport.value;
+});
+
+function updateMobileViewportState() {
+  if (typeof window === "undefined") return;
+  isMobileViewport.value = window.matchMedia("(max-width: 760px)").matches;
+  hasHoverPointer.value = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+}
+
 function resetUiState() {
   orgOpen.value = false;
   roleOpen.value = false;
@@ -297,7 +318,7 @@ function startSequence() {
 }
 
 watch(
-  () => props.active,
+  () => isSequenceActive.value,
   (active) => {
     if (typeof window === "undefined") return;
     if (active) startSequence();
@@ -306,9 +327,30 @@ watch(
   { immediate: true }
 );
 
+onMounted(() => {
+  updateMobileViewportState();
+  window.addEventListener("resize", updateMobileViewportState, { passive: true });
+
+  if (rootElementRef.value) {
+    viewportObserver = new IntersectionObserver(
+      (entries) => {
+        const entry = entries[0];
+        isInViewport.value = Boolean(entry?.isIntersecting);
+      },
+      { threshold: 0.18, rootMargin: "0px 0px -10% 0px" }
+    );
+    viewportObserver.observe(rootElementRef.value);
+  }
+});
+
 onBeforeUnmount(() => {
   stopSequence();
   if (pressedRowTimer) window.clearTimeout(pressedRowTimer);
+  window.removeEventListener("resize", updateMobileViewportState);
+  if (viewportObserver) {
+    viewportObserver.disconnect();
+    viewportObserver = null;
+  }
 });
 
 function getInitials(name: string) {
@@ -345,8 +387,9 @@ function getAvatarToneClass(seed: string) {
 
 <template>
   <div
+    ref="rootElementRef"
     class="services-users-access ui-glass-apple ui-app-view ui-app-table-scale-compact"
-    :class="{ 'is-active': active, 'is-modal-open': modalOpen }"
+    :class="{ 'is-active': isSequenceActive, 'is-modal-open': modalOpen }"
     aria-hidden="true"
   >
     <header class="services-users-access__head">
