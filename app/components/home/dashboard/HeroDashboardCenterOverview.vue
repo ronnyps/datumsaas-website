@@ -107,15 +107,15 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div class="content">
+  <div class="content ui-app-view">
     <div class="content__head">
-      <h3>{{ props.dashboardMock.welcomeTitle }}</h3>
+      <h3 class="ui-app-heading">{{ props.dashboardMock.welcomeTitle }}</h3>
       <div class="range-tabs">
         <button
           v-for="tab in props.dashboardMock.rangeTabs"
           :key="tab.key"
           type="button"
-          class="range-tabs__item"
+          class="range-tabs__item ui-app-btn ui-app-btn--primary"
           :class="{ 'range-tabs__active': tab.key === props.selectedRange }"
           :aria-pressed="tab.key === props.selectedRange"
           @click="onSelectRange(tab.key)"
@@ -128,9 +128,9 @@ onBeforeUnmount(() => {
     <div class="notice">
       <div class="notice__left">
         <span class="dot"></span>
-        <span>{{ props.dashboardMock.notice.message }}</span>
+        <span class="ui-app-table-row-text">{{ props.dashboardMock.notice.message }}</span>
       </div>
-      <button type="button">{{ props.dashboardMock.notice.ctaLabel }}</button>
+      <button type="button" class="ui-app-btn ui-app-btn--neutral">{{ props.dashboardMock.notice.ctaLabel }}</button>
     </div>
 
     <div class="metrics-layout">
@@ -141,9 +141,9 @@ onBeforeUnmount(() => {
             :key="stat.label"
             class="stat-card"
           >
-            <p>{{ stat.label }}</p>
-            <strong class="stat-card__value">{{ props.formatAnimatedMetric(stat.label, stat.value) }}</strong>
-            <small>{{ stat.delta }}</small>
+            <p class="ui-app-table-row-text">{{ stat.label }}</p>
+            <strong class="stat-card__value ui-app-table-row-value">{{ props.formatAnimatedMetric(stat.label, stat.value) }}</strong>
+            <small class="ui-app-micro-text">{{ stat.delta }}</small>
           </article>
         </template>
 
@@ -153,16 +153,16 @@ onBeforeUnmount(() => {
             :key="`mobile-stat-${props.selectedRange}-${visibleStats[0].label}`"
             class="stat-card stat-card--mobile-slide"
           >
-            <p>{{ visibleStats[0].label }}</p>
-            <strong class="stat-card__value">{{ props.formatAnimatedMetric(visibleStats[0].label, visibleStats[0].value) }}</strong>
-            <small>{{ visibleStats[0].delta }}</small>
+            <p class="ui-app-table-row-text">{{ visibleStats[0].label }}</p>
+            <strong class="stat-card__value ui-app-table-row-value">{{ props.formatAnimatedMetric(visibleStats[0].label, visibleStats[0].value) }}</strong>
+            <small class="ui-app-micro-text">{{ visibleStats[0].delta }}</small>
           </article>
         </Transition>
       </div>
 
       <article class="stat-card stat-card--top-customers">
-        <p class="stat-card__top-title">
-          <span>{{ props.dashboardMock.topCustomers.title }}</span>
+        <p class="stat-card__top-title ui-app-table-row-text">
+          <span class="ui-app-table-row-text">{{ props.dashboardMock.topCustomers.title }}</span>
           <span class="stat-card__info-wrap">
             <svg viewBox="0 0 24 24" aria-hidden="true" class="stat-card__info">
               <path
@@ -171,7 +171,7 @@ onBeforeUnmount(() => {
               />
             </svg>
           </span>
-          <small>{{ props.activeRangeData.periodLabel }}</small>
+          <small class="ui-app-micro-text">{{ props.activeRangeData.periodLabel }}</small>
         </p>
         <TransitionGroup tag="ul" name="customer-fade" class="top-customers-list ui-list-reset">
           <li
@@ -179,20 +179,20 @@ onBeforeUnmount(() => {
             :key="`${props.selectedRange}-${customer.name}`"
             class="top-customers-list__item"
           >
-            <span class="top-customers-list__name">{{ customer.name }}</span>
-            <span class="top-customers-list__amount">{{ customer.amount }}</span>
+            <span class="top-customers-list__name ui-app-table-row-text">{{ customer.name }}</span>
+            <span class="top-customers-list__amount ui-app-table-row-value">{{ customer.amount }}</span>
           </li>
         </TransitionGroup>
       </article>
 
       <article class="chart-card" :aria-label="props.dashboardMock.labels.chartAriaLabel">
         <div class="chart-card__head">
-          <p>{{ props.chartTitle }}</p>
+          <p class="ui-app-heading">{{ props.chartTitle }}</p>
           <div class="legend">
             <span
               v-for="item in props.dashboardMock.activityChart.legend"
               :key="item.label"
-              class="legend__pill"
+              class="legend__pill ui-app-tag ui-app-table-badge"
               :class="props.legendToneClassMap[item.tone]"
             >
               {{ item.label }}

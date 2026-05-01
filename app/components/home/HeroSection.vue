@@ -39,14 +39,14 @@ useHeroIntroLinesMotion({
           <span class="hero-line__inner">{{ subtitle }}</span>
         </p>
         <div class="hero__actions">
-          <a class="btn btn--primary" data-cta="primary" :href="ctaHref">{{
+          <NuxtLink class="btn btn--primary" data-cta="primary" :to="ctaHref">{{
             ctaLabel
-          }}</a>
-          <a
+          }}</NuxtLink>
+          <NuxtLink
             class="btn btn--ghost"
             data-cta="secondary"
-            :href="secondaryCtaHref"
-            >{{ secondaryCtaLabel }}</a
+            :to="secondaryCtaHref"
+            >{{ secondaryCtaLabel }}</NuxtLink
           >
         </div>
         <p v-if="microTrust" class="hero__micro-trust typo-p-micro-muted hero-line">

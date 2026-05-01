@@ -84,6 +84,10 @@ const totalSalesValue = ref(96120);
 const approvedSeries = ref<number[]>([66, 68, 72, 76, 79, 82, 84, 86, 88, 90]);
 const pendingSeries = ref<number[]>([34, 36, 38, 41, 39, 42, 45, 43, 41, 40]);
 const rejectedSeries = ref<number[]>([20, 19, 21, 20, 19, 20, 21, 19, 18, 17]);
+const CHART_WIDTH = 600;
+const CHART_MAX_Y = 240;
+const CHART_MIN_Y = 48;
+const CHART_BASELINE_Y = 248;
 
 const topCustomers = ref<TopCustomer[]>([
   { id: "1", name: "Northline Manufacturing", amount: 21480 },
@@ -121,28 +125,26 @@ function formatCurrency(value: number) {
 }
 
 function toPolyline(series: number[]) {
-  const stepX = 66;
-  const maxY = 240;
-  const minY = 48;
+  if (series.length <= 1) return "";
+  const stepX = CHART_WIDTH / (series.length - 1);
   return series
     .map((value, index) => {
       const x = index * stepX;
       const normalized = Math.min(100, Math.max(0, value));
-      const y = Math.round(maxY - ((maxY - minY) * normalized) / 100);
+      const y = Math.round(CHART_MAX_Y - ((CHART_MAX_Y - CHART_MIN_Y) * normalized) / 100);
       return `${x},${y}`;
     })
     .join(" ");
 }
 
 function toLinePath(series: number[]) {
-  const stepX = 66;
-  const maxY = 240;
-  const minY = 48;
+  if (series.length <= 1) return "";
+  const stepX = CHART_WIDTH / (series.length - 1);
   return series
     .map((value, index) => {
       const x = index * stepX;
       const normalized = Math.min(100, Math.max(0, value));
-      const y = Math.round(maxY - ((maxY - minY) * normalized) / 100);
+      const y = Math.round(CHART_MAX_Y - ((CHART_MAX_Y - CHART_MIN_Y) * normalized) / 100);
       return `${index === 0 ? "M" : "L"}${x} ${y}`;
     })
     .join(" ");
@@ -151,10 +153,9 @@ function toLinePath(series: number[]) {
 function toAreaPath(series: number[]) {
   if (!series.length) return "";
   const line = toLinePath(series);
-  const stepX = 66;
-  const baselineY = 248;
+  const stepX = series.length > 1 ? CHART_WIDTH / (series.length - 1) : 0;
   const lastX = (series.length - 1) * stepX;
-  return `${line} L${lastX} ${baselineY} L0 ${baselineY} Z`;
+  return `${line} L${lastX} ${CHART_BASELINE_Y} L0 ${CHART_BASELINE_Y} Z`;
 }
 
 const approvedLine = computed(() => toPolyline(approvedSeries.value));

@@ -12,7 +12,7 @@ defineProps<{
     <div class="container demo-process__panel">
       <div class="content-stack content-stack--6">
         <h2 class="section__title">{{ title }}</h2>
-        <a class="btn btn--primary" :href="ctaHref">{{ ctaLabel }}</a>
+        <NuxtLink class="btn btn--primary" :to="ctaHref">{{ ctaLabel }}</NuxtLink>
       </div>
       <ol class="demo-process__list ui-list-reset">
         <li v-for="(step, index) in steps" :key="step" class="demo-process__item">

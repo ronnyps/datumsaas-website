@@ -1,4 +1,5 @@
 <script setup lang="ts">
+
 const props = defineProps<{
   locale: "en" | "es";
 }>();
@@ -6,6 +7,7 @@ const props = defineProps<{
 const content = await getHomeContent(props.locale);
 const productVariants = await getProductVariantsContent(props.locale);
 const path = props.locale === "es" ? "/es" : "/";
+const { isOpen: isContactDrawerOpen, closeDrawer: closeContactDrawer } = useContactDrawerRoute(props.locale);
 
 useHomeDotsHover();
 useLocalizedSeo({
@@ -14,6 +16,7 @@ useLocalizedSeo({
   title: content.seo.title,
   description: content.seo.description
 });
+
 </script>
 
 <template>
@@ -33,5 +36,12 @@ useLocalizedSeo({
     <HomeFaqSection v-bind="content.faq" />
     <HomeCtaSection v-bind="content.cta" />
     <LayoutSiteFooter v-bind="content.footer" />
+    <LayoutSiteCookieNotice :locale="props.locale" />
+    <LayoutSiteScrollCta :locale="props.locale" />
+    <LayoutSiteContactDrawer
+      :locale="props.locale"
+      :open="isContactDrawerOpen"
+      @close="closeContactDrawer"
+    />
   </main>
 </template>

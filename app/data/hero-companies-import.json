@@ -1,0 +1,89 @@
+{
+  "title": "Company Management",
+  "subtitle": "Importing companies into your workspace",
+  "searchPlaceholder": "Search companies...",
+  "filtersLabel": "Filters",
+  "groupLabel": "Group by Company",
+  "newUserLabel": "New Company",
+  "progressLabel": "Import progress",
+  "columns": [
+    {
+      "key": "username",
+      "label": "Company Name"
+    },
+    {
+      "key": "organization",
+      "label": "Account Code"
+    },
+    {
+      "key": "status",
+      "label": "Status"
+    },
+    {
+      "key": "email",
+      "label": "Created On"
+    }
+  ],
+  "rows": [
+    {
+      "id": "ct-001",
+      "username": "Northline Manufacturing",
+      "email": "Apr 02, 2026",
+      "organization": "ACC-NLM-1402",
+      "status": "Active",
+      "firstName": "Northline",
+      "lastName": "Manufacturing",
+      "role": "Company"
+    },
+    {
+      "id": "ct-002",
+      "username": "BluePeak Logistics",
+      "email": "Apr 07, 2026",
+      "organization": "ACC-BPL-2279",
+      "status": "In Setup",
+      "firstName": "BluePeak",
+      "lastName": "Logistics",
+      "role": "Company"
+    },
+    {
+      "id": "ct-003",
+      "username": "Vertex Retail Group",
+      "email": "Apr 11, 2026",
+      "organization": "ACC-VRG-3194",
+      "status": "Active",
+      "firstName": "Vertex",
+      "lastName": "Retail",
+      "role": "Company"
+    },
+    {
+      "id": "ct-004",
+      "username": "Nova IT Services",
+      "email": "Apr 14, 2026",
+      "organization": "ACC-NIT-4410",
+      "status": "In Setup",
+      "firstName": "Nova",
+      "lastName": "IT",
+      "role": "Company"
+    },
+    {
+      "id": "ct-005",
+      "username": "Mercury Wholesale",
+      "email": "Apr 18, 2026",
+      "organization": "ACC-MWC-5581",
+      "status": "Active",
+      "firstName": "Mercury",
+      "lastName": "Wholesale",
+      "role": "Company"
+    },
+    {
+      "id": "ct-006",
+      "username": "Crestline Services",
+      "email": "Apr 23, 2026",
+      "organization": "ACC-CRS-6627",
+      "status": "Active",
+      "firstName": "Crestline",
+      "lastName": "Services",
+      "role": "Company"
+    }
+  ]
+}

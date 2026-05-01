@@ -645,11 +645,11 @@
 .hero-import__checkbox {
   width: 1rem;
   height: 1rem;
-  border: 1px solid var(--ink-a05);
+  border: 1px solid rgb(var(--color-midnight-500-ch) / 0.24);
   border-radius: 0.28rem;
   display: block;
   margin: 0 auto;
-  background: var(--hero-exp-topbar-bg);
+  background: rgb(var(--color-neutral-0-ch) / 0.94);
 }
 
 .hero-import__cell--actions {
@@ -682,6 +682,14 @@
   color: var(--hero-exp-import-icon-danger);
 }
 
+.hero-import__icon-btn.hero-import__icon-btn--danger {
+  color: var(--dash-status-red-text);
+}
+
+.hero-import__icon-btn.hero-import__icon-btn--danger .ui-app-icon {
+  color: inherit;
+}
+
 .hero-import__icon-btn:last-child {
   margin-right: 0;
 }
@@ -710,17 +718,7 @@
 }
 
 .hero-import__avatar {
-  width: 1.7rem;
-  height: 1.7rem;
-  border-radius: var(--radius-pill);
-  border: 1px solid var(--ink-a05);
-  background: var(--hero-exp-import-avatar-bg);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.66rem;
-  color: var(--semantic-text-muted);
-  text-transform: uppercase;
+  flex: 0 0 auto;
 }
 
 .hero-import__user-meta {
@@ -894,6 +892,9 @@
   }
 
   .hero-experience-shell--import .topbar {
+    display: flex !important;
+    min-height: 3.1rem;
+    height: 3.1rem;
     width: 100%;
     max-width: 100%;
     padding: 0 0.42rem;
@@ -1027,12 +1028,6 @@
     width: 100%;
     max-width: 100%;
     padding: 0;
-  }
-
-  .hero-import__avatar {
-    width: 1.35rem;
-    height: 1.35rem;
-    font-size: 0.6rem;
   }
 
   .hero-import__kebab {

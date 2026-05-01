@@ -15,7 +15,7 @@
 
 .services-dashboard {
   --services-dashboard-solid-border: 1px solid var(--ui-app-divider-color);
-  --ui-app-divider-color: var(--color-neutral-300);
+  --ui-app-divider-color: var(--surface-border-subtle);
   --glass-border-color: var(--ui-app-border-soft-color);
   --glass-background: linear-gradient(
     180deg,

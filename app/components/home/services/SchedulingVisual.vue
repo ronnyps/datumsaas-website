@@ -108,6 +108,16 @@ const usersById = computed(() => {
   return map;
 });
 
+const userAvatarById: Record<string, string> = {
+  "u-sofia": "/users/Sophia-Martinez.webp",
+  "u-olivia": "/users/Olivia-johnson.webp",
+  "u-emma": "/users/Emma-Brown.webp",
+};
+
+function getUserImageSrc(user: SchedulingUser) {
+  return userAvatarById[user.id] ?? "";
+}
+
 function getAvatarToneClass(seed: string) {
   const toneClasses = [
     "ui-app-avatar--tone-1",
@@ -341,9 +351,15 @@ function assignedUsers(event: SchedulingEvent) {
                       v-for="user in assignedUsers(event).slice(0, 3)"
                       :key="`a-${event.id}-${user.id}`"
                       class="ui-app-avatar ui-app-avatar--sm services-scheduling__avatar"
-                      :class="getAvatarToneClass(user.id)"
+                      :class="getUserImageSrc(user) ? 'ui-app-avatar--media' : getAvatarToneClass(user.id)"
                     >
-                      {{ user.initials }}
+                      <img
+                        v-if="getUserImageSrc(user)"
+                        :src="getUserImageSrc(user)"
+                        :alt="`${user.name} avatar`"
+                        class="ui-app-avatar-image"
+                      />
+                      <template v-else>{{ user.initials }}</template>
                     </span>
                     <span
                       v-if="assignedUsers(event).length > 3"

@@ -1,0 +1,89 @@
+{
+  "title": "Gestion de empresas",
+  "subtitle": "Importando empresas en tu espacio de trabajo",
+  "searchPlaceholder": "Buscar empresas...",
+  "filtersLabel": "Filtros",
+  "groupLabel": "Agrupar por empresa",
+  "newUserLabel": "Nueva empresa",
+  "progressLabel": "Progreso de importacion",
+  "columns": [
+    {
+      "key": "username",
+      "label": "Nombre de empresa"
+    },
+    {
+      "key": "organization",
+      "label": "Codigo de cuenta"
+    },
+    {
+      "key": "status",
+      "label": "Estado"
+    },
+    {
+      "key": "email",
+      "label": "Fecha de creacion"
+    }
+  ],
+  "rows": [
+    {
+      "id": "ct-001",
+      "username": "Northline Manufacturing",
+      "email": "02 Abr, 2026",
+      "organization": "ACC-NLM-1402",
+      "status": "Activo",
+      "firstName": "Northline",
+      "lastName": "Manufacturing",
+      "role": "Empresa"
+    },
+    {
+      "id": "ct-002",
+      "username": "BluePeak Logistics",
+      "email": "07 Abr, 2026",
+      "organization": "ACC-BPL-2279",
+      "status": "En configuracion",
+      "firstName": "BluePeak",
+      "lastName": "Logistics",
+      "role": "Empresa"
+    },
+    {
+      "id": "ct-003",
+      "username": "Vertex Retail Group",
+      "email": "11 Abr, 2026",
+      "organization": "ACC-VRG-3194",
+      "status": "Activo",
+      "firstName": "Vertex",
+      "lastName": "Retail",
+      "role": "Empresa"
+    },
+    {
+      "id": "ct-004",
+      "username": "Nova IT Services",
+      "email": "14 Abr, 2026",
+      "organization": "ACC-NIT-4410",
+      "status": "En configuracion",
+      "firstName": "Nova",
+      "lastName": "IT",
+      "role": "Empresa"
+    },
+    {
+      "id": "ct-005",
+      "username": "Mercury Wholesale",
+      "email": "18 Abr, 2026",
+      "organization": "ACC-MWC-5581",
+      "status": "Activo",
+      "firstName": "Mercury",
+      "lastName": "Wholesale",
+      "role": "Empresa"
+    },
+    {
+      "id": "ct-006",
+      "username": "Crestline Services",
+      "email": "23 Abr, 2026",
+      "organization": "ACC-CRS-6627",
+      "status": "Activo",
+      "firstName": "Crestline",
+      "lastName": "Services",
+      "role": "Empresa"
+    }
+  ]
+}

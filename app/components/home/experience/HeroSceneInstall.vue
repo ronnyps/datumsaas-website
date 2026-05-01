@@ -3,12 +3,29 @@ import { computed } from "vue";
 import { gsap } from "gsap";
 import HeroLiquidOrbWebgl from "~/components/home/experience/HeroLiquidOrbWebgl.client.vue";
 import HeroSceneShellBase from "~/components/home/experience/HeroSceneShellBase.vue";
+import HeroSceneUserImport from "~/components/home/experience/HeroSceneUserImport.vue";
 
 type MenuItem = {
   key: string;
   label: string;
   icon: string;
   active: boolean;
+};
+
+type ImportColumn = {
+  key: "username" | "email" | "organization" | "status" | "firstName" | "lastName";
+  label: string;
+};
+
+type ImportRow = {
+  id: string;
+  username: string;
+  email: string;
+  organization: string;
+  status: string;
+  firstName: string;
+  lastName: string;
+  role?: string;
 };
 
 const props = defineProps<{
@@ -18,10 +35,21 @@ const props = defineProps<{
   searchPlaceholder: string;
   navigationAriaLabel: string;
   menuItems: MenuItem[];
+  importMenuItems: MenuItem[];
   breadcrumb: string;
+  importBreadcrumb: string;
   profileName: string;
   topbarLabel: string;
   steps: string[];
+  title: string;
+  subtitle: string;
+  filtersLabel: string;
+  groupLabel: string;
+  newUserLabel: string;
+  progressLabel: string;
+  userSearchPlaceholder: string;
+  columns: ImportColumn[];
+  rows: ImportRow[];
 }>();
 
 const installCutoff = 0.46;
@@ -31,6 +59,13 @@ const installPhaseProgress = computed(() =>
 );
 
 const installMode = computed(() => props.progress < installCutoff);
+const importPhaseProgress = computed(() => {
+  if (installMode.value) return 0;
+  const normalized = (props.progress - installCutoff) / (1 - installCutoff);
+  if (normalized <= 0) return 0;
+  if (normalized >= 1) return 1;
+  return normalized;
+});
 
 const activeStepIndex = computed(() =>
   Math.min(props.steps.length - 1, Math.floor(installPhaseProgress.value * props.steps.length))
@@ -251,6 +286,7 @@ const onOverlayLeave = (element: Element, done: () => void) => {
 <template>
   <div class="hero-scene-install ui-size-full">
     <HeroSceneShellBase
+      v-if="installMode"
       :brand-name="brandName"
       :search-aria-label="searchAriaLabel"
       :search-placeholder="searchPlaceholder"
@@ -261,6 +297,28 @@ const onOverlayLeave = (element: Element, done: () => void) => {
       variant="blank"
       headline=""
       subline=""
+    />
+
+    <HeroSceneUserImport
+      v-else
+      class="ui-size-full"
+      :progress="importPhaseProgress"
+      :brand-name="brandName"
+      :search-aria-label="searchAriaLabel"
+      :search-placeholder="searchPlaceholder"
+      :navigation-aria-label="navigationAriaLabel"
+      :menu-items="importMenuItems"
+      :breadcrumb="importBreadcrumb"
+      :profile-name="profileName"
+      :title="title"
+      :subtitle="subtitle"
+      :filters-label="filtersLabel"
+      :group-label="groupLabel"
+      :new-user-label="newUserLabel"
+      :progress-label="progressLabel"
+      :user-search-placeholder="userSearchPlaceholder"
+      :columns="columns"
+      :rows="rows"
     />
 
     <transition

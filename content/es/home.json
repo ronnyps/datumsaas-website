@@ -1,10 +1,10 @@
-﻿{
+{
   "hero": {
     "announce": "Escala de una sola operacion a una empresa compleja.",
     "title": "Un solo sistema para gestionar toda tu operacion",
     "subtitle": "Conecta leads, tareas, ventas, pagos y reportes en un mismo flujo. Cierras hoy y puedes estar operando en pocos dias.",
     "ctaLabel": "Reservar demo en vivo",
-    "ctaHref": "#contact",
+    "ctaHref": "/es/contact",
     "secondaryCtaLabel": "Ver flujo en vivo",
     "secondaryCtaHref": "#flow",
     "microTrust": "Sin compromiso. Sesion practica de 45 minutos sobre tu operacion real."
@@ -403,7 +403,7 @@
       "Definimos encaje, plan de implementacion y objetivos de mejora a 90 dias"
     ],
     "ctaLabel": "Recibir plan de go-live",
-    "ctaHref": "#contact"
+    "ctaHref": "/es/contact"
   },
   "faq": {
     "title": "Preguntas comerciales frecuentes",
@@ -431,7 +431,7 @@
     "title": "Mira tu operacion funcionando en un sistema conectado",
     "description": "Reserva tu demo en vivo y recibe un plan de implementacion para operar en dias, con objetivos claros de mejora a 90 dias.",
     "buttonLabel": "Reservar demo en vivo",
-    "buttonHref": "#contact",
+    "buttonHref": "/es/contact",
     "secondaryButtonLabel": "Hablar con ventas",
     "microTrust": "La puesta en marcha inicial puede lograrse en alrededor de 5 dias, segun la cantidad de datos y clientes a mover."
   },
@@ -443,3 +443,4 @@
     "description": "Conecta leads, operaciones, ventas, pagos y reportes en una sola plataforma para empresas en crecimiento."
   }
 }
+

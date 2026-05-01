@@ -117,6 +117,11 @@ function getProductInitials(name: string): string {
     .toUpperCase();
 }
 
+function getProductImageSrc(product: Pick<InventoryProduct, "name">): string {
+  const fileName = `${product.name}`.trim().replace(/\s+/g, "-");
+  return `/inventory/${fileName}.webp`;
+}
+
 function resetModel() {
   const randomProducts = pickRandomProducts(props.products, INVENTORY_TABLE_ROWS);
   inventory.value = cloneInventoryProducts(randomProducts);
@@ -344,6 +349,7 @@ const productRows = computed(() =>
     name: product.name,
     category: product.category,
     initials: getProductInitials(product.name),
+    imageSrc: getProductImageSrc(product),
     stock: getTotalStock(product),
     state: getProductState(product),
   })),
@@ -373,6 +379,10 @@ const selectedProductInitials = computed(() => {
 const selectedProductPreviewLabel = computed(() => {
   if (!selectedProduct.value) return "";
   return selectedProduct.value.variants[0]?.imageLabel ?? "";
+});
+const selectedProductImageSrc = computed(() => {
+  if (!selectedProduct.value) return "";
+  return getProductImageSrc(selectedProduct.value);
 });
 const {
   value: modalNumberProgressValue,
@@ -534,10 +544,13 @@ onBeforeUnmount(() => {
                     'ui-app-avatar',
                     'ui-app-avatar--lg',
                     'ui-app-border-soft',
-                    getAvatarToneClass(row.id),
+                    row.imageSrc ? 'ui-app-avatar--media' : getAvatarToneClass(row.id),
                   ]"
                   aria-hidden="true"
-                  >{{ row.initials }}</span
+                  >
+                  <img v-if="row.imageSrc" :src="row.imageSrc" :alt="`${row.name} image`" class="ui-app-avatar-image" />
+                  <template v-else>{{ row.initials }}</template>
+                </span
                 >
                 <span
                   class="services-inventory-holder__row-name ui-app-table-row-text"
@@ -582,9 +595,12 @@ onBeforeUnmount(() => {
             <div class="services-inventory-holder__modal-head-main">
               <span
                 class="services-inventory-holder__modal-photo ui-app-avatar ui-app-avatar--lg ui-app-border-soft"
-                :class="getAvatarToneClass(selectedProduct.id)"
+                :class="selectedProductImageSrc ? 'ui-app-avatar--media' : getAvatarToneClass(selectedProduct.id)"
                 aria-hidden="true"
-                >{{ selectedProductInitials }}</span
+                >
+                <img v-if="selectedProductImageSrc" :src="selectedProductImageSrc" :alt="`${selectedProduct.name} image`" class="ui-app-avatar-image" />
+                <template v-else>{{ selectedProductInitials }}</template>
+              </span
               >
               <div class="services-inventory-holder__modal-head-copy">
                 <p class="services-inventory-holder__modal-title ui-app-heading">

@@ -464,6 +464,24 @@
   transition-delay: 140ms;
 }
 
+.services-proposal__builder.is-totals .services-proposal__layout,
+.services-proposal__builder.is-decision .services-proposal__layout,
+.services-proposal__builder.is-result .services-proposal__layout {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.services-proposal__builder.is-totals .services-proposal__left,
+.services-proposal__builder.is-decision .services-proposal__left,
+.services-proposal__builder.is-result .services-proposal__left {
+  grid-column: 1 / -1;
+}
+
+.services-proposal__builder.is-totals .services-proposal__right,
+.services-proposal__builder.is-decision .services-proposal__right,
+.services-proposal__builder.is-result .services-proposal__right {
+  display: none;
+}
+
 .services-proposal__approvals {
   margin-top: 0.1rem;
   display: grid;

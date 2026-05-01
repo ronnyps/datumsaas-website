@@ -1,12 +1,15 @@
 <script setup lang="ts">
 import { ChevronDownIcon } from "@heroicons/vue/24/outline";
 import { computed, onBeforeUnmount, onMounted, ref, watch } from "vue";
+import userImportData from "~/data/hero-user-import.json";
 
 type AccessUser = {
   id: string;
   name: string;
   organization: string;
   role?: string;
+  firstName?: string;
+  lastName?: string;
 };
 
 const props = defineProps<{
@@ -38,13 +41,16 @@ const copy = computed(() => {
   };
 });
 
-const users = ref<AccessUser[]>([
-  { id: "u-olivia", name: "Olivia Bennett", organization: "Summit Property Care" },
-  { id: "u-sofia", name: "Sofia Martinez", organization: "Vertex Home Services" },
-  { id: "u-jason", name: "Jason Clark", organization: "Blue Harbor Medical" },
-  { id: "u-emma", name: "Emma Rodriguez", organization: "Northstar Logistics" },
-  { id: "u-daniel", name: "Daniel Kim", organization: "Atlas Security Group" },
-]);
+const users = ref<AccessUser[]>(
+  userImportData.rows.slice(0, 5).map((row) => ({
+    id: row.id,
+    name: `${row.firstName} ${row.lastName}`.trim(),
+    organization: row.organization,
+    role: row.role,
+    firstName: row.firstName,
+    lastName: row.lastName,
+  }))
+);
 
 const activeUserIndex = ref(0);
 const modalUser = computed(() => users.value[activeUserIndex.value] ?? null);
@@ -61,13 +67,7 @@ function pressRow(id: string) {
   }, 280);
 }
 
-const orgOptions = computed(() => [
-  "Summit Property Care",
-  "Vertex Home Services",
-  "Blue Harbor Medical",
-  "Northstar Logistics",
-  "Atlas Security Group",
-]);
+const orgOptions = computed(() => Array.from(new Set(users.value.map((user) => user.organization))));
 
 const roleOptions = computed(() => {
   if (props.locale === "es") {
@@ -383,6 +383,22 @@ function getAvatarToneClass(seed: string) {
   const index = Math.abs(hash) % toneClasses.length;
   return toneClasses[index] ?? "ui-app-avatar--tone-1";
 }
+
+const avatarByName: Record<string, string> = {
+  "james-smith": "/users/james-smith.webp",
+  "olivia-johnson": "/users/Olivia-johnson.webp",
+  "liam-williams": "/users/Liam-Williams.webp",
+  "emma-brown": "/users/Emma-Brown.webp",
+  "noah-jones": "/users/Noah-Jones.webp",
+  "sophia-martinez": "/users/Sophia-Martinez.webp"
+};
+
+function getAvatarSrc(user: AccessUser) {
+  const first = (user.firstName ?? user.name.split(/\s+/)[0] ?? "").trim();
+  const last = (user.lastName ?? user.name.split(/\s+/).slice(1).join(" ") ?? "").trim();
+  const key = `${first}-${last}`.toLowerCase().replace(/\s+/g, "-");
+  return avatarByName[key] ?? null;
+}
 </script>
 
 <template>
@@ -422,10 +438,16 @@ function getAvatarToneClass(seed: string) {
           <span class="services-users-access__row-user">
             <span
               class="ui-app-avatar ui-app-avatar--md"
-              :class="getAvatarToneClass(user.id)"
+              :class="getAvatarSrc(user) ? 'ui-app-avatar--media' : getAvatarToneClass(user.id)"
               aria-hidden="true"
             >
-              {{ getInitials(user.name) }}
+              <img
+                v-if="getAvatarSrc(user)"
+                :src="getAvatarSrc(user) || undefined"
+                :alt="`${user.name} avatar`"
+                class="ui-app-avatar-image"
+              />
+              <template v-else>{{ getInitials(user.name) }}</template>
             </span>
             <span class="services-users-access__row-copy">
               <span class="services-users-access__row-name ui-app-table-row-text">{{ user.name }}</span>
@@ -444,10 +466,16 @@ function getAvatarToneClass(seed: string) {
         <div v-if="modalUser" class="services-users-access__modal-user">
           <span
             class="ui-app-avatar ui-app-avatar--lg"
-            :class="getAvatarToneClass(modalUser.id)"
+            :class="getAvatarSrc(modalUser) ? 'ui-app-avatar--media' : getAvatarToneClass(modalUser.id)"
             aria-hidden="true"
           >
-            {{ getInitials(modalUser.name) }}
+            <img
+              v-if="getAvatarSrc(modalUser)"
+              :src="getAvatarSrc(modalUser) || undefined"
+              :alt="`${modalUser.name} avatar`"
+              class="ui-app-avatar-image"
+            />
+            <template v-else>{{ getInitials(modalUser.name) }}</template>
           </span>
           <div class="services-users-access__modal-copy">
             <p class="services-users-access__modal-name ui-app-heading">{{ modalUser.name }}</p>

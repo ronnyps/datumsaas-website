@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { computed, ref } from "vue";
 import { useDotsHover } from "~/composables/useDotsHover.client";
 
 defineProps<{
@@ -12,6 +12,8 @@ defineProps<{
 }>();
 
 const sectionRef = ref<HTMLElement | null>(null);
+const route = useRoute();
+const contactHref = computed(() => (route.path.startsWith("/es") ? "/es/contact" : "/contact"));
 useDotsHover(sectionRef);
 </script>
 
@@ -23,8 +25,8 @@ useDotsHover(sectionRef);
       <h2 class="section__title cta__title typo-h1-display">{{ title }}</h2>
       <p class="cta__text typo-p-body-muted">{{ description }}</p>
       <div class="cta__actions">
-        <a class="btn btn--primary" data-cta="action-primary" :href="buttonHref">{{ buttonLabel }}</a>
-        <a class="btn btn--ghost" href="#contact">{{ secondaryButtonLabel }}</a>
+        <NuxtLink class="btn btn--primary" data-cta="action-primary" :to="buttonHref">{{ buttonLabel }}</NuxtLink>
+        <NuxtLink class="btn btn--ghost" :to="contactHref">{{ secondaryButtonLabel }}</NuxtLink>
       </div>
       <p v-if="microTrust" class="cta__micro-trust typo-p-micro">{{ microTrust }}</p>
     </div>

@@ -4,6 +4,7 @@ import {
   ShieldCheckIcon,
   ChartBarSquareIcon,
 } from "@heroicons/vue/24/outline";
+import { onBeforeUnmount, onMounted, ref } from "vue";
 
 const activeRole = ref(0);
 
@@ -16,13 +17,44 @@ const props = defineProps<{
 }>();
 
 const backgroundVideo = computed(() => props.backgroundVideoSrc?.trim() || "/videos/scene1-sectionwhylp.mp4");
+const mobileVideo = "/section-why-mobile.mp4";
+const isMobileViewport = ref(false);
+
+function updateViewportState() {
+  if (typeof window === "undefined") return;
+  isMobileViewport.value = window.matchMedia("(max-width: 60em)").matches;
+}
+
+const mobileBackgroundVideo = computed(() =>
+  isMobileViewport.value ? mobileVideo : backgroundVideo.value
+);
 
 const pointIcons = [BuildingOffice2Icon, ShieldCheckIcon, ChartBarSquareIcon];
+
+onMounted(() => {
+  updateViewportState();
+  window.addEventListener("resize", updateViewportState, { passive: true });
+});
+
+onBeforeUnmount(() => {
+  window.removeEventListener("resize", updateViewportState);
+});
 </script>
 
 <template>
   <section id="why-us" class="section why-us section--dark-guides" data-aida="hierarchy">
     <div class="container why-us__panel">
+      <div v-if="backgroundVideo" class="why-us__mobile-media" aria-hidden="true">
+        <video
+          class="why-us__mobile-video"
+          :src="mobileBackgroundVideo"
+          autoplay
+          muted
+          loop
+          playsinline
+          preload="metadata"
+        />
+      </div>
       <video
         v-if="backgroundVideo"
         class="why-us__bg-video"

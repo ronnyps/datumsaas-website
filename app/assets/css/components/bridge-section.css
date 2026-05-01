@@ -7,6 +7,7 @@
   position: relative;
   display: grid;
   grid-template-columns: minmax(0, 2.2fr) repeat(3, minmax(0, 1fr));
+  align-items: start;
   border-top: 0;
   border-bottom: 0;
   background: transparent;

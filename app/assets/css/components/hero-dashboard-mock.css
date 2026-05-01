@@ -62,7 +62,7 @@
   min-height: 2.05rem;
   padding: 0 0.32rem;
   border-radius: 8px;
-  color: var(--dash-text-nav);
+  color: rgb(var(--color-midnight-500-ch) / 0.58);
   font-size: 0.9rem;
   font-weight: 500;
   line-height: 1;
@@ -76,7 +76,7 @@
 
 .menu__item--active {
   background: transparent;
-  color: var(--dash-text);
+  color: rgb(var(--color-midnight-500-ch) / 0.92);
   font-weight: 600;
 }
 
@@ -88,19 +88,19 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--dash-icon);
+  color: rgb(var(--color-midnight-500-ch) / 0.52);
   background: transparent;
 }
 
 .menu__item--active .menu__icon-wrap {
-  color: var(--dash-text);
+  color: rgb(var(--color-midnight-500-ch) / 0.92);
   background: var(--dash-icon-wrap-active);
 }
 
 .menu__icon {
   width: 1.1rem;
   height: 1.1rem;
-  opacity: 1;
+  opacity: 0.88;
   display: block;
   flex: 0 0 auto;
 }
@@ -152,9 +152,22 @@
 
 .profile__avatar {
   width: 1.7rem;
-  aspect-ratio: 1;
-  border-radius: var(--radius-pill);
+  height: 1.7rem;
+  min-width: 1.7rem;
+  min-height: 1.7rem;
+  border-radius: 50%;
+  overflow: hidden;
+  flex: 0 0 1.7rem;
   background: var(--dash-avatar-bg);
+}
+
+.profile__avatar--photo {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  background: transparent;
 }
 
 .profile__name {

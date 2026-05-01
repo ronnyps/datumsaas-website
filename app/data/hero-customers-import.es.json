@@ -1,0 +1,97 @@
+{
+  "title": "Gestion de clientes",
+  "subtitle": "Importando clientes en tu espacio de trabajo",
+  "searchPlaceholder": "Buscar clientes...",
+  "filtersLabel": "Filtros",
+  "groupLabel": "Agrupar por industria",
+  "newUserLabel": "Nuevo cliente",
+  "progressLabel": "Progreso de importacion",
+  "columns": [
+    {
+      "key": "username",
+      "label": "Cliente"
+    },
+    {
+      "key": "email",
+      "label": "Correo"
+    },
+    {
+      "key": "organization",
+      "label": "Empresa"
+    },
+    {
+      "key": "status",
+      "label": "Estado"
+    },
+    {
+      "key": "firstName",
+      "label": "Nombre"
+    },
+    {
+      "key": "lastName",
+      "label": "Apellido"
+    }
+  ],
+  "rows": [
+    {
+      "id": "c-001",
+      "username": "northline.mfg",
+      "email": "procurement@northline.com",
+      "organization": "Northline Manufacturing",
+      "status": "Activo",
+      "firstName": "Ethan",
+      "lastName": "Cole",
+      "role": "Cliente"
+    },
+    {
+      "id": "c-002",
+      "username": "bluepeak.logistics",
+      "email": "ops@bluepeaklogistics.com",
+      "organization": "BluePeak Logistics",
+      "status": "Activo",
+      "firstName": "Sofia",
+      "lastName": "Martinez",
+      "role": "Cliente"
+    },
+    {
+      "id": "c-003",
+      "username": "vertex.retail",
+      "email": "buyers@vertexretail.com",
+      "organization": "Vertex Retail Group",
+      "status": "Inactivo",
+      "firstName": "Liam",
+      "lastName": "Turner",
+      "role": "Cliente"
+    },
+    {
+      "id": "c-004",
+      "username": "nova.it",
+      "email": "finance@novaitservices.com",
+      "organization": "Nova IT Services",
+      "status": "Activo",
+      "firstName": "Emma",
+      "lastName": "Brown",
+      "role": "Cliente"
+    },
+    {
+      "id": "c-005",
+      "username": "mercury.wholesale",
+      "email": "orders@mercurywholesale.com",
+      "organization": "Mercury Wholesale",
+      "status": "Inactivo",
+      "firstName": "Noah",
+      "lastName": "Jones",
+      "role": "Cliente"
+    },
+    {
+      "id": "c-006",
+      "username": "crestline.services",
+      "email": "admin@crestlineservices.com",
+      "organization": "Crestline Services",
+      "status": "Activo",
+      "firstName": "Ava",
+      "lastName": "Davis",
+      "role": "Cliente"
+    }
+  ]
+}

@@ -245,7 +245,23 @@
 
 .site-mobile-menu__topbar {
   display: flex;
-  justify-content: flex-end;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: 0.55rem;
+}
+
+.site-mobile-menu__topbar-right {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.site-mobile-menu__brand {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.1rem;
+  padding: 0 0.2rem;
 }
 
 .site-mobile-menu__close {

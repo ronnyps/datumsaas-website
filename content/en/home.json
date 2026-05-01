@@ -1,10 +1,10 @@
-﻿{
+{
   "hero": {
     "announce": "Scale from a single operation to a complex business.",
     "title": "One System to Run Your Entire Operation",
     "subtitle": "Connect leads, tasks, sales, payments, and reporting in one flow. Close today and be running in days, not months.",
     "ctaLabel": "Book a Live Demo",
-    "ctaHref": "#contact",
+    "ctaHref": "/contact",
     "secondaryCtaLabel": "See Your Workflow Live",
     "secondaryCtaHref": "#flow",
     "microTrust": "No obligation. Practical 45-minute walkthrough based on your real operation."
@@ -403,7 +403,7 @@
       "Define fit, implementation plan, and 90-day improvement targets"
     ],
     "ctaLabel": "Get My Go-Live Plan",
-    "ctaHref": "#contact"
+    "ctaHref": "/contact"
   },
   "faq": {
     "title": "Commercial FAQ",
@@ -431,7 +431,7 @@
     "title": "See Your Operation Running in One Connected System",
     "description": "Book a live demo and receive an implementation plan to operate in days, with clear 90-day improvement goals.",
     "buttonLabel": "Book a Live Demo",
-    "buttonHref": "#contact",
+    "buttonHref": "/contact",
     "secondaryButtonLabel": "Talk to Sales",
     "microTrust": "Initial go-live can happen in about 5 days, depending on how much data and how many clients need to be moved."
   },
@@ -443,3 +443,4 @@
     "description": "Connect leads, operations, sales, payments, and reporting in one platform built for growing companies."
   }
 }
+

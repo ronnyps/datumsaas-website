@@ -7,6 +7,22 @@ npm install
 npm run dev
 ```
 
+## Contact Us -> n8n webhook
+
+The Contact Us modal sends form data directly to your n8n webhook from the client.
+
+1. Copy `.env.example` to `.env`.
+2. Set:
+
+```bash
+NUXT_PUBLIC_N8N_CONTACT_WEBHOOK_URL=https://your-n8n-domain/webhook/your-id
+```
+
+Config location:
+- Environment variable: `.env`
+- Nuxt runtime config key: `runtimeConfig.public.n8nContactWebhookUrl` in `nuxt.config.ts`
+- Submit logic: `app/composables/useContactWebhook.ts`
+
 ## Static build for hosting
 
 ```bash
