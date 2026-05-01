@@ -29,7 +29,16 @@ export default defineNuxtConfig({
   ],
   nitro: {
     prerender: {
-      routes: ["/", "/es", "/sitemap.xml", "/robots.txt"],
+      routes: [
+        "/",
+        "/es",
+        "/terms",
+        "/privacy",
+        "/es/terms",
+        "/es/privacy",
+        "/sitemap.xml",
+        "/robots.txt",
+      ],
     },
   },
   site: {

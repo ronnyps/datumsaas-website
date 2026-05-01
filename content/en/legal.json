@@ -1,0 +1,262 @@
+{
+  "terms": {
+    "title": "Terms and Conditions",
+    "intro": "These Terms and Conditions explain the rules for accessing and using the DatumSaas website, demos, and related communication channels.",
+    "updatedAt": "Last updated: May 1, 2026",
+    "sections": [
+      {
+        "heading": "1. Acceptance of Terms",
+        "paragraphs": [
+          "By accessing this website, you agree to these Terms and Conditions and to all applicable laws and regulations.",
+          "If you do not agree with any part of these terms, you should discontinue use of the website and related forms."
+        ]
+      },
+      {
+        "heading": "2. Scope of Website Use",
+        "paragraphs": [
+          "This website is provided for informational and commercial communication purposes, including booking demos and requesting product information.",
+          "You may use the website only for lawful business purposes and may not attempt to interfere with normal operation, performance, or security."
+        ]
+      },
+      {
+        "heading": "3. No Account Required for Public Pages",
+        "paragraphs": [
+          "Browsing public pages does not require an account, but some linked services may redirect to external or client-specific platforms.",
+          "Where external platforms are involved, their own terms and privacy conditions will apply in addition to these website terms."
+        ]
+      },
+      {
+        "heading": "4. Contact Forms and Submitted Information",
+        "paragraphs": [
+          "When you submit forms, you agree to provide accurate, current, and complete business information.",
+          "You are responsible for ensuring that submitted data does not infringe third-party rights or include unlawful content."
+        ]
+      },
+      {
+        "heading": "5. Marketing and Communication Consent",
+        "paragraphs": [
+          "By submitting inquiries, you authorize DatumSaas to contact you regarding your request via email, phone, or approved communication channels.",
+          "Where legally required, additional consent options may be presented before promotional messaging is sent."
+        ]
+      },
+      {
+        "heading": "6. Intellectual Property",
+        "paragraphs": [
+          "All site content, including branding assets, interface designs, copy, illustrations, animations, and code snippets, is owned by DatumSaas or licensed to DatumSaas.",
+          "You may not reproduce, distribute, modify, or create derivative works from website materials without prior written authorization."
+        ]
+      },
+      {
+        "heading": "7. Limited License",
+        "paragraphs": [
+          "DatumSaas grants you a limited, non-exclusive, non-transferable, revocable license to access and view website content for internal evaluation.",
+          "This license does not grant any ownership rights and can be revoked at any time in cases of misuse."
+        ]
+      },
+      {
+        "heading": "8. Prohibited Conduct",
+        "paragraphs": [
+          "You agree not to attempt unauthorized access, scraping at abusive rates, reverse engineering of protected components, or distribution of malicious code.",
+          "You also agree not to use the website in a way that degrades service for other visitors or violates applicable data protection law."
+        ]
+      },
+      {
+        "heading": "9. Third-Party Tools and Links",
+        "paragraphs": [
+          "The website may integrate or link to third-party services for analytics, hosting, automation, scheduling, or communications.",
+          "DatumSaas is not responsible for independent third-party terms, uptime, or security practices outside our direct control."
+        ]
+      },
+      {
+        "heading": "10. Service and Content Availability",
+        "paragraphs": [
+          "Website features, content, and visual demonstrations may change, be replaced, or be removed at any time without prior notice.",
+          "We do not guarantee uninterrupted access and may perform maintenance or emergency updates as needed."
+        ]
+      },
+      {
+        "heading": "11. Informational Nature of Content",
+        "paragraphs": [
+          "All website materials are provided for general information and commercial orientation and do not constitute legal, financial, tax, or compliance advice.",
+          "You should seek professional advice before making decisions based solely on content displayed on this website."
+        ]
+      },
+      {
+        "heading": "12. Disclaimer of Warranties",
+        "paragraphs": [
+          "The website is provided on an \"as is\" and \"as available\" basis, without warranties of any kind, whether express or implied.",
+          "To the maximum extent allowed by law, DatumSaas disclaims warranties of merchantability, fitness for a particular purpose, and non-infringement."
+        ]
+      },
+      {
+        "heading": "13. Limitation of Liability",
+        "paragraphs": [
+          "To the fullest extent permitted by law, DatumSaas shall not be liable for indirect, incidental, special, consequential, or punitive damages arising from website use.",
+          "In all cases, any liability related to website access will be limited to the minimum amount required by applicable law."
+        ]
+      },
+      {
+        "heading": "14. Indemnification",
+        "paragraphs": [
+          "You agree to indemnify and hold harmless DatumSaas from claims, damages, and expenses resulting from your misuse of the website or violation of these terms.",
+          "This includes claims related to unlawful data submissions, intellectual property violations, or abusive automated access."
+        ]
+      },
+      {
+        "heading": "15. Privacy and Data Protection",
+        "paragraphs": [
+          "Our handling of personal data is described in the Privacy Policy, which forms part of these terms by reference.",
+          "If there is a conflict between these terms and mandatory privacy law, mandatory legal requirements will prevail."
+        ]
+      },
+      {
+        "heading": "16. Jurisdiction and Governing Law",
+        "paragraphs": [
+          "These terms are governed by the laws of the jurisdiction where DatumSaas is established, without regard to conflict-of-law principles.",
+          "Any dispute arising from website use shall be resolved in the competent courts of that jurisdiction unless otherwise required by law."
+        ]
+      },
+      {
+        "heading": "17. Changes to These Terms",
+        "paragraphs": [
+          "DatumSaas may update these terms from time to time to reflect legal, operational, or product changes.",
+          "The effective date shown on this page indicates the latest revision, and continued use implies acceptance of updates."
+        ]
+      },
+      {
+        "heading": "18. Contact",
+        "paragraphs": [
+          "For questions regarding these Terms and Conditions, contact us at info@datumsaas.com.",
+          "If you require legal notices or contract-related coordination, include your company name and point of contact in your message."
+        ]
+      }
+    ],
+    "seo": {
+      "title": "DatumSaas Terms and Conditions",
+      "description": "Read the full Terms and Conditions for using the DatumSaas website, demos, and commercial contact channels."
+    }
+  },
+  "privacy": {
+    "title": "Privacy Policy",
+    "intro": "This Privacy Policy explains how DatumSaas collects, uses, stores, and protects personal and business information submitted through this website.",
+    "updatedAt": "Last updated: May 1, 2026",
+    "sections": [
+      {
+        "heading": "1. Policy Scope",
+        "paragraphs": [
+          "This policy applies to personal and business information collected through DatumSaas public website pages, forms, and contact interactions.",
+          "It does not automatically apply to third-party platforms linked from this website, which maintain their own privacy practices."
+        ]
+      },
+      {
+        "heading": "2. Information We Collect",
+        "paragraphs": [
+          "We may collect identifiers and business context such as full name, email, phone number, company, team size, industry, and requested capabilities.",
+          "We may also collect message content and optional details that help us understand your operational needs."
+        ]
+      },
+      {
+        "heading": "3. Technical and Usage Data",
+        "paragraphs": [
+          "We may automatically collect technical information including device type, browser, language, referring URL, pages viewed, and interaction timestamps.",
+          "This data helps us maintain site performance, improve usability, and detect suspicious activity."
+        ]
+      },
+      {
+        "heading": "4. Cookies and Similar Technologies",
+        "paragraphs": [
+          "DatumSaas may use cookies and similar storage technologies to remember preferences, measure engagement, and optimize site behavior.",
+          "Where required by law, you can choose to accept or reject non-essential cookies through website controls."
+        ]
+      },
+      {
+        "heading": "5. How We Use Information",
+        "paragraphs": [
+          "Submitted information is used to respond to inquiries, schedule demos, evaluate fit, and coordinate commercial follow-up.",
+          "We may also use aggregated and non-identifiable data for analytics, planning, and service quality improvement."
+        ]
+      },
+      {
+        "heading": "6. Legal Bases for Processing",
+        "paragraphs": [
+          "Depending on your jurisdiction, processing may be based on consent, legitimate interest, pre-contractual necessity, or legal obligation.",
+          "When consent is required, you may withdraw it at any time without affecting prior lawful processing."
+        ]
+      },
+      {
+        "heading": "7. Data Sharing and Service Providers",
+        "paragraphs": [
+          "We may share limited data with vetted providers that support hosting, automation, CRM workflows, analytics, scheduling, and communications.",
+          "These providers are contractually required to process data only under documented instructions and applicable confidentiality obligations."
+        ]
+      },
+      {
+        "heading": "8. International Transfers",
+        "paragraphs": [
+          "If data is transferred across borders, DatumSaas applies reasonable safeguards appropriate to the destination and applicable law.",
+          "Transfer safeguards may include contractual controls and provider-level security commitments."
+        ]
+      },
+      {
+        "heading": "9. Data Retention",
+        "paragraphs": [
+          "We retain data only for as long as necessary to fulfill the purposes described in this policy, comply with legal obligations, and resolve disputes.",
+          "Retention periods may vary by record type, jurisdiction, and operational necessity."
+        ]
+      },
+      {
+        "heading": "10. Security Measures",
+        "paragraphs": [
+          "DatumSaas uses administrative, technical, and organizational controls designed to protect personal information against unauthorized access or disclosure.",
+          "No internet transmission or storage system is fully risk-free, but we continuously improve our safeguards."
+        ]
+      },
+      {
+        "heading": "11. Your Privacy Rights",
+        "paragraphs": [
+          "Subject to local law, you may request access, correction, deletion, processing restriction, portability, or objection regarding your data.",
+          "We may require identity verification before processing requests to protect account and contact security."
+        ]
+      },
+      {
+        "heading": "12. Marketing Preferences",
+        "paragraphs": [
+          "You can opt out of promotional communications using unsubscribe options or by contacting us directly.",
+          "Transactional or service-related messages may still be sent when required to support active requests or legal obligations."
+        ]
+      },
+      {
+        "heading": "13. Children's Privacy",
+        "paragraphs": [
+          "This website is intended for business audiences and is not directed to children under the age required by applicable law.",
+          "If we learn that child data has been submitted without valid authorization, we will take appropriate removal steps."
+        ]
+      },
+      {
+        "heading": "14. External Links",
+        "paragraphs": [
+          "Website pages may include links to third-party resources. DatumSaas is not responsible for privacy practices on external domains.",
+          "We recommend reviewing the privacy notices of any third-party site you visit."
+        ]
+      },
+      {
+        "heading": "15. Policy Updates",
+        "paragraphs": [
+          "We may update this Privacy Policy periodically to reflect legal requirements, platform changes, or operational updates.",
+          "The date at the top of this page indicates the latest version, and significant updates may be highlighted where appropriate."
+        ]
+      },
+      {
+        "heading": "16. Contact for Privacy Requests",
+        "paragraphs": [
+          "For privacy questions or rights requests, contact info@datumsaas.com.",
+          "Please include enough detail for us to identify your request and provide a timely response."
+        ]
+      }
+    ],
+    "seo": {
+      "title": "DatumSaas Privacy Policy",
+      "description": "Read the full Privacy Policy describing how DatumSaas collects, uses, stores, and protects contact and website data."
+    }
+  }
+}

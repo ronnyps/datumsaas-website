@@ -11,6 +11,9 @@ const STORAGE_KEY = "datumsaas-scroll-cta-dismissed-v1";
 const isVisible = ref(false);
 const isDismissed = ref(false);
 let heroObserver: IntersectionObserver | null = null;
+let footerObserver: IntersectionObserver | null = null;
+const isHeroIntersecting = ref(true);
+const isFooterIntersecting = ref(false);
 
 const copy = computed(() => {
   if (props.locale === "es") {
@@ -35,29 +38,58 @@ function dismiss() {
   }
 }
 
+function syncVisibility() {
+  if (isDismissed.value) {
+    isVisible.value = false;
+    return;
+  }
+
+  isVisible.value = !isHeroIntersecting.value && !isFooterIntersecting.value;
+}
+
 onMounted(() => {
   if (typeof window === "undefined") return;
   isDismissed.value = window.sessionStorage.getItem(STORAGE_KEY) === "1";
-  if (isDismissed.value) return;
 
   const heroEl = document.querySelector(".hero");
-  if (!heroEl) return;
+  if (heroEl) {
+    heroObserver = new IntersectionObserver(
+      (entries) => {
+        const entry = entries[0];
+        if (!entry) return;
+        isHeroIntersecting.value = entry.isIntersecting;
+        syncVisibility();
+      },
+      { threshold: 0.12 }
+    );
+    heroObserver.observe(heroEl);
+  }
 
-  heroObserver = new IntersectionObserver(
-    (entries) => {
-      const entry = entries[0];
-      if (!entry || isDismissed.value) return;
-      isVisible.value = !entry.isIntersecting;
-    },
-    { threshold: 0.12 }
-  );
-  heroObserver.observe(heroEl);
+  const footerEl = document.querySelector(".footer");
+  if (footerEl) {
+    footerObserver = new IntersectionObserver(
+      (entries) => {
+        const entry = entries[0];
+        if (!entry) return;
+        isFooterIntersecting.value = entry.isIntersecting;
+        syncVisibility();
+      },
+      { threshold: 0.02 }
+    );
+    footerObserver.observe(footerEl);
+  }
+
+  syncVisibility();
 });
 
 onBeforeUnmount(() => {
   if (heroObserver) {
     heroObserver.disconnect();
     heroObserver = null;
+  }
+  if (footerObserver) {
+    footerObserver.disconnect();
+    footerObserver = null;
   }
 });
 </script>

@@ -1,20 +1,31 @@
 <script setup lang="ts">
 import BrandLogo from "~/components/common/BrandLogo.vue";
 
-defineProps<{
-  copyright: string;
-}>();
+withDefaults(
+  defineProps<{
+    locale?: "en" | "es";
+    copyright: string;
+  }>(),
+  {
+    locale: "en",
+  },
+);
 </script>
 
 <template>
   <footer class="footer">
     <div class="container footer__inner">
-      <a class="footer__brand" href="/">
+      <NuxtLink class="footer__brand" :to="locale === 'es' ? '/es' : '/'">
         <BrandLogo label="DatumSaaS" size="md" variant="dot" />
-      </a>
+      </NuxtLink>
       <div class="footer__legal">
         <small class="footer__copy">{{ copyright }}</small>
-        <a class="footer__terms" href="#contact">Terms and conditions</a>
+        <NuxtLink class="footer__terms" :to="locale === 'es' ? '/es/terms' : '/terms'">
+          {{ locale === "es" ? "Terminos y condiciones" : "Terms and conditions" }}
+        </NuxtLink>
+        <NuxtLink class="footer__terms" :to="locale === 'es' ? '/es/privacy' : '/privacy'">
+          {{ locale === "es" ? "Politica de privacidad" : "Privacy policy" }}
+        </NuxtLink>
       </div>
     </div>
   </footer>

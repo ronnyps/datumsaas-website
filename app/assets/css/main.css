@@ -424,6 +424,11 @@ button:focus-visible {
   background-size: 14px 14px;
 }
 
+.home--plain::before,
+.home--plain::after {
+  content: none;
+}
+
 .home__dots-hover {
   position: absolute;
   top: 0;

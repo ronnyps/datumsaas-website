@@ -35,7 +35,7 @@ useLocalizedSeo({
     <HomeSupportSection v-bind="content.support" />
     <HomeFaqSection v-bind="content.faq" />
     <HomeCtaSection v-bind="content.cta" />
-    <LayoutSiteFooter v-bind="content.footer" />
+    <LayoutSiteFooter :locale="props.locale" v-bind="content.footer" />
     <LayoutSiteCookieNotice :locale="props.locale" />
     <LayoutSiteScrollCta :locale="props.locale" />
     <LayoutSiteContactDrawer
