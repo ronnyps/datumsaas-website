@@ -850,7 +850,7 @@ watch(stage, async () => {
   <section
     id="flow"
     ref="rootEl"
-    class="section flow"
+    class="section flow section--dark-guides"
     data-aida="flow"
     data-flow="workflow-canvas"
   >

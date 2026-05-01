@@ -172,6 +172,30 @@
   min-height: clamp(34rem, 82vh, 43rem);
 }
 
+@media (min-width: 90em) {
+  .problem__container {
+    grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
+    align-items: stretch;
+    min-height: clamp(40rem, 90vh, 56rem);
+  }
+
+  .problem__copy {
+    align-content: center;
+    padding-right: clamp(0.75rem, 1.8vw, 1.75rem);
+  }
+
+  .problem__visual {
+    justify-self: end;
+    align-self: center;
+    width: min(100%, 41rem);
+    height: clamp(24rem, 31vw, 33rem);
+  }
+
+  .problem[data-scene-mode="pinned"] .problem__container {
+    min-height: clamp(40rem, 90vh, 56rem);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .problem__item-button {
     transition: none;

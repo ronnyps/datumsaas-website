@@ -378,7 +378,8 @@ onBeforeUnmount(() => {
   border-radius: 1rem 1rem 0 0;
   background: rgb(var(--color-neutral-0-ch) / 1);
   padding: 1.2rem;
-  display: block;
+  display: flex;
+  flex-direction: column;
   min-height: 0;
   overflow: hidden;
   box-shadow:
@@ -446,8 +447,12 @@ onBeforeUnmount(() => {
   gap: 1rem;
   align-content: start;
   padding-right: 0;
-  min-height: 100%;
-  overflow: hidden;
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y;
 }
 
 .contact-drawer__form--state {
