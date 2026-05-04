@@ -19,6 +19,7 @@ type OpenItem = {
 const props = defineProps<{
   locale?: "en" | "es";
 }>();
+const asset = useAssetPath();
 
 const rootEl = ref<HTMLElement | null>(null);
 const pointerWrapEl = ref<HTMLElement | null>(null);
@@ -593,7 +594,7 @@ const visibleOpenItems = computed(() => copy.value.open.items);
           <h3 class="problem-mobile-files__title">{{ copy.title }}</h3>
           <p class="problem-mobile-files__subtitle">{{ copy.subtitle }}</p>
         </div>
-        <img class="problem-mobile-files__avatar" src="/avatarCEO.webp" alt="CEO avatar" />
+        <img class="problem-mobile-files__avatar" :src="asset('/avatarCEO.webp')" alt="CEO avatar" />
       </header>
 
       <div class="problem-mobile-files__search">

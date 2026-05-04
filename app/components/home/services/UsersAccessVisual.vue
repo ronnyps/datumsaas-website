@@ -16,6 +16,7 @@ const props = defineProps<{
   locale?: "en" | "es";
   active?: boolean;
 }>();
+const asset = useAssetPath();
 
 const rootElementRef = ref<HTMLElement | null>(null);
 const isMobileViewport = ref(false);
@@ -385,12 +386,12 @@ function getAvatarToneClass(seed: string) {
 }
 
 const avatarByName: Record<string, string> = {
-  "james-smith": "/users/james-smith.webp",
-  "olivia-johnson": "/users/Olivia-johnson.webp",
-  "liam-williams": "/users/Liam-Williams.webp",
-  "emma-brown": "/users/Emma-Brown.webp",
-  "noah-jones": "/users/Noah-Jones.webp",
-  "sophia-martinez": "/users/Sophia-Martinez.webp"
+  "james-smith": asset("/users/james-smith.webp"),
+  "olivia-johnson": asset("/users/Olivia-johnson.webp"),
+  "liam-williams": asset("/users/Liam-Williams.webp"),
+  "emma-brown": asset("/users/Emma-Brown.webp"),
+  "noah-jones": asset("/users/Noah-Jones.webp"),
+  "sophia-martinez": asset("/users/Sophia-Martinez.webp")
 };
 
 function getAvatarSrc(user: AccessUser) {

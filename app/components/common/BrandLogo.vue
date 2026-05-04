@@ -21,10 +21,11 @@ const logoClass = computed(() => [
   `ds-brand-logo--${props.size}`,
   props.animated ? "ds-brand-logo--animated" : ""
 ]);
+const asset = useAssetPath();
 </script>
 
 <template>
   <div :class="logoClass">
-    <img class="ds-brand-logo__asset" src="/logo-datumsaas.svg" :alt="label" />
+    <img class="ds-brand-logo__asset" :src="asset('/logo-datumsaas.svg')" :alt="label" />
   </div>
 </template>

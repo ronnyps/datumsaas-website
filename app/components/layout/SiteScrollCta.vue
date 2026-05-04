@@ -6,6 +6,7 @@ const props = defineProps<{
   locale: "en" | "es";
 }>();
 const contactHref = computed(() => (props.locale === "es" ? "/es/contact" : "/contact"));
+const asset = useAssetPath();
 
 const STORAGE_KEY = "datumsaas-scroll-cta-dismissed-v1";
 const isVisible = ref(false);
@@ -98,8 +99,8 @@ onBeforeUnmount(() => {
   <Transition name="scroll-cta-pop">
     <aside v-if="isVisible" class="site-scroll-cta" role="complementary" aria-live="polite">
       <div class="site-scroll-cta__avatars" aria-hidden="true">
-        <img src="/avatarCEO.webp" alt="" />
-        <img src="/users/Olivia-johnson.webp" alt="" />
+        <img :src="asset('/avatarCEO.webp')" alt="" />
+        <img :src="asset('/users/Olivia-johnson.webp')" alt="" />
       </div>
       <p class="site-scroll-cta__text">{{ copy.text }}</p>
       <NuxtLink class="site-scroll-cta__button" :to="contactHref">{{ copy.cta }}</NuxtLink>

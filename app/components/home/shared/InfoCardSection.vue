@@ -10,6 +10,7 @@ defineProps<{
   items: { title: string; description: string; videoSrc?: string; videoPoster?: string }[];
   tone?: "default" | "confidence";
 }>();
+const asset = useAssetPath();
 
 const videoRefs = ref<(HTMLVideoElement | null)[]>([]);
 
@@ -62,8 +63,8 @@ onMounted(async () => {
               v-if="item.videoSrc"
               :ref="(el) => setVideoRef(el, index)"
               class="info-card__media-video"
-              :src="item.videoSrc"
-              :poster="item.videoPoster"
+              :src="asset(item.videoSrc)"
+              :poster="item.videoPoster ? asset(item.videoPoster) : undefined"
               muted
               loop
               playsinline

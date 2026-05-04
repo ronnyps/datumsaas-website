@@ -2,12 +2,15 @@
 
 const props = defineProps<{
   locale: "en" | "es";
+  forceContactDrawerOpen?: boolean;
+  pagePath?: string;
 }>();
 
 const content = await getHomeContent(props.locale);
 const productVariants = await getProductVariantsContent(props.locale);
-const path = props.locale === "es" ? "/es" : "/";
+const path = props.pagePath ?? (props.locale === "es" ? "/es" : "/");
 const { isOpen: isContactDrawerOpen, closeDrawer: closeContactDrawer } = useContactDrawerRoute(props.locale);
+const shouldOpenContactDrawer = computed(() => props.forceContactDrawerOpen || isContactDrawerOpen.value);
 
 useHomeDotsHover();
 useLocalizedSeo({
@@ -40,7 +43,7 @@ useLocalizedSeo({
     <LayoutSiteScrollCta :locale="props.locale" />
     <LayoutSiteContactDrawer
       :locale="props.locale"
-      :open="isContactDrawerOpen"
+      :open="shouldOpenContactDrawer"
       @close="closeContactDrawer"
     />
   </main>

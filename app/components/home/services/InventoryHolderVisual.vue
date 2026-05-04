@@ -34,6 +34,7 @@ const props = defineProps<{
   locale?: "en" | "es";
   products: InventoryProduct[];
 }>();
+const asset = useAssetPath();
 
 const INVENTORY_TABLE_ROWS = 7;
 const AUTO_DEMO_INITIAL_DELAY_MS = 1200;
@@ -119,7 +120,7 @@ function getProductInitials(name: string): string {
 
 function getProductImageSrc(product: Pick<InventoryProduct, "name">): string {
   const fileName = `${product.name}`.trim().replace(/\s+/g, "-");
-  return `/inventory/${fileName}.webp`;
+  return asset(`/inventory/${fileName}.webp`);
 }
 
 function resetModel() {

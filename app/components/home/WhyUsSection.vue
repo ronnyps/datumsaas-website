@@ -16,8 +16,9 @@ const props = defineProps<{
   backgroundVideoSrc?: string;
 }>();
 
-const backgroundVideo = computed(() => props.backgroundVideoSrc?.trim() || "/videos/scene1-sectionwhylp.mp4");
-const mobileVideo = "/section-why-mobile.mp4";
+const asset = useAssetPath();
+const backgroundVideo = computed(() => asset(props.backgroundVideoSrc?.trim() || "/videos/scene1-sectionwhylp.mp4"));
+const mobileVideo = asset("/section-why-mobile.mp4");
 const isMobileViewport = ref(false);
 
 function updateViewportState() {

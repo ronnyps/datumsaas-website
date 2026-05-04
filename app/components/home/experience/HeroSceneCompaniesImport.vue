@@ -46,6 +46,7 @@ const props = defineProps<{
   columns: ImportColumn[];
   rows: ImportRow[];
 }>();
+const asset = useAssetPath();
 
 const importProgress = computed(() => {
   if (!Number.isFinite(props.progress)) return 0;
@@ -109,12 +110,12 @@ const getAvatarToneClass = (row: ImportRow) => {
 };
 
 const avatarByName: Record<string, string> = {
-  "northline-manufacturing": "/companies/Northline-Manufacturing.webp",
-  "bluepeak-logistics": "/companies/BluePeak-Logistics.webp",
-  "vertex-retail-group": "/companies/Vertex-Retail-Group.webp",
-  "nova-it-services": "/companies/Nova-IT-Services.webp",
-  "mercury-wholesale": "/companies/Mercury-Wholesale.webp",
-  "crestline-services": "/companies/Crestline-Services.webp"
+  "northline-manufacturing": asset("/companies/Northline-Manufacturing.webp"),
+  "bluepeak-logistics": asset("/companies/BluePeak-Logistics.webp"),
+  "vertex-retail-group": asset("/companies/Vertex-Retail-Group.webp"),
+  "nova-it-services": asset("/companies/Nova-IT-Services.webp"),
+  "mercury-wholesale": asset("/companies/Mercury-Wholesale.webp"),
+  "crestline-services": asset("/companies/Crestline-Services.webp")
 };
 
 const getAvatarSrc = (row: ImportRow) => {

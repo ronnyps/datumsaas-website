@@ -16,6 +16,7 @@ const submitError = ref("");
 const submitSuccess = ref("");
 const submitDone = ref(false);
 const { submitToWebhook } = useContactWebhook();
+const asset = useAssetPath();
 
 const copy = computed(() =>
   props.locale === "es"
@@ -261,7 +262,7 @@ onBeforeUnmount(() => {
           <div v-if="isSubmitting" class="contact-drawer__state contact-drawer__state--sending">
             <div class="contact-drawer__state-mark" aria-hidden="true">
               <span class="contact-drawer__pulse" />
-              <img src="/imago.svg" alt="" />
+              <img :src="asset('/imago.svg')" alt="" />
             </div>
             <p class="contact-drawer__state-title">{{ copy.sendingLabel }}</p>
           </div>

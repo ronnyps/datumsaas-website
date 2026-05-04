@@ -10,9 +10,7 @@ export default defineNuxtConfig({
     },
   },
   app: {
-    head: {
-      link: [{ rel: "icon", type: "image/svg+xml", href: "/imago.svg" }],
-    },
+    baseURL: process.env.NUXT_APP_BASE_URL || "/",
   },
   css: ["~/assets/css/main.css"],
   modules: [

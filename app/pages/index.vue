@@ -1,6 +1,5 @@
 <script setup lang="ts">
 definePageMeta({
-  alias: ["/contact"],
   key: "home-en"
 });
 </script>

@@ -7,6 +7,7 @@ import { schedulingEvents, schedulingUsers } from "~/data/scheduling";
 const props = defineProps<{
   locale?: SchedulingLocale;
 }>();
+const asset = useAssetPath();
 
 const locale = computed<SchedulingLocale>(() => props.locale ?? "en");
 
@@ -109,9 +110,9 @@ const usersById = computed(() => {
 });
 
 const userAvatarById: Record<string, string> = {
-  "u-sofia": "/users/Sophia-Martinez.webp",
-  "u-olivia": "/users/Olivia-johnson.webp",
-  "u-emma": "/users/Emma-Brown.webp",
+  "u-sofia": asset("/users/Sophia-Martinez.webp"),
+  "u-olivia": asset("/users/Olivia-johnson.webp"),
+  "u-emma": asset("/users/Emma-Brown.webp"),
 };
 
 function getUserImageSrc(user: SchedulingUser) {

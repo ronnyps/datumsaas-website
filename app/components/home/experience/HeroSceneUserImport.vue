@@ -46,6 +46,7 @@ const props = defineProps<{
   columns: ImportColumn[];
   rows: ImportRow[];
 }>();
+const asset = useAssetPath();
 
 const importProgress = computed(() => {
   if (!Number.isFinite(props.progress)) return 0;
@@ -109,12 +110,12 @@ const getAvatarToneClass = (row: ImportRow) => {
 };
 
 const avatarByName: Record<string, string> = {
-  "james-smith": "/users/james-smith.webp",
-  "olivia-johnson": "/users/Olivia-johnson.webp",
-  "liam-williams": "/users/Liam-Williams.webp",
-  "emma-brown": "/users/Emma-Brown.webp",
-  "noah-jones": "/users/Noah-Jones.webp",
-  "sophia-martinez": "/users/Sophia-Martinez.webp"
+  "james-smith": asset("/users/james-smith.webp"),
+  "olivia-johnson": asset("/users/Olivia-johnson.webp"),
+  "liam-williams": asset("/users/Liam-Williams.webp"),
+  "emma-brown": asset("/users/Emma-Brown.webp"),
+  "noah-jones": asset("/users/Noah-Jones.webp"),
+  "sophia-martinez": asset("/users/Sophia-Martinez.webp")
 };
 
 const getAvatarSrc = (row: ImportRow) => {

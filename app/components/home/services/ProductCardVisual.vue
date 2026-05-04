@@ -7,6 +7,7 @@ const props = defineProps<{
   locale?: "en" | "es";
   products: ProductCardItem[];
 }>();
+const asset = useAssetPath();
 const rootElementRef = ref<HTMLElement | null>(null);
 const isInViewport = ref(false);
 const isMobileViewport = ref(false);
@@ -35,29 +36,29 @@ const currentVariant = computed<ProductVariant | null>(
 
 const previewImageByProductId: Record<string, Record<string, string>> = {
   "wireless-speaker": {
-    slate: "/products/speakers/Studio-sound-speaker-silver.webp",
-    ocean: "/products/speakers/Studio-sound-speaker-blue.webp",
-    cream: "/products/speakers/Studio-sound-speaker-yellow.webp",
+    slate: asset("/products/speakers/Studio-sound-speaker-silver.webp"),
+    ocean: asset("/products/speakers/Studio-sound-speaker-blue.webp"),
+    cream: asset("/products/speakers/Studio-sound-speaker-yellow.webp"),
   },
   "artisan-blend": {
-    "whole-bean": "/products/cofee/artisan-cofee-blend-gold.webp",
-    ground: "/products/cofee/artisan-cofee-blend-brown.webp",
-    capsules: "/products/cofee/artisan-cofee-blend-gray.webp",
+    "whole-bean": asset("/products/cofee/artisan-cofee-blend-gold.webp"),
+    ground: asset("/products/cofee/artisan-cofee-blend-brown.webp"),
+    capsules: asset("/products/cofee/artisan-cofee-blend-gray.webp"),
   },
   "running-shoe": {
-    "black-white": "/products/urban-runner/urban-runner-black.webp",
-    "navy-white": "/products/urban-runner/urban-runner-blue.webp",
-    coral: "/products/urban-runner/urban-runner-red.webp",
+    "black-white": asset("/products/urban-runner/urban-runner-black.webp"),
+    "navy-white": asset("/products/urban-runner/urban-runner-blue.webp"),
+    coral: asset("/products/urban-runner/urban-runner-red.webp"),
   },
   "ergo-chair": {
-    "mesh-black": "/products/chair/ergo-chair-brawn.webp",
-    "mesh-gray": "/products/chair/ergo-chair-silver.webp",
-    leather: "/products/chair/ergo-chair-brawn.webp",
+    "mesh-black": asset("/products/chair/ergo-chair-brawn.webp"),
+    "mesh-gray": asset("/products/chair/ergo-chair-silver.webp"),
+    leather: asset("/products/chair/ergo-chair-brawn.webp"),
   },
   "chef-knife-set": {
-    "3-piece": "/products/knife/knife-silver.webp",
-    "5-piece": "/products/knife/knife-gray.webp",
-    "7-piece": "/products/knife/knife-black.webp",
+    "3-piece": asset("/products/knife/knife-silver.webp"),
+    "5-piece": asset("/products/knife/knife-gray.webp"),
+    "7-piece": asset("/products/knife/knife-black.webp"),
   },
 };
 

@@ -3,9 +3,13 @@
   "type": "module",
   "private": true,
   "scripts": {
+    "clean:static": "node scripts/clean-static.mjs",
     "build": "nuxt build",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
+    "generate:static": "npm run clean:static && npm run generate",
+    "generate:root": "npm run clean:static && powershell -Command \"$env:NUXT_APP_BASE_URL='/'; npm run generate\"",
+    "generate:datumsaas": "npm run clean:static && powershell -Command \"$env:NUXT_APP_BASE_URL='/datumsaas/'; npm run generate\"",
     "preview": "nuxt preview",
     "test": "vitest run",
     "git:publish": "powershell -ExecutionPolicy Bypass -File ./scripts/git-publish.ps1",

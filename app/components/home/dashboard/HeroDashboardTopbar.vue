@@ -5,6 +5,7 @@ defineProps<{
   breadcrumb: string;
   profileName: string;
 }>();
+const asset = useAssetPath();
 </script>
 
 <template>
@@ -17,7 +18,7 @@ defineProps<{
       <BellIcon class="profile__bell ui-app-icon ui-app-icon--soft" />
       <img
         class="profile__avatar profile__avatar--photo ui-app-avatar ui-app-avatar--md"
-        src="/avatarCEO.webp"
+        :src="asset('/avatarCEO.webp')"
         alt="CEO avatar"
       />
       <span class="profile__name ui-app-table-row-value">{{ profileName }}</span>
