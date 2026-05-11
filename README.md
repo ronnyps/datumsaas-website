@@ -43,7 +43,7 @@ Generic static build using the current `NUXT_APP_BASE_URL` value:
 npm run generate:static
 ```
 
-Static files are generated in `.output/public`.
+Static files are generated in `.output/datumsaas`.
 
 Current behavior:
 
@@ -69,7 +69,7 @@ npm run git:publish -- -Message "your commit message" -Branch "branch-name"
 
 1. Build locally with `npm run generate:root` or `npm run generate:datumsaas`, depending on where the site will be mounted.
 2. On server, remove old deploy files first (at minimum old `_nuxt` and old html files) to avoid stale asset references.
-3. Upload contents of `.output/public` to your Apache document root (or subdirectory root if using `NUXT_APP_BASE_URL`).
+3. Upload contents of `.output/datumsaas` to your Apache document root (or subdirectory root if using `NUXT_APP_BASE_URL`).
 4. Keep `robots.txt` and `sitemap.xml` accessible from root.
 5. Purge Cloudflare cache after deploy.
 

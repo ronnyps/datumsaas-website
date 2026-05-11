@@ -26,6 +26,9 @@ export default defineNuxtConfig({
     "@nuxtjs/sitemap",
   ],
   nitro: {
+    output: {
+      publicDir: ".output/datumsaas",
+    },
     prerender: {
       routes: [
         "/",
